@@ -43,10 +43,12 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jmiAlterarHorario = new javax.swing.JMenuItem();
         jmiAlteraFuncionario = new javax.swing.JMenuItem();
         jmRelatorios = new javax.swing.JMenu();
+        jmiRelatorioCliente = new javax.swing.JMenuItem();
         jmSair = new javax.swing.JMenu();
         jmiSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SSClinicas");
         setResizable(false);
 
         jmCadastar.setBorder(null);
@@ -132,6 +134,16 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
                 jmRelatoriosMouseClicked(evt);
             }
         });
+
+        jmiRelatorioCliente.setText("Clientes");
+        jmiRelatorioCliente.setActionCommand("");
+        jmiRelatorioCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiRelatorioClienteActionPerformed(evt);
+            }
+        });
+        jmRelatorios.add(jmiRelatorioCliente);
+
         jMenuBar1.add(jmRelatorios);
 
         jmSair.setBorder(null);
@@ -193,8 +205,16 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiAlterarPacienteActionPerformed
 
     private void jmiSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSairActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jmiSairActionPerformed
+
+    private void jmiRelatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRelatorioClienteActionPerformed
+        // TODO add your handling code here:
+        FrmRelatorioPacientesCadastrados frmRelatorioPacientesCadastrados = new FrmRelatorioPacientesCadastrados();
+        this.setLocation(400, 200);
+        frmRelatorioPacientesCadastrados.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jmiRelatorioClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,13 +236,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmTelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -232,6 +246,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new FrmTelaPrincipal().setVisible(true);
             }
@@ -256,6 +271,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiDeletarFuncionario;
     private javax.swing.JMenuItem jmiDeletarHorario;
     private javax.swing.JMenuItem jmiDeletarPaciente;
+    private javax.swing.JMenuItem jmiRelatorioCliente;
     private javax.swing.JMenuItem jmiSair;
     // End of variables declaration//GEN-END:variables
 }
