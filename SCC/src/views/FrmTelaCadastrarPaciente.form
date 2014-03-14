@@ -31,16 +31,18 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbexibiPacientes" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   <Component id="jlTelefone" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jtfTelefone" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jbSalvar" min="-2" pref="92" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jbLimpar" min="-2" pref="99" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jbCancelar" min="-2" pref="103" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jbLimparCampos" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jlEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jtfEmail" alignment="0" min="-2" pref="303" max="-2" attributes="0"/>
@@ -99,7 +101,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <Component id="jbexibiPacientes" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jlNome" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -172,8 +174,9 @@
                   <Component id="jbSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbLimparCampos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="101" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -433,12 +436,20 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="jbexibiPacientes">
       <Properties>
         <Property name="text" type="java.lang.String" value="Exibir Pacientes do arraylist"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbexibiPacientesActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jbLimparCampos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Limpar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbLimparCamposActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

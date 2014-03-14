@@ -193,6 +193,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         FrmTelaCadastrarPaciente telaCadastraPaciente = new FrmTelaCadastrarPaciente();
         this.setLocation(400, 200);
         telaCadastraPaciente.setVisible(true);
+        telaCadastraPaciente.limparCampos();       
         dispose();
     }//GEN-LAST:event_jmiCadastrarPacienteActionPerformed
 
@@ -214,6 +215,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         this.setLocation(400, 200);
         frmRelatorioPacientesCadastrados.setVisible(true);
         dispose();
+        
     }//GEN-LAST:event_jmiRelatorioClienteActionPerformed
 
     /**
