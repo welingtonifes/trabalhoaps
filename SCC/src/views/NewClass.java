@@ -4,10 +4,7 @@
  */
 package views;
 
-/**
- *
- * @author aluno-info7
- */
+
 public class NewClass {
     
 }
