@@ -31,6 +31,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   <Component id="jlTelefone" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jtfTelefone" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
@@ -97,7 +98,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jlNome" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlCPF" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -430,5 +433,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Exibir Pacientes do arraylist"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

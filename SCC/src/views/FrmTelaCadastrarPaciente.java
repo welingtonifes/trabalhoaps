@@ -4,6 +4,7 @@
  */
 package views;
 
+import control.ControlePaciente;
 import domain.Paciente;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,6 +16,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
 
+    String nome;
+    String cpf;
     /**
      * Creates new form FrmTelaCadastrarPaciente
      */
@@ -63,6 +66,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         jtfNumero = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbPacientes = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Clientes");
@@ -170,6 +174,13 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtbPacientes);
 
+        jButton2.setText("Exibir Pacientes do arraylist");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,6 +189,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlTelefone)
                     .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,7 +242,9 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlNome)
                     .addComponent(jlCPF))
@@ -294,8 +308,8 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-674)/2, (screenSize.height-740)/2, 674, 740);
+        setSize(new java.awt.Dimension(674, 740));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
@@ -313,57 +327,58 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         // TODO add your handling code here:
         
-       /*Paciente paciente = new Paciente();
-       
-       
-        ArrayList<Paciente> listapaciente = new ArrayList<>();
-        
-        paciente.setNome(this.jtfNome.getText());
-        paciente.setCpf(this.jtfCPF.getText());
-        //paciente.setSexo(this.jrbSexoFeminino.getText());
-        //paciente.setSexo(this.jrbSexoMasculino.getText());
-        paciente.setDataNascimento(this.jtfDataNascimento.getText());
-        paciente.setCidade(this.jtfCidade.getText());
-        paciente.setBairro(this.jtfBairro.getText());
-        paciente.setRua(this.jtfRua.getText());
-        paciente.setNumero(this.jtfNumero.getText());
-        paciente.setEstado(this.jtfEstado.getText());
-        paciente.setCep(this.jtfCEP.getText());
-        paciente.setTelefone(this.jtfTelefone.getText());
-        paciente.setCelular(this.jtfCelular.getText());
-        paciente.setEmail(this.jtfEmail.getText());
-        if(paciente==null){
-            JOptionPane.showMessageDialog(null, "Favor preeencher todos os campos!");
-        }
-        
-        listapaciente.add(paciente);
-        
-       
-        
-        dispose();
-         for (int i = 0; i < listapaciente.size(); i++){                        
-                    JOptionPane.showMessageDialog(null, ""
-                    //+"\nCodigo: "   + listaCliente.get(i).getCodigo()
-                    +"\nNome: "     + listapaciente.get(i).getNome()
-                    +"\nCPF: "     + listapaciente.get(i).getCpf()
-                    //+"\nSexo: "     + listapaciente.get(i).getSexo()
-                    +"\nData de nascimento: "     + listapaciente.get(i).getDataNascimento()
-                    +"\nCidade: "     + listapaciente.get(i).getCidade()
-                    +"\nBairro: "     + listapaciente.get(i).getBairro()
-                    +"\nRua: "     + listapaciente.get(i).getRua()
-                    +"\nNumero: "     + listapaciente.get(i).getNumero()
-                    +"\nEstado: "     + listapaciente.get(i).getEstado()
-                    +"\nCEP: "     + listapaciente.get(i).getCep()
-                    +"\nTelefone: "     + listapaciente.get(i).getTelefone()
-                    +"\nCelular: "     + listapaciente.get(i).getCelular()
-                    +"\nE-mail: "     + listapaciente.get(i).getEmail()
-                            
-                    +"\n-----------------------");
-                    
-         }
+          Paciente paciente = new Paciente();           
+//        ArrayList<Paciente> listapaciente = new ArrayList<>();
+//        
+          paciente.setNome(this.jtfNome.getText());
+          paciente.setCpf(this.jtfCPF.getText());
+          
+          ControlePaciente.inserir(paciente);
+//        paciente.setSexo(this.jrbSexoFeminino.getText());
+//        paciente.setSexo(this.jrbSexoMasculino.getText());
+//        paciente.setDataNascimento(this.jtfDataNascimento.getText());
+//        paciente.setCidade(this.jtfCidade.getText());
+//        paciente.setBairro(this.jtfBairro.getText());
+//        paciente.setRua(this.jtfRua.getText());
+//        paciente.setNumero(this.jtfNumero.getText());
+//        paciente.setEstado(this.jtfEstado.getText());
+//        paciente.setCep(this.jtfCEP.getText());
+//        paciente.setTelefone(this.jtfTelefone.getText());
+//        paciente.setCelular(this.jtfCelular.getText());
+//        paciente.setEmail(this.jtfEmail.getText());
+//        if(paciente==null){
+//            JOptionPane.showMessageDialog(null, "Favor preeencher todos os campos!");
+//        }
+//        
+//        listapaciente.add(paciente);
+//        
+//       
+//        
+//        dispose();
+//         for (int i = 0; i < listapaciente.size(); i++){                        
+//                    JOptionPane.showMessageDialog(null, ""
+//                    //+"\nCodigo: "   + listaCliente.get(i).getCodigo()
+//                    +"\nNome: "     + listapaciente.get(i).getNome()
+//                    +"\nCPF: "     + listapaciente.get(i).getCpf()
+//                    //+"\nSexo: "     + listapaciente.get(i).getSexo()
+//                    +"\nData de nascimento: "     + listapaciente.get(i).getDataNascimento()
+//                    +"\nCidade: "     + listapaciente.get(i).getCidade()
+//                    +"\nBairro: "     + listapaciente.get(i).getBairro()
+//                    +"\nRua: "     + listapaciente.get(i).getRua()
+//                    +"\nNumero: "     + listapaciente.get(i).getNumero()
+//                    +"\nEstado: "     + listapaciente.get(i).getEstado()
+//                    +"\nCEP: "     + listapaciente.get(i).getCep()
+//                    +"\nTelefone: "     + listapaciente.get(i).getTelefone()
+//                    +"\nCelular: "     + listapaciente.get(i).getCelular()
+//                    +"\nE-mail: "     + listapaciente.get(i).getEmail()
+//                            
+//                    +"\n-----------------------");
+//                    
+//         }
+        this.dispose();
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
         this.setLocation(400, 200);
-        telaPrincipal.setVisible(true);*/
+        telaPrincipal.setVisible(true);
         
         String nome= jtfNome.getText().trim();
         String cpf= jtfCPF.getText().trim();
@@ -385,6 +400,11 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
         ((DefaultTableModel) jtbPacientes.getModel()).removeRow(jtbPacientes.getSelectedRow());
     }//GEN-LAST:event_jbLimparActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ControlePaciente.exibir();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -423,6 +443,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbCancelar;
