@@ -2,20 +2,20 @@ package domain;
 
 
 public class Paciente {
-    public int codigo;
-    public String nome;  
-    public String cpf;
-    public String sexo;
-    public String dataNascimento;
-    public String cidade; 
-    public String bairro; 
-    public String rua; 
-    public String numero; 
-    public String estado; 
-    public String cep; 
-    public String telefone; 
-    public String celular; 
-    public String email;
+    private int codigo;
+    private String nome;  
+    private String cpf;
+    private String sexo;
+    private String dataNascimento;
+    private String cidade; 
+    private String bairro; 
+    private String rua; 
+    private String numero; 
+    private String estado; 
+    private String cep; 
+    private String telefone; 
+    private String celular; 
+    private String email;
 
     public String getBairro() {
         return bairro;
