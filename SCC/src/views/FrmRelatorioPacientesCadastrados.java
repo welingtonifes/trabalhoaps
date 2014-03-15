@@ -1,33 +1,38 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
 import control.ControlePaciente;
-import domain.Paciente;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Gomes
- */
 public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
-
     /**
      * Creates new form FrmRelatorioPacientesCadastrados
      */
+    
     public FrmRelatorioPacientesCadastrados() {
         initComponents(); 
-        this.setLocation(300, 50);
+        this.setLocation(300, 200);
+  //      setDefaultCloseOperation(FrmRelatorioPacientesCadastrados.DISPOSE_ON_CLOSE);
+ //       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        //estabelece o modelo especificado em propriedades do Jtable criado
         DefaultTableModel tabelaPacientes = (DefaultTableModel) jtRelatorioPacientes.getModel();
- //     tabelaPacientes.addRow(new Object[] {ControlePaciente.listaPaciente.get(0).getNome()});
         
+        //percorre pelo arraylist e envia os dados de cada paciente para uma linha da tabela
         for (int i = 0; i < ControlePaciente.listaPaciente.size(); i++){
-                    tabelaPacientes.addRow(new Object[] {ControlePaciente.listaPaciente.get(i).getNome(),
-                                                         ControlePaciente.listaPaciente.get(i).getCpf()});
+                    tabelaPacientes.addRow(new Object[] {ControlePaciente.listaPaciente.get(i).getCodigo(),
+                                                         ControlePaciente.listaPaciente.get(i).getNome(),
+                                                         ControlePaciente.listaPaciente.get(i).getCpf(),
+                                                         ControlePaciente.listaPaciente.get(i).getSexo(),
+                                                         ControlePaciente.listaPaciente.get(i).getDataNascimento(),
+                                                         ControlePaciente.listaPaciente.get(i).getCidade(),
+                                                         ControlePaciente.listaPaciente.get(i).getBairro(),
+                                                         ControlePaciente.listaPaciente.get(i).getRua(),
+                                                         ControlePaciente.listaPaciente.get(i).getNumero(),
+                                                         ControlePaciente.listaPaciente.get(i).getUf(),
+                                                         ControlePaciente.listaPaciente.get(i).getCep(),
+                                                         ControlePaciente.listaPaciente.get(i).getTelefone(),
+                                                         ControlePaciente.listaPaciente.get(i).getCelular(),
+                                                         ControlePaciente.listaPaciente.get(i).getEmail()
+                                                         });
         }
     }
 
@@ -40,89 +45,79 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpRelatorioPacientes = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtRelatorioPacientes = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("RELATÓRIO DE PACIENTES CADASTRADOS");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 255));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Relatorio de Pacientes Cadastrados");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(245, 245, 245)
-                .addComponent(jLabel1)
-                .addContainerGap(267, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-        );
-
+        jtRelatorioPacientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtRelatorioPacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Cpf"
+                "Cód.", "Nome", "CPF", "Sexo", "Nascimento", "Cidade", "Bairro", "Rua", "Nº", "UF", "CEP", "Telefone", "Celular", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jtRelatorioPacientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane1.setViewportView(jtRelatorioPacientes);
-
-        javax.swing.GroupLayout jpRelatorioPacientesLayout = new javax.swing.GroupLayout(jpRelatorioPacientes);
-        jpRelatorioPacientes.setLayout(jpRelatorioPacientesLayout);
-        jpRelatorioPacientesLayout.setHorizontalGroup(
-            jpRelatorioPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jpRelatorioPacientesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        jpRelatorioPacientesLayout.setVerticalGroup(
-            jpRelatorioPacientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpRelatorioPacientesLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        if (jtRelatorioPacientes.getColumnModel().getColumnCount() > 0) {
+            jtRelatorioPacientes.getColumnModel().getColumn(0).setMinWidth(80);
+            jtRelatorioPacientes.getColumnModel().getColumn(1).setMinWidth(350);
+            jtRelatorioPacientes.getColumnModel().getColumn(2).setMinWidth(150);
+            jtRelatorioPacientes.getColumnModel().getColumn(3).setMinWidth(60);
+            jtRelatorioPacientes.getColumnModel().getColumn(4).setMinWidth(100);
+            jtRelatorioPacientes.getColumnModel().getColumn(5).setMinWidth(100);
+            jtRelatorioPacientes.getColumnModel().getColumn(6).setMinWidth(150);
+            jtRelatorioPacientes.getColumnModel().getColumn(7).setMinWidth(250);
+            jtRelatorioPacientes.getColumnModel().getColumn(8).setMinWidth(30);
+            jtRelatorioPacientes.getColumnModel().getColumn(9).setMinWidth(5);
+            jtRelatorioPacientes.getColumnModel().getColumn(10).setMinWidth(100);
+            jtRelatorioPacientes.getColumnModel().getColumn(11).setMinWidth(130);
+            jtRelatorioPacientes.getColumnModel().getColumn(12).setMinWidth(130);
+            jtRelatorioPacientes.getColumnModel().getColumn(13).setMinWidth(300);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpRelatorioPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpRelatorioPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+        this.setLocation(400, 200);
+        telaPrincipal.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /*
          * Set the Nimbus look and feel
          */
@@ -155,6 +150,7 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new FrmRelatorioPacientesCadastrados().setVisible(true);                
             }
@@ -162,11 +158,8 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
 
     }  
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel jpRelatorioPacientes;
-    private static javax.swing.JTable jtRelatorioPacientes;
+    private javax.swing.JTable jtRelatorioPacientes;
     // End of variables declaration//GEN-END:variables
 
 }

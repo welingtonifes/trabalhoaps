@@ -142,8 +142,8 @@ public class FrmTelaLogin extends javax.swing.JFrame {
     private void btEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEntrarMouseClicked
         // TODO add your handling code here:
         Usuario usuarioLogin = new Usuario();
-        usuarioLogin.setNome(this.tfNomeUsuario.getText());
-        usuarioLogin.setSenha(this.jpfSenhaUsuario.getText());
+        usuarioLogin.setNome("admin");//(this.tfNomeUsuario.getText());
+        usuarioLogin.setSenha("1234");//(this.jpfSenhaUsuario.getText());
         
         if(this.controleUsuario.verificarUsuarioSenha(usuarioLogin)){
             dispose();

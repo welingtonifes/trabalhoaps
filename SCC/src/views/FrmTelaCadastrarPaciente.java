@@ -1,23 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
 import control.ControlePaciente;
 import domain.Paciente;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Gomes
- */
 public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
-
-    String nome;
-    String cpf;
     /**
      * Creates new form FrmTelaCadastrarPaciente
      */
@@ -25,7 +13,6 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         initComponents();
         
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,7 +40,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         jtfDataNascimento = new javax.swing.JTextField();
         jtfCidade = new javax.swing.JTextField();
         jtfBairro = new javax.swing.JTextField();
-        jtfEstado = new javax.swing.JTextField();
+        jtfUF = new javax.swing.JTextField();
         jtfCEP = new javax.swing.JTextField();
         jtfTelefone = new javax.swing.JTextField();
         jtfCelular = new javax.swing.JTextField();
@@ -67,8 +54,9 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         jtfNumero = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbPacientes = new javax.swing.JTable();
-        jbexibiPacientes = new javax.swing.JButton();
         jbLimparCampos = new javax.swing.JButton();
+        jrMasculino = new javax.swing.JRadioButton();
+        jrFeminino = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Clientes");
@@ -176,19 +164,16 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtbPacientes);
 
-        jbexibiPacientes.setText("Exibir Pacientes do arraylist");
-        jbexibiPacientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbexibiPacientesActionPerformed(evt);
-            }
-        });
-
         jbLimparCampos.setText("Limpar");
         jbLimparCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbLimparCamposActionPerformed(evt);
             }
         });
+
+        jrMasculino.setText("Masculino");
+
+        jrFeminino.setText("Feminino");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,7 +183,6 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbexibiPacientes)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlTelefone)
                     .addComponent(jtfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,7 +201,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlCelular)
                             .addComponent(jtfCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jtfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfUF, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlEstado)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +216,12 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                             .addComponent(jlDataNascimento)
                             .addComponent(jtfDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(202, 202, 202)
-                        .addComponent(jlSexo))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlSexo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jrMasculino)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jrFeminino))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,15 +236,13 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                             .addComponent(jtfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlCEP)
                             .addComponent(jtfCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbexibiPacientes)
-                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlNome)
                     .addComponent(jlCPF))
@@ -268,7 +255,10 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                     .addComponent(jlDataNascimento)
                     .addComponent(jlSexo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jrMasculino)
+                    .addComponent(jrFeminino))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlCidade)
@@ -292,7 +282,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlEstado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtfUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlCEP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -309,18 +299,18 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                 .addComponent(jlEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSalvar)
                     .addComponent(jbLimpar)
                     .addComponent(jbCancelar)
                     .addComponent(jbLimparCampos))
-                .addGap(56, 56, 56)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(674, 740));
+        setSize(new java.awt.Dimension(608, 652));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -337,75 +327,52 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        // TODO add your handling code here:
-        
-          Paciente paciente = new Paciente();           
-//        ArrayList<Paciente> listapaciente = new ArrayList<>();
-//        
-          //funcao que verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)     
-            paciente.setNome(this.jtfNome.getText());
-            paciente.setCpf(this.jtfCPF.getText());
 
-            ControlePaciente.inserir(paciente);
-    //        paciente.setSexo(this.jrbSexoFeminino.getText());
-    //        paciente.setSexo(this.jrbSexoMasculino.getText());
-    //        paciente.setDataNascimento(this.jtfDataNascimento.getText());
-    //        paciente.setCidade(this.jtfCidade.getText());
-    //        paciente.setBairro(this.jtfBairro.getText());
-    //        paciente.setRua(this.jtfRua.getText());
-    //        paciente.setNumero(this.jtfNumero.getText());
-    //        paciente.setEstado(this.jtfEstado.getText());
-    //        paciente.setCep(this.jtfCEP.getText());
-    //        paciente.setTelefone(this.jtfTelefone.getText());
-    //        paciente.setCelular(this.jtfCelular.getText());
-    //        paciente.setEmail(this.jtfEmail.getText());
-    //        if(paciente==null){
-    //            JOptionPane.showMessageDialog(null, "Favor preeencher todos os campos!");
-    //        }
-    //        
-    //        listapaciente.add(paciente);
-    //        
-    //       
-    //        
-    //        dispose();
-    //         for (int i = 0; i < listapaciente.size(); i++){                        
-    //                    JOptionPane.showMessageDialog(null, ""
-    //                    //+"\nCodigo: "   + listaCliente.get(i).getCodigo()
-    //                    +"\nNome: "     + listapaciente.get(i).getNome()
-    //                    +"\nCPF: "     + listapaciente.get(i).getCpf()
-    //                    //+"\nSexo: "     + listapaciente.get(i).getSexo()
-    //                    +"\nData de nascimento: "     + listapaciente.get(i).getDataNascimento()
-    //                    +"\nCidade: "     + listapaciente.get(i).getCidade()
-    //                    +"\nBairro: "     + listapaciente.get(i).getBairro()
-    //                    +"\nRua: "     + listapaciente.get(i).getRua()
-    //                    +"\nNumero: "     + listapaciente.get(i).getNumero()
-    //                    +"\nEstado: "     + listapaciente.get(i).getEstado()
-    //                    +"\nCEP: "     + listapaciente.get(i).getCep()
-    //                    +"\nTelefone: "     + listapaciente.get(i).getTelefone()
-    //                    +"\nCelular: "     + listapaciente.get(i).getCelular()
-    //                    +"\nE-mail: "     + listapaciente.get(i).getEmail()
-    //                            
-    //                    +"\n-----------------------");
-    //                    
-    //         }
-          this.dispose();
+        Paciente paciente = new Paciente();        
+       
+        //funcao que verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)     
+        validaCampos();
+        paciente.setCodigo();
+        paciente.setNome(this.jtfNome.getText());
+        paciente.setCpf(this.jtfCPF.getText());
+        if(jrFeminino.isSelected()){
+         paciente.setSexo("Feminino");
+        }
+        if(jrMasculino.isSelected()){
+         paciente.setSexo("Maculino");
+        }
+        paciente.setDataNascimento(this.jtfDataNascimento.getText());
+        paciente.setCidade(this.jtfCidade.getText());
+        paciente.setBairro(this.jtfBairro.getText());
+        paciente.setRua(this.jtfRua.getText());
+        paciente.setNumero(this.jtfNumero.getText());
+        paciente.setUf(this.jtfUF.getText());
+        paciente.setCep(this.jtfCEP.getText());
+        paciente.setTelefone(this.jtfTelefone.getText());
+        paciente.setCelular(this.jtfCelular.getText());
+        paciente.setEmail(this.jtfEmail.getText());
+
+        //inseri na lista os dados do paciente cadastrado
+        ControlePaciente.inserir(paciente);
+
+        this.dispose();
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
         this.setLocation(400, 200);
         telaPrincipal.setVisible(true);
-        
-        String nome= jtfNome.getText().trim();
-        String cpf= jtfCPF.getText().trim();
-        String cidade= jtfCidade.getText().trim();
-        
-        DefaultTableModel val = (DefaultTableModel) jtbPacientes.getModel();
-          val.addRow(new String[]{nome,cpf,cidade});
-          
-//          jtfNome.setText("");
-//          jtfCPF.setText("");
-//          jtfCidade.setText("");
-          
-          jtfNome.requestFocus();
-          
+
+        //        String nome= jtfNome.getText().trim();
+        //        String cpf= jtfCPF.getText().trim();
+        //        String cidade= jtfCidade.getText().trim();
+
+        //        DefaultTableModel val = (DefaultTableModel) jtbPacientes.getModel();
+        //          val.addRow(new String[]{nome,cpf,cidade});
+
+        //          jtfNome.setText("");
+        //          jtfCPF.setText("");
+        //          jtfCidade.setText("");
+
+        jtfNome.requestFocus();
+
 
     }//GEN-LAST:event_jbSalvarActionPerformed
 
@@ -413,11 +380,6 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
         ((DefaultTableModel) jtbPacientes.getModel()).removeRow(jtbPacientes.getSelectedRow());
     }//GEN-LAST:event_jbLimparActionPerformed
-
-    private void jbexibiPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbexibiPacientesActionPerformed
-        // TODO add your handling code here:
-        ControlePaciente.exibir();
-    }//GEN-LAST:event_jbexibiPacientesActionPerformed
 
     private void jbLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparCamposActionPerformed
 
@@ -468,7 +430,6 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     private javax.swing.JButton jbLimparCampos;
     private javax.swing.JButton jbSalvar;
     private javax.swing.JLabel jbTitulo;
-    private javax.swing.JButton jbexibiPacientes;
     private javax.swing.JLabel jlBairro;
     private javax.swing.JLabel jlCEP;
     private javax.swing.JLabel jlCPF;
@@ -482,6 +443,8 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jlRua;
     private javax.swing.JLabel jlSexo;
     private javax.swing.JLabel jlTelefone;
+    private javax.swing.JRadioButton jrFeminino;
+    private javax.swing.JRadioButton jrMasculino;
     private javax.swing.JTable jtbPacientes;
     private javax.swing.JTextField jtfBairro;
     private javax.swing.JTextField jtfCEP;
@@ -490,30 +453,88 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     private javax.swing.JTextField jtfCidade;
     private javax.swing.JTextField jtfDataNascimento;
     private javax.swing.JTextField jtfEmail;
-    private javax.swing.JTextField jtfEstado;
     private javax.swing.JTextField jtfNome;
     private javax.swing.JTextField jtfNumero;
     private javax.swing.JTextField jtfRua;
     private javax.swing.JTextField jtfTelefone;
+    private javax.swing.JTextField jtfUF;
     // End of variables declaration//GEN-END:variables
     
-    public boolean validaCampos() {        
+    public void validaCampos() {        
         if(jtfNome.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Digite o nome do paciente!");
             jtfNome.requestFocus();
-            return false;
         }
         if(jtfCPF.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Digite o cpf do paciente!");
             jtfCPF.requestFocus();
-            return false;
-        }     
+        } 
+        if(!(jrFeminino.isSelected()) && !(jrMasculino.isSelected())){
+            JOptionPane.showMessageDialog(this, "Informe o sexo do paciente!");
+            jrFeminino.requestFocus();
+        }
+        if(jtfDataNascimento.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Digite o data de nascimento do paciente!");
+            jtfDataNascimento.requestFocus();
+        }
+        if(jtfCidade.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Digite o cidade do paciente!");
+            jtfCidade.requestFocus();
+        }
+        if(jtfBairro.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Digite o bairro do paciente!");
+            jtfBairro.requestFocus();
+        }
+        if(jtfRua.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Digite a rua do paciente!");
+            jtfRua.requestFocus();
+        }
+        if(jtfNumero.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Digite o numero da residencia do paciente!");
+            jtfNumero.requestFocus();
+        }
+        if(jtfUF.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Digite o estado onde paciente reside!");
+            jtfUF.requestFocus();
+        }
+        if(jtfCEP.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Digite o cep do paciente!");
+            jtfCEP.requestFocus();
+        }
+        //PODE SER QUE O PACIENTE NÃO TENHA TELEFONES OU EMAIL
+//        if(jtfTelefone.getText().equals("")){
+//            JOptionPane.showMessageDialog(this, "Digite o telefone de contato do paciente!");
+//            jtfTelefone.requestFocus();
+//            return false;
+//        }
+//        if(jtfCelular.getText().equals("")){
+//            JOptionPane.showMessageDialog(this, "Digite o telefone celular do paciente!");
+//            jtfCelular.requestFocus();
+//            return false;
+//        }
+//        if(jtfEmail.getText().equals("")){
+//            JOptionPane.showMessageDialog(this, "Digite o email do paciente!");
+//            jtfEmail.requestFocus();
+//            return false;
+//        }      
+        
 //              JOptionPane.showMessageDialog(null, "\nPaciente inserido removido com sucesso!");
-        return true;
     }
  public void limparCampos() {        
         jtfNome.setText("");
         jtfCPF.setText("");
+        jrFeminino.setText("");
+        jrMasculino.setText("");       
+        jtfDataNascimento.setText("");
+        jtfCidade.setText(""); 
+        jtfBairro.setText("");
+        jtfRua.setText("");
+        jtfNumero.setText("");  
+        jtfUF.setText(""); 
+        jtfCEP.setText("");
+        jtfTelefone.setText("");             
+        jtfCelular.setText("");       
+        jtfEmail.setText("");        
         
         jtfNome.requestFocus();
     }
