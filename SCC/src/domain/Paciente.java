@@ -26,12 +26,10 @@ public class Paciente {
         return codigo;
     }
 
-    /**
-     * @param codigo the codigo to set
-     */
     public void setCodigo() {
+        //gera codigo aleatorio para cada paciente inserido
         Random gerador = new Random();        
-        this.codigo = gerador.nextInt();
+        this.codigo = gerador.nextInt(90000);
     }
 
     /**

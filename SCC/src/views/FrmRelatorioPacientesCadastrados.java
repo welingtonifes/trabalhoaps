@@ -75,6 +75,7 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
             }
         });
         jtRelatorioPacientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jtRelatorioPacientes.setRowHeight(20);
         jScrollPane1.setViewportView(jtRelatorioPacientes);
         if (jtRelatorioPacientes.getColumnModel().getColumnCount() > 0) {
             jtRelatorioPacientes.getColumnModel().getColumn(0).setMinWidth(80);
