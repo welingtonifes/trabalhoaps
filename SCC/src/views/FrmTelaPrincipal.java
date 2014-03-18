@@ -1,7 +1,8 @@
 package views;
 
 public class FrmTelaPrincipal extends javax.swing.JFrame {
-
+    //variavael para remover cliente do arraylist pelo metodo remover
+    String cpf;
     /**
      * Creates new form FrmTelaPrincipal
      */
@@ -79,6 +80,11 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         });
 
         jmiDeletarPaciente.setText("Paciente");
+        jmiDeletarPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiDeletarPacienteActionPerformed(evt);
+            }
+        });
         jmDeletar.add(jmiDeletarPaciente);
 
         jmiDeletarDentista.setText("Dentista");
@@ -157,15 +163,15 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+            .addGap(0, 383, Short.MAX_VALUE)
         );
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-616)/2, (screenSize.height-438)/2, 616, 438);
+        setSize(new java.awt.Dimension(616, 438));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmCadastarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmCadastarMouseClicked
@@ -209,6 +215,13 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_jmiRelatorioClienteActionPerformed
+
+    private void jmiDeletarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDeletarPacienteActionPerformed
+        // TODO add your handling code here:        
+        FrmDeletarPaciente frm = new FrmDeletarPaciente();
+        frm.setLocation(400, 200);
+        frm.setVisible(true);
+    }//GEN-LAST:event_jmiDeletarPacienteActionPerformed
 
     /**
      * @param args the command line arguments

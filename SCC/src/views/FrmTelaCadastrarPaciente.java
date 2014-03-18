@@ -191,6 +191,12 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         btGrupoSexo.add(jrFeminino);
         jrFeminino.setText("Feminino");
 
+        jftCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jftCpfActionPerformed(evt);
+            }
+        });
+
         jcbUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ES", "AL", "DF", "MG", "RJ", "SP" }));
         jcbUf.setToolTipText("");
         jcbUf.addActionListener(new java.awt.event.ActionListener() {
@@ -325,10 +331,11 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbLimpar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -402,6 +409,10 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     private void jcbUfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbUfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbUfActionPerformed
+
+    private void jftCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jftCpfActionPerformed
 
     /**
      * @param args the command line arguments
