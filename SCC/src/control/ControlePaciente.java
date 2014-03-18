@@ -2,9 +2,7 @@ package control;
 
 import domain.Paciente;
 import java.util.ArrayList;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.text.MaskFormatter;
 
 public class ControlePaciente {
     Paciente paci = new Paciente(); 
@@ -31,13 +29,13 @@ public class ControlePaciente {
         for (int i = 0; i < listaPaciente.size(); i++){                        
            if(listaPaciente.get(i).getCpf().equals(cpf)){
                listaPaciente.remove(i);
-               teste = true;
                JOptionPane.showMessageDialog(null, "\nPaciente removido com sucesso!");
+               teste = true;
                break;//usado para sair do for assim que achar o cliente pesquisado
            }
         }
         if(teste == false){
-            JOptionPane.showMessageDialog(null, "\nCliente não encontrado na base de dados!");
+            JOptionPane.showMessageDialog(null, "\nPaciente não encontrado na base de dados!");
         }
     }
 }

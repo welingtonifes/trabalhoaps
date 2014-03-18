@@ -1,17 +1,18 @@
 package views;
 
+import control.ControleDentista;
 import control.ControlePaciente;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
-public class FrmDeletarPaciente extends javax.swing.JFrame {
+public class FrmDeletarDentista extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmDeletarPaciente
      */
     MaskFormatter formatoCpf;
-    public FrmDeletarPaciente() {
+    public FrmDeletarDentista() {
         initComponents();
     }
 
@@ -24,38 +25,38 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlDeletarPaciente = new javax.swing.JLabel();
-        jbExcluirPaciente = new javax.swing.JButton();
-        jbCancelarExclusaoPaciente = new javax.swing.JButton();
+        jlDeletarDentista = new javax.swing.JLabel();
+        jbExcluirDentista = new javax.swing.JButton();
+        jbCancelarExclusaoDentista = new javax.swing.JButton();
         try{
             formatoCpf = new MaskFormatter("###.###.###-##");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao setar a maskara" + e);
         }
-        jtfExcluirPacienteCpf = new JFormattedTextField(formatoCpf);
+        jtfExcluirDentistaCpf = new JFormattedTextField(formatoCpf);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jlDeletarPaciente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jlDeletarPaciente.setText("INFORME O CPF DO PACIENTE QUE DESEJA EXCLUIR:");
+        jlDeletarDentista.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jlDeletarDentista.setText("INFORME O CPF DO DENTISTA QUE DESEJA EXCLUIR:");
 
-        jbExcluirPaciente.setText("EXCLUIR");
-        jbExcluirPaciente.addActionListener(new java.awt.event.ActionListener() {
+        jbExcluirDentista.setText("EXCLUIR");
+        jbExcluirDentista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbExcluirPacienteActionPerformed(evt);
+                jbExcluirDentistaActionPerformed(evt);
             }
         });
 
-        jbCancelarExclusaoPaciente.setText("CANCELAR");
-        jbCancelarExclusaoPaciente.addActionListener(new java.awt.event.ActionListener() {
+        jbCancelarExclusaoDentista.setText("CANCELAR");
+        jbCancelarExclusaoDentista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCancelarExclusaoPacienteActionPerformed(evt);
+                jbCancelarExclusaoDentistaActionPerformed(evt);
             }
         });
 
-        jtfExcluirPacienteCpf.addActionListener(new java.awt.event.ActionListener() {
+        jtfExcluirDentistaCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfExcluirPacienteCpfActionPerformed(evt);
+                jtfExcluirDentistaCpfActionPerformed(evt);
             }
         });
 
@@ -63,58 +64,58 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlDeletarPaciente)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jbExcluirPaciente)
+                .addComponent(jbExcluirDentista)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbCancelarExclusaoPaciente)
+                .addComponent(jbCancelarExclusaoDentista)
                 .addGap(46, 46, 46))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlDeletarDentista)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jtfExcluirPacienteCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(jtfExcluirDentistaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jlDeletarPaciente)
+                .addComponent(jlDeletarDentista)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfExcluirPacienteCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfExcluirDentistaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbExcluirPaciente)
-                    .addComponent(jbCancelarExclusaoPaciente))
+                    .addComponent(jbExcluirDentista)
+                    .addComponent(jbCancelarExclusaoDentista))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbExcluirPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirPacienteActionPerformed
+    private void jbExcluirDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirDentistaActionPerformed
         // TODO add your handling code here:
-        if(!(this.jtfExcluirPacienteCpf.getText().matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
+        if(!(this.jtfExcluirDentistaCpf.getText().matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
             JOptionPane.showMessageDialog(this, "Informe um cpf válido!");
-            jtfExcluirPacienteCpf.setText("");
-            jtfExcluirPacienteCpf.requestFocus();
+            jtfExcluirDentistaCpf.setText("");
+            jtfExcluirDentistaCpf.requestFocus();
         }
         else{                   
-            ControlePaciente.remover(this.jtfExcluirPacienteCpf.getText());
+            ControleDentista.remover(this.jtfExcluirDentistaCpf.getText());
             this.dispose();
         }
-    }//GEN-LAST:event_jbExcluirPacienteActionPerformed
+    }//GEN-LAST:event_jbExcluirDentistaActionPerformed
 
-    private void jtfExcluirPacienteCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfExcluirPacienteCpfActionPerformed
+    private void jtfExcluirDentistaCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfExcluirDentistaCpfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfExcluirPacienteCpfActionPerformed
+    }//GEN-LAST:event_jtfExcluirDentistaCpfActionPerformed
 
-    private void jbCancelarExclusaoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoPacienteActionPerformed
+    private void jbCancelarExclusaoDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoDentistaActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jbCancelarExclusaoPacienteActionPerformed
+    }//GEN-LAST:event_jbCancelarExclusaoDentistaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,9 +153,9 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jbCancelarExclusaoPaciente;
-    private javax.swing.JButton jbExcluirPaciente;
-    private javax.swing.JLabel jlDeletarPaciente;
-    private javax.swing.JTextField jtfExcluirPacienteCpf;
+    private javax.swing.JButton jbCancelarExclusaoDentista;
+    private javax.swing.JButton jbExcluirDentista;
+    private javax.swing.JLabel jlDeletarDentista;
+    private javax.swing.JTextField jtfExcluirDentistaCpf;
     // End of variables declaration//GEN-END:variables
 }

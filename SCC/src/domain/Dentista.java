@@ -1,13 +1,14 @@
 package domain;
 
+import java.util.Random;
+
 
 public class Dentista {
     private int codigo;
-//    private String cro;
     private String nome;  
     private String cpf;
-    private String dataNascimento;
     private String sexo;
+    private String dataNascimento;
     private String cidade; 
     private String bairro; 
     private String rua; 
@@ -16,7 +17,7 @@ public class Dentista {
     private String cep; 
     private String telefone; 
     private String celular; 
-    private String email;    
+    private String email;
 
     /**
      * @return the codigo
@@ -25,11 +26,10 @@ public class Dentista {
         return codigo;
     }
 
-    /**
-     * @param codigo the codigo to set
-     */
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setCodigo() {
+        //gera codigo aleatorio para cada Dentista inserido
+        Random gerador = new Random();        
+        this.codigo = gerador.nextInt(90000);
     }
 
     /**
@@ -61,20 +61,6 @@ public class Dentista {
     }
 
     /**
-     * @return the dataNascimento
-     */
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    /**
-     * @param dataNascimento the dataNascimento to set
-     */
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    /**
      * @return the sexo
      */
     public String getSexo() {
@@ -86,6 +72,20 @@ public class Dentista {
      */
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    /**
+     * @return the dataNascimento
+     */
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    /**
+     * @param dataNascimento the dataNascimento to set
+     */
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     /**
@@ -213,4 +213,5 @@ public class Dentista {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

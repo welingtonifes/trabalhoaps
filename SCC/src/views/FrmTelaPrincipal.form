@@ -27,6 +27,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dentista"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiCadastrarDentistaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiCadastarHorario">
               <Properties>
@@ -63,6 +66,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dentista"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiDeletarDentistaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiDeletarHorario">
               <Properties>
@@ -125,11 +131,20 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiRelatorioCliente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Clientes"/>
+                <Property name="text" type="java.lang.String" value="Pacientes"/>
                 <Property name="actionCommand" type="java.lang.String" value=""/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiRelatorioClienteActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmiRelatorioDentista">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dentistas"/>
+                <Property name="actionCommand" type="java.lang.String" value=""/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiRelatorioDentistaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

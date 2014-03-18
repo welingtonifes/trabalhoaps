@@ -1,32 +1,37 @@
 package views;
 
-import control.ControlePaciente;
+import control.ControleDentista;
 import javax.swing.table.DefaultTableModel;
 
-public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
+public class FrmRelatorioDentistasCadastrados extends javax.swing.JFrame {
+    /**
+     * Creates new form FrmRelatorioPacientesCadastrados
+     */
     
-    public FrmRelatorioPacientesCadastrados() {
+    public FrmRelatorioDentistasCadastrados() {
         initComponents(); 
         this.setLocation(300, 200);
+  //      setDefaultCloseOperation(FrmRelatorioPacientesCadastrados.DISPOSE_ON_CLOSE);
+ //       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         //estabelece o modelo especificado em propriedades do Jtable criado
-        DefaultTableModel tabelaPacientes = (DefaultTableModel) jtRelatorioPacientes.getModel();
+        DefaultTableModel tabelaPacientes = (DefaultTableModel) jtRelatorioDentistas.getModel();
         
         //percorre pelo arraylist e envia os dados de cada paciente para uma linha da tabela
-        for (int i = 0; i < ControlePaciente.listaPaciente.size(); i++){
-                    tabelaPacientes.addRow(new Object[] {ControlePaciente.listaPaciente.get(i).getCodigo(),
-                                                         ControlePaciente.listaPaciente.get(i).getNome(),
-                                                         ControlePaciente.listaPaciente.get(i).getCpf(),
-                                                         ControlePaciente.listaPaciente.get(i).getSexo(),
-                                                         ControlePaciente.listaPaciente.get(i).getDataNascimento(),
-                                                         ControlePaciente.listaPaciente.get(i).getCidade(),
-                                                         ControlePaciente.listaPaciente.get(i).getBairro(),
-                                                         ControlePaciente.listaPaciente.get(i).getRua(),
-                                                         ControlePaciente.listaPaciente.get(i).getNumero(),
-                                                         ControlePaciente.listaPaciente.get(i).getUf(),
-                                                         ControlePaciente.listaPaciente.get(i).getCep(),
-                                                         ControlePaciente.listaPaciente.get(i).getTelefone(),
-                                                         ControlePaciente.listaPaciente.get(i).getCelular(),
-                                                         ControlePaciente.listaPaciente.get(i).getEmail()
+        for (int i = 0; i < ControleDentista.listaDentista.size(); i++){
+                    tabelaPacientes.addRow(new Object[] {ControleDentista.listaDentista.get(i).getCodigo(),
+                                                         ControleDentista.listaDentista.get(i).getNome(),
+                                                         ControleDentista.listaDentista.get(i).getCpf(),
+                                                         ControleDentista.listaDentista.get(i).getSexo(),
+                                                         ControleDentista.listaDentista.get(i).getDataNascimento(),
+                                                         ControleDentista.listaDentista.get(i).getCidade(),
+                                                         ControleDentista.listaDentista.get(i).getBairro(),
+                                                         ControleDentista.listaDentista.get(i).getRua(),
+                                                         ControleDentista.listaDentista.get(i).getNumero(),
+                                                         ControleDentista.listaDentista.get(i).getUf(),
+                                                         ControleDentista.listaDentista.get(i).getCep(),
+                                                         ControleDentista.listaDentista.get(i).getTelefone(),
+                                                         ControleDentista.listaDentista.get(i).getCelular(),
+                                                         ControleDentista.listaDentista.get(i).getEmail()
                                                          });
         }
     }
@@ -41,7 +46,7 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtRelatorioPacientes = new javax.swing.JTable();
+        jtRelatorioDentistas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("RELATÓRIO DE PACIENTES CADASTRADOS");
@@ -52,8 +57,8 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
             }
         });
 
-        jtRelatorioPacientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtRelatorioPacientes.setModel(new javax.swing.table.DefaultTableModel(
+        jtRelatorioDentistas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtRelatorioDentistas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -69,24 +74,24 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jtRelatorioPacientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jtRelatorioPacientes.setRowHeight(20);
-        jScrollPane1.setViewportView(jtRelatorioPacientes);
-        if (jtRelatorioPacientes.getColumnModel().getColumnCount() > 0) {
-            jtRelatorioPacientes.getColumnModel().getColumn(0).setMinWidth(80);
-            jtRelatorioPacientes.getColumnModel().getColumn(1).setMinWidth(350);
-            jtRelatorioPacientes.getColumnModel().getColumn(2).setMinWidth(150);
-            jtRelatorioPacientes.getColumnModel().getColumn(3).setMinWidth(60);
-            jtRelatorioPacientes.getColumnModel().getColumn(4).setMinWidth(100);
-            jtRelatorioPacientes.getColumnModel().getColumn(5).setMinWidth(100);
-            jtRelatorioPacientes.getColumnModel().getColumn(6).setMinWidth(150);
-            jtRelatorioPacientes.getColumnModel().getColumn(7).setMinWidth(250);
-            jtRelatorioPacientes.getColumnModel().getColumn(8).setMinWidth(30);
-            jtRelatorioPacientes.getColumnModel().getColumn(9).setMinWidth(5);
-            jtRelatorioPacientes.getColumnModel().getColumn(10).setMinWidth(100);
-            jtRelatorioPacientes.getColumnModel().getColumn(11).setMinWidth(130);
-            jtRelatorioPacientes.getColumnModel().getColumn(12).setMinWidth(130);
-            jtRelatorioPacientes.getColumnModel().getColumn(13).setMinWidth(300);
+        jtRelatorioDentistas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jtRelatorioDentistas.setRowHeight(20);
+        jScrollPane1.setViewportView(jtRelatorioDentistas);
+        if (jtRelatorioDentistas.getColumnModel().getColumnCount() > 0) {
+            jtRelatorioDentistas.getColumnModel().getColumn(0).setMinWidth(80);
+            jtRelatorioDentistas.getColumnModel().getColumn(1).setMinWidth(350);
+            jtRelatorioDentistas.getColumnModel().getColumn(2).setMinWidth(150);
+            jtRelatorioDentistas.getColumnModel().getColumn(3).setMinWidth(60);
+            jtRelatorioDentistas.getColumnModel().getColumn(4).setMinWidth(100);
+            jtRelatorioDentistas.getColumnModel().getColumn(5).setMinWidth(100);
+            jtRelatorioDentistas.getColumnModel().getColumn(6).setMinWidth(150);
+            jtRelatorioDentistas.getColumnModel().getColumn(7).setMinWidth(250);
+            jtRelatorioDentistas.getColumnModel().getColumn(8).setMinWidth(30);
+            jtRelatorioDentistas.getColumnModel().getColumn(9).setMinWidth(5);
+            jtRelatorioDentistas.getColumnModel().getColumn(10).setMinWidth(100);
+            jtRelatorioDentistas.getColumnModel().getColumn(11).setMinWidth(130);
+            jtRelatorioDentistas.getColumnModel().getColumn(12).setMinWidth(130);
+            jtRelatorioDentistas.getColumnModel().getColumn(13).setMinWidth(300);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,7 +160,7 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
     }  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtRelatorioPacientes;
+    private javax.swing.JTable jtRelatorioDentistas;
     // End of variables declaration//GEN-END:variables
 
 }

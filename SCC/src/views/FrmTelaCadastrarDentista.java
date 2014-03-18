@@ -1,20 +1,22 @@
 package views;
 
-import control.ControlePaciente;
-import domain.Paciente;
+import control.ControleDentista;
+import domain.Dentista;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
-public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
-
+public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
+    /**
+     * Creates new form FrmTelaCadastrarDentista
+     */
     MaskFormatter formatoCpf;
     MaskFormatter formatoNascimento;
     MaskFormatter formatoCep;
     MaskFormatter formatoTelefone;
     MaskFormatter formatoCelular ;
     
-    public FrmTelaCadastrarPaciente() {
+    public FrmTelaCadastrarDentista() {
         initComponents();
         
     }
@@ -94,7 +96,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
 
         jbTitulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbTitulo.setForeground(new java.awt.Color(204, 204, 204));
-        jbTitulo.setText("Cadastro de Pacientes");
+        jbTitulo.setText("Cadastro de Dentistas");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -346,6 +348,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfNomeActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+        // TODO add your handling code here:
         this.dispose();
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
         this.setLocation(400, 200);
@@ -354,43 +357,43 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
 
-        Paciente paciente = new Paciente();        
+        Dentista dentista = new Dentista();        
        
         //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)     
         if((validaCampos() == true)) {       
-            paciente.setCodigo();
-            paciente.setNome(this.jtfNome.getText());
-            paciente.setCpf(this.jftCpf.getText());
+            dentista.setCodigo();
+            dentista.setNome(this.jtfNome.getText());
+            dentista.setCpf(this.jftCpf.getText());
             if(jrFeminino.isSelected()){
-                paciente.setSexo("Feminino");
+             dentista.setSexo("Feminino");
             }
             if(jrMasculino.isSelected()){
-                paciente.setSexo("Maculino");
+             dentista.setSexo("Maculino");
             }
-            paciente.setDataNascimento(this.jftNascimento.getText());
-            paciente.setCidade(this.jtfCidade.getText());
-            paciente.setBairro(this.jtfBairro.getText());
-            paciente.setRua(this.jtfRua.getText());
-            paciente.setNumero(this.jtfNumero.getText());
-            paciente.setUf(this.jcbUf.getSelectedItem().toString());
-            paciente.setCep(this.jftCep.getText());
+            dentista.setDataNascimento(this.jftNascimento.getText());
+            dentista.setCidade(this.jtfCidade.getText());
+            dentista.setBairro(this.jtfBairro.getText());
+            dentista.setRua(this.jtfRua.getText());
+            dentista.setNumero(this.jtfNumero.getText());
+            dentista.setUf(this.jcbUf.getSelectedItem().toString());
+            dentista.setCep(this.jftCep.getText());
             if(this.jftTelefone.getText().equals("(  )    -    ")){
-                paciente.setTelefone("");
+                dentista.setTelefone("");
             }
             else{
-                paciente.setTelefone(this.jftTelefone.getText());
+                dentista.setTelefone(this.jftTelefone.getText());
             }
             if(this.jftCelular.getText().equals("(  )     -    ")){
-                paciente.setCelular("");
+                dentista.setCelular("");
             }
             else{
-                paciente.setCelular(this.jftCelular.getText());
+                dentista.setCelular(this.jftCelular.getText());
             }
             
-            paciente.setEmail(this.jtfEmail.getText());
+            dentista.setEmail(this.jtfEmail.getText());
 
-            //insere na lista os dados do paciente cadastrado
-            ControlePaciente.inserir(paciente);
+            //insere na lista os dados do Dentista cadastrado
+            ControleDentista.inserir(dentista);
                 
             this.dispose();
             FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
@@ -432,7 +435,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmTelaCadastrarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmTelaCadastrarDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -443,7 +446,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
 
             @Override
             public void run() {
-                new FrmTelaCadastrarPaciente().setVisible(true);
+                new FrmTelaCadastrarDentista().setVisible(true);
             }
         });
     }
@@ -506,7 +509,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
             return false;
         }
         if(!(jrMasculino.isSelected()) && !(jrFeminino.isSelected())){
-            JOptionPane.showMessageDialog(this, "Informe o sexo do paciente!");
+            JOptionPane.showMessageDialog(this, "Informe o sexo do Dentista!");
             jrMasculino.requestFocus();
             return false;
         }  
@@ -539,7 +542,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         }
 //        SEM NECESSIDADE DE VALIDACAO NA UF, POIS EXISTE UM VALOR PADRAO(ES)
 //        if(jcbUf.getSelectedItem().equals("")){
-//            JOptionPane.showMessageDialog(this, "Informe o estado onde paciente reside!");
+//            JOptionPane.showMessageDialog(this, "Informe o estado onde Dentista reside!");
 //            jcbUf.setSelectedItem("");
 //            jcbUf.requestFocus();
 //            return false;
@@ -551,7 +554,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
             jftCep.requestFocus();
             return false;
         }
-//        PODE SER QUE O PACIENTE NÃO TENHA TELEFONES OU EMAIL ENTAO OPTOU-SE POR NAO VALIDAR
+//        PODE SER QUE O Dentista NÃO TENHA TELEFONES OU EMAIL ENTAO OPTOU-SE POR NAO VALIDAR
 //        if((jftTelefone.getText().equals(""))){          
 //            JOptionPane.showMessageDialog(this, "Informe um telefone válido!");
 //            jftTelefone.setText("");
@@ -570,7 +573,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
 //            jtfEmail.requestFocus();
 //            return false;
 //        }         
-        JOptionPane.showMessageDialog(null, "\nPaciente cadastrado com sucesso!");
+        JOptionPane.showMessageDialog(null, "\nDentista cadastrado com sucesso!");
         return true;        
     }
  public void limparCampos() {        
