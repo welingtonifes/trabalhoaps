@@ -31,10 +31,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiCadastrarDentistaActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmiCadastarHorario">
+            <MenuItem class="javax.swing.JMenuItem" name="jmiCadastarSecretaria">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Horario"/>
+                <Property name="text" type="java.lang.String" value="Secret&#xe1;ria"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiCadastarSecretariaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiCadastaraFuncionario">
               <Properties>
@@ -70,10 +73,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiDeletarDentistaActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmiDeletarHorario">
+            <MenuItem class="javax.swing.JMenuItem" name="jmiDeletarSecretaria">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Horario"/>
+                <Property name="text" type="java.lang.String" value="Secretaria"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiDeletarSecretariaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiDeletarFuncionario">
               <Properties>
@@ -145,6 +151,15 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiRelatorioDentistaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmiRelatorioSecretaria">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Secret&#xe1;rias"/>
+                <Property name="actionCommand" type="java.lang.String" value=""/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiRelatorioSecretariaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -2,6 +2,7 @@ package views;
 
 import control.ControleDentista;
 import javax.swing.table.DefaultTableModel;
+import views.FrmTelaPrincipal;
 
 public class FrmRelatorioDentistasCadastrados extends javax.swing.JFrame {
     /**

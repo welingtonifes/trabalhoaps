@@ -23,12 +23,12 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jmCadastar = new javax.swing.JMenu();
         jmiCadastrarPaciente = new javax.swing.JMenuItem();
         jmiCadastrarDentista = new javax.swing.JMenuItem();
-        jmiCadastarHorario = new javax.swing.JMenuItem();
+        jmiCadastarSecretaria = new javax.swing.JMenuItem();
         jmiCadastaraFuncionario = new javax.swing.JMenuItem();
         jmDeletar = new javax.swing.JMenu();
         jmiDeletarPaciente = new javax.swing.JMenuItem();
         jmiDeletarDentista = new javax.swing.JMenuItem();
-        jmiDeletarHorario = new javax.swing.JMenuItem();
+        jmiDeletarSecretaria = new javax.swing.JMenuItem();
         jmiDeletarFuncionario = new javax.swing.JMenuItem();
         jmAlterar = new javax.swing.JMenu();
         jmiAlterarPaciente = new javax.swing.JMenuItem();
@@ -38,6 +38,7 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jmRelatorios = new javax.swing.JMenu();
         jmiRelatorioCliente = new javax.swing.JMenuItem();
         jmiRelatorioDentista = new javax.swing.JMenuItem();
+        jmiRelatorioSecretaria = new javax.swing.JMenuItem();
         jmSair = new javax.swing.JMenu();
         jmiSair = new javax.swing.JMenuItem();
 
@@ -69,8 +70,13 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         });
         jmCadastar.add(jmiCadastrarDentista);
 
-        jmiCadastarHorario.setText("Horario");
-        jmCadastar.add(jmiCadastarHorario);
+        jmiCadastarSecretaria.setText("Secretária");
+        jmiCadastarSecretaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadastarSecretariaActionPerformed(evt);
+            }
+        });
+        jmCadastar.add(jmiCadastarSecretaria);
 
         jmiCadastaraFuncionario.setText("Funcionario");
         jmCadastar.add(jmiCadastaraFuncionario);
@@ -101,8 +107,13 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         });
         jmDeletar.add(jmiDeletarDentista);
 
-        jmiDeletarHorario.setText("Horario");
-        jmDeletar.add(jmiDeletarHorario);
+        jmiDeletarSecretaria.setText("Secretaria");
+        jmiDeletarSecretaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiDeletarSecretariaActionPerformed(evt);
+            }
+        });
+        jmDeletar.add(jmiDeletarSecretaria);
 
         jmiDeletarFuncionario.setText("Funcionario");
         jmDeletar.add(jmiDeletarFuncionario);
@@ -161,6 +172,15 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
             }
         });
         jmRelatorios.add(jmiRelatorioDentista);
+
+        jmiRelatorioSecretaria.setText("Secretárias");
+        jmiRelatorioSecretaria.setActionCommand("");
+        jmiRelatorioSecretaria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiRelatorioSecretariaActionPerformed(evt);
+            }
+        });
+        jmRelatorios.add(jmiRelatorioSecretaria);
 
         jMenuBar1.add(jmRelatorios);
 
@@ -261,6 +281,27 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jmiRelatorioDentistaActionPerformed
 
+    private void jmiRelatorioSecretariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRelatorioSecretariaActionPerformed
+        FrmRelatorioSecretariasCadastrados frmRelatorioSecretariasCadastrados = new FrmRelatorioSecretariasCadastrados();
+        this.setLocation(400, 200);
+        frmRelatorioSecretariasCadastrados.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jmiRelatorioSecretariaActionPerformed
+
+    private void jmiCadastarSecretariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadastarSecretariaActionPerformed
+        FrmTelaCadastrarSecretaria telaCadastraSecretaria = new FrmTelaCadastrarSecretaria();
+        this.setLocation(400, 200);
+        telaCadastraSecretaria.setVisible(true);
+        telaCadastraSecretaria.limparCampos();       
+        dispose();
+    }//GEN-LAST:event_jmiCadastarSecretariaActionPerformed
+
+    private void jmiDeletarSecretariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDeletarSecretariaActionPerformed
+        FrmDeletarSecretaria frm = new FrmDeletarSecretaria();
+        frm.setLocation(400, 200);
+        frm.setVisible(true);
+    }//GEN-LAST:event_jmiDeletarSecretariaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -308,16 +349,17 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiAlterarDentista;
     private javax.swing.JMenuItem jmiAlterarHorario;
     private javax.swing.JMenuItem jmiAlterarPaciente;
-    private javax.swing.JMenuItem jmiCadastarHorario;
+    private javax.swing.JMenuItem jmiCadastarSecretaria;
     private javax.swing.JMenuItem jmiCadastaraFuncionario;
     private javax.swing.JMenuItem jmiCadastrarDentista;
     private javax.swing.JMenuItem jmiCadastrarPaciente;
     private javax.swing.JMenuItem jmiDeletarDentista;
     private javax.swing.JMenuItem jmiDeletarFuncionario;
-    private javax.swing.JMenuItem jmiDeletarHorario;
     private javax.swing.JMenuItem jmiDeletarPaciente;
+    private javax.swing.JMenuItem jmiDeletarSecretaria;
     private javax.swing.JMenuItem jmiRelatorioCliente;
     private javax.swing.JMenuItem jmiRelatorioDentista;
+    private javax.swing.JMenuItem jmiRelatorioSecretaria;
     private javax.swing.JMenuItem jmiSair;
     // End of variables declaration//GEN-END:variables
 }

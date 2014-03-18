@@ -2,6 +2,7 @@ package views;
 
 import control.ControlePaciente;
 import javax.swing.table.DefaultTableModel;
+import views.FrmTelaPrincipal;
 
 public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
     
