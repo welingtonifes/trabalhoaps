@@ -1,6 +1,7 @@
 package views;
 
 import control.ControlePaciente;
+import static control.ControlePaciente.inserir;
 import domain.Paciente;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -13,6 +14,9 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     MaskFormatter formatoCep;
     MaskFormatter formatoTelefone;
     MaskFormatter formatoCelular ;
+    
+    Paciente paciente = new Paciente();
+    Paciente backupPaciente = new Paciente();
     
     public FrmTelaCadastrarPaciente() {
         initComponents();
@@ -346,6 +350,16 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfNomeActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+        //se o usuario clicar em cancela o backup será voltado para o arraylist
+        if(backupPaciente !=null){
+            ControlePaciente.inserir(FrmAlterarPaciente.backupPaciente);
+        } 
+        //se o campo nome estiver preenchido será devolvido o paciente ao arraylist
+        //caso o usuário clique em cancelar atualização dos dados.
+//        if(verificaCampos() == false){
+//            ControlePaciente.inserir(backupPaciente);
+//        }
+        
         this.dispose();
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
         this.setLocation(400, 200);
@@ -353,10 +367,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-
-        Paciente paciente = new Paciente();        
-       
-        //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)     
+        //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)  
         if((validaCampos() == true)) {       
             paciente.setCodigo();
             paciente.setNome(this.jtfNome.getText());
@@ -365,7 +376,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                 paciente.setSexo("Feminino");
             }
             if(jrMasculino.isSelected()){
-                paciente.setSexo("Maculino");
+                paciente.setSexo("Masculino");
             }
             paciente.setDataNascimento(this.jftNascimento.getText());
             paciente.setCidade(this.jtfCidade.getText());
@@ -451,15 +462,15 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btGrupoSexo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbCancelar;
-    private javax.swing.JButton jbLimpar;
+    public javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbSalvar;
     private javax.swing.JLabel jbTitulo;
-    private javax.swing.JComboBox jcbUf;
-    private javax.swing.JFormattedTextField jftCelular;
-    private javax.swing.JFormattedTextField jftCep;
-    private javax.swing.JFormattedTextField jftCpf;
-    private javax.swing.JFormattedTextField jftNascimento;
-    private javax.swing.JFormattedTextField jftTelefone;
+    public javax.swing.JComboBox jcbUf;
+    public javax.swing.JFormattedTextField jftCelular;
+    public javax.swing.JFormattedTextField jftCep;
+    public javax.swing.JFormattedTextField jftCpf;
+    public javax.swing.JFormattedTextField jftNascimento;
+    public javax.swing.JFormattedTextField jftTelefone;
     private javax.swing.JLabel jlBairro;
     private javax.swing.JLabel jlCEP;
     private javax.swing.JLabel jlCPF;
@@ -473,32 +484,29 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jlRua;
     private javax.swing.JLabel jlSexo;
     private javax.swing.JLabel jlTelefone;
-    private javax.swing.JRadioButton jrFeminino;
-    private javax.swing.JRadioButton jrMasculino;
-    private javax.swing.JTextField jtfBairro;
-    private javax.swing.JTextField jtfCidade;
-    private javax.swing.JTextField jtfEmail;
-    private javax.swing.JTextField jtfNome;
-    private javax.swing.JTextField jtfNumero;
-    private javax.swing.JTextField jtfRua;
+    public javax.swing.JRadioButton jrFeminino;
+    public javax.swing.JRadioButton jrMasculino;
+    public javax.swing.JTextField jtfBairro;
+    public javax.swing.JTextField jtfCidade;
+    public javax.swing.JTextField jtfEmail;
+    public javax.swing.JTextField jtfNome;
+    public javax.swing.JTextField jtfNumero;
+    public javax.swing.JTextField jtfRua;
     // End of variables declaration//GEN-END:variables
     
     public boolean validaCampos() {  
         if(!(jtfNome.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){
-//        if(jtfNome.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Informe um nome válido!");
             jtfNome.setText("");
             jtfNome.requestFocus();
             return false;
         }
-//        if(jftCpf.getText().equals("")){
         if(!(jftCpf.getText().matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
             JOptionPane.showMessageDialog(this, "Informe um cpf válido!");
             jftCpf.setText("");
             jftCpf.requestFocus();
             return false;
         }       
-//        if(jtfDataNascimento.getText().equals("")){
         if(!(jftNascimento.getText().matches("\\d{2}/\\d{2}/\\d{4}"))){    
             JOptionPane.showMessageDialog(this, "Informe uma data válida!");
             jftNascimento.setText("");
@@ -511,21 +519,18 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
             return false;
         }  
         if(!(jtfCidade.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){
-//        if(jtfCidade.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Informe uma cidade válida!");
             jtfCidade.setText("");
             jtfCidade.requestFocus();
             return false;
         }
-        if(!(jtfBairro.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){        
-//        if(jtfBairro.getText().equals("")){
+        if(!(jtfBairro.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){
             JOptionPane.showMessageDialog(this, "Informe um bairro válido!");
             jtfBairro.setText("");
             jtfBairro.requestFocus();
             return false;
         }
         if(!(jtfRua.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){        
-//        if(jtfRua.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Informe uma rua válida!");
             jtfRua.setText("");
             jtfRua.requestFocus();
@@ -589,5 +594,8 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         jtfEmail.setText("");        
         
         jtfNome.requestFocus();
+    }
+ public boolean verificaCampos() {  
+        return !jtfNome.getText().equals("");
     }
 }

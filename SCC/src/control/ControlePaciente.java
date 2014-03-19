@@ -37,5 +37,26 @@ public class ControlePaciente {
         if(teste == false){
             JOptionPane.showMessageDialog(null, "\nPaciente não encontrado na base de dados!");
         }
-    }
+    } 
+    //funçao para consultar pacientes na lista e retornar os dados do paciente
+    public static Paciente consultarLista(String cpf) {
+        boolean teste = false;
+        Paciente paci = new Paciente(); 
+        for (int i = 0; i < listaPaciente.size(); i++){                        
+           if(listaPaciente.get(i).getCpf().equals(cpf)){
+               //grava os dados do paciente antes de remove-lo do arraylist
+               paci = listaPaciente.get(i);
+               //remove o paciente achado no arrayList
+               listaPaciente.remove(i);
+               teste = true;
+           }
+        }
+        if(teste == false){
+            paci = null;
+            JOptionPane.showMessageDialog(null, "\nPaciente não encontrado na base de dados!");            
+        }
+        //retorna o paciente achado no arraylist e usa estes dados para preencher a 
+        //form cadastrarPaciente para alteração dos dados
+        return paci;
+    } 
 }

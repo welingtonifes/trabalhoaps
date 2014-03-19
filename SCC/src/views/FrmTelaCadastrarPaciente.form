@@ -327,12 +327,24 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtfNomeActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfCidade">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfBairro">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfEmail">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="jbSalvar">
       <Properties>
@@ -364,6 +376,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbLimparActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="jbCancelar">
       <Properties>
@@ -388,6 +403,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfRua">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jlNumero">
       <Properties>
@@ -398,6 +416,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfNumero">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jrMasculino">
       <Properties>
@@ -406,6 +427,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Masculino"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jrFeminino">
       <Properties>
@@ -414,38 +438,46 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Feminino"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jftCpf">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jftCpfActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(formatoCpf);"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xd;&#xa;    formatoCpf = new MaskFormatter(&quot;###.###.###-##&quot;);&#xd;&#xa;}catch(Exception e){&#xd;&#xa;    JOptionPane.showMessageDialog(null, &quot;Erro ao setar a maskara&quot; + e);&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(formatoCpf)"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xa;    formatoCpf = new MaskFormatter(&quot;###.###.###-##&quot;);&#xa;}catch(Exception e){&#xa;    JOptionPane.showMessageDialog(null, &quot;Erro ao setar a maskara&quot; + e);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jftNascimento">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(formatoNascimento);"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xd;&#xa;    formatoNascimento = new MaskFormatter(&quot;##/##/####&quot;);&#xd;&#xa;}catch(Exception e){&#xd;&#xa;    JOptionPane.showMessageDialog(null, &quot;Erro ao setar a maskara&quot; + e);&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(formatoNascimento)"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xa;    formatoNascimento = new MaskFormatter(&quot;##/##/####&quot;);&#xa;}catch(Exception e){&#xa;    JOptionPane.showMessageDialog(null, &quot;Erro ao setar a maskara&quot; + e);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jftCep">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(formatoCep);"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xd;&#xa;    formatoCep = new MaskFormatter(&quot;#####-###&quot;);&#xd;&#xa;}catch(Exception e){&#xd;&#xa;    JOptionPane.showMessageDialog(null, &quot;Erro ao setar a maskara&quot; + e);&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(formatoCep)"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xa;    formatoCep = new MaskFormatter(&quot;#####-###&quot;);&#xa;}catch(Exception e){&#xa;    JOptionPane.showMessageDialog(null, &quot;Erro ao setar a maskara&quot; + e);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jftTelefone">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(formatoTelefone);"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xd;&#xa;    formatoTelefone = new MaskFormatter(&quot;(##)####-####&quot;);&#xd;&#xa;}catch(Exception e){&#xd;&#xa;    JOptionPane.showMessageDialog(null, &quot;Erro ao setar a maskara&quot; + e);&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(formatoTelefone)"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xa;    formatoTelefone = new MaskFormatter(&quot;(##)####-####&quot;);&#xa;}catch(Exception e){&#xa;    JOptionPane.showMessageDialog(null, &quot;Erro ao setar a maskara&quot; + e);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jftCelular">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(formatoCelular);"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xd;&#xa;    formatoCelular = new MaskFormatter(&quot;(##)#####-####&quot;);&#xd;&#xa;}catch(Exception e){&#xd;&#xa;    JOptionPane.showMessageDialog(null, &quot;Erro ao setar a maskara&quot; + e);&#xd;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(formatoCelular)"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xa;    formatoCelular = new MaskFormatter(&quot;(##)#####-####&quot;);&#xa;}catch(Exception e){&#xa;    JOptionPane.showMessageDialog(null, &quot;Erro ao setar a maskara&quot; + e);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="jcbUf">
@@ -465,6 +497,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbUfActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

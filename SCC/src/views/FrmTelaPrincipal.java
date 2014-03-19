@@ -227,7 +227,6 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmRelatoriosMouseClicked
 
     private void jmiCadastrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadastrarPacienteActionPerformed
-        // TODO add your handling code here:
         FrmTelaCadastrarPaciente telaCadastraPaciente = new FrmTelaCadastrarPaciente();
         this.setLocation(400, 200);
         telaCadastraPaciente.setVisible(true);
@@ -240,7 +239,9 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmAlterarMouseClicked
 
     private void jmiAlterarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlterarPacienteActionPerformed
-        // TODO add your handling code here:
+        FrmAlterarPaciente frm = new FrmAlterarPaciente();
+        frm.setLocation(400, 200);
+        frm.setVisible(true);
     }//GEN-LAST:event_jmiAlterarPacienteActionPerformed
 
     private void jmiSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSairActionPerformed
