@@ -24,21 +24,22 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jmiCadastrarPaciente = new javax.swing.JMenuItem();
         jmiCadastrarDentista = new javax.swing.JMenuItem();
         jmiCadastarSecretaria = new javax.swing.JMenuItem();
-        jmiCadastaraFuncionario = new javax.swing.JMenuItem();
+        jmiCadastaraServico = new javax.swing.JMenuItem();
         jmDeletar = new javax.swing.JMenu();
         jmiDeletarPaciente = new javax.swing.JMenuItem();
         jmiDeletarDentista = new javax.swing.JMenuItem();
         jmiDeletarSecretaria = new javax.swing.JMenuItem();
-        jmiDeletarFuncionario = new javax.swing.JMenuItem();
+        jmiDeletarServico = new javax.swing.JMenuItem();
         jmAlterar = new javax.swing.JMenu();
         jmiAlterarPaciente = new javax.swing.JMenuItem();
         jmiAlterarDentista = new javax.swing.JMenuItem();
         jmiAlterarHorario = new javax.swing.JMenuItem();
-        jmiAlteraFuncionario = new javax.swing.JMenuItem();
+        jmiAlteraServico = new javax.swing.JMenuItem();
         jmRelatorios = new javax.swing.JMenu();
         jmiRelatorioCliente = new javax.swing.JMenuItem();
         jmiRelatorioDentista = new javax.swing.JMenuItem();
         jmiRelatorioSecretaria = new javax.swing.JMenuItem();
+        jmiRelatorioServico = new javax.swing.JMenuItem();
         jmSair = new javax.swing.JMenu();
         jmiSair = new javax.swing.JMenuItem();
 
@@ -78,8 +79,13 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         });
         jmCadastar.add(jmiCadastarSecretaria);
 
-        jmiCadastaraFuncionario.setText("Funcionario");
-        jmCadastar.add(jmiCadastaraFuncionario);
+        jmiCadastaraServico.setText("Serviço");
+        jmiCadastaraServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadastaraServicoActionPerformed(evt);
+            }
+        });
+        jmCadastar.add(jmiCadastaraServico);
 
         jMenuBar1.add(jmCadastar);
 
@@ -115,8 +121,13 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         });
         jmDeletar.add(jmiDeletarSecretaria);
 
-        jmiDeletarFuncionario.setText("Funcionario");
-        jmDeletar.add(jmiDeletarFuncionario);
+        jmiDeletarServico.setText("Serviço");
+        jmiDeletarServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiDeletarServicoActionPerformed(evt);
+            }
+        });
+        jmDeletar.add(jmiDeletarServico);
 
         jMenuBar1.add(jmDeletar);
 
@@ -142,8 +153,8 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         jmiAlterarHorario.setText("Horario");
         jmAlterar.add(jmiAlterarHorario);
 
-        jmiAlteraFuncionario.setText("Funcionario");
-        jmAlterar.add(jmiAlteraFuncionario);
+        jmiAlteraServico.setText("Serviço");
+        jmAlterar.add(jmiAlteraServico);
 
         jMenuBar1.add(jmAlterar);
 
@@ -181,6 +192,14 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
             }
         });
         jmRelatorios.add(jmiRelatorioSecretaria);
+
+        jmiRelatorioServico.setText("Serviços");
+        jmiRelatorioServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiRelatorioServicoActionPerformed(evt);
+            }
+        });
+        jmRelatorios.add(jmiRelatorioServico);
 
         jMenuBar1.add(jmRelatorios);
 
@@ -303,6 +322,30 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_jmiDeletarSecretariaActionPerformed
 
+    private void jmiCadastaraServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadastaraServicoActionPerformed
+        // TODO add your handling code here:
+        FrmTelaCadastrarServico telaCadastrarServico = new FrmTelaCadastrarServico();
+        this.setLocation(400,200);
+        telaCadastrarServico.setVisible(true);
+        telaCadastrarServico.limparCampos();
+        dispose();
+    }//GEN-LAST:event_jmiCadastaraServicoActionPerformed
+
+    private void jmiDeletarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDeletarServicoActionPerformed
+        // TODO add your handling code here:
+        FrmDeletarServico frmDeletarServico = new FrmDeletarServico();
+        frmDeletarServico.setLocation(400, 200);
+        frmDeletarServico.setVisible(true);
+    }//GEN-LAST:event_jmiDeletarServicoActionPerformed
+
+    private void jmiRelatorioServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRelatorioServicoActionPerformed
+        // TODO add your handling code here:
+         FrmRelatorioServicosCadastrados frmRelatorioServicosCadastrados = new FrmRelatorioServicosCadastrados();
+        this.setLocation(400, 200);
+        frmRelatorioServicosCadastrados.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jmiRelatorioServicoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -346,21 +389,22 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmDeletar;
     private javax.swing.JMenu jmRelatorios;
     private javax.swing.JMenu jmSair;
-    private javax.swing.JMenuItem jmiAlteraFuncionario;
+    private javax.swing.JMenuItem jmiAlteraServico;
     private javax.swing.JMenuItem jmiAlterarDentista;
     private javax.swing.JMenuItem jmiAlterarHorario;
     private javax.swing.JMenuItem jmiAlterarPaciente;
     private javax.swing.JMenuItem jmiCadastarSecretaria;
-    private javax.swing.JMenuItem jmiCadastaraFuncionario;
+    private javax.swing.JMenuItem jmiCadastaraServico;
     private javax.swing.JMenuItem jmiCadastrarDentista;
     private javax.swing.JMenuItem jmiCadastrarPaciente;
     private javax.swing.JMenuItem jmiDeletarDentista;
-    private javax.swing.JMenuItem jmiDeletarFuncionario;
     private javax.swing.JMenuItem jmiDeletarPaciente;
     private javax.swing.JMenuItem jmiDeletarSecretaria;
+    private javax.swing.JMenuItem jmiDeletarServico;
     private javax.swing.JMenuItem jmiRelatorioCliente;
     private javax.swing.JMenuItem jmiRelatorioDentista;
     private javax.swing.JMenuItem jmiRelatorioSecretaria;
+    private javax.swing.JMenuItem jmiRelatorioServico;
     private javax.swing.JMenuItem jmiSair;
     // End of variables declaration//GEN-END:variables
 }
