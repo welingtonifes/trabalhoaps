@@ -1,19 +1,19 @@
 package views;
 
-import control.ControlePaciente;
-import domain.Paciente;
+import control.ControleDentista;
+import domain.Dentista;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
-public class FrmAlterarPaciente extends javax.swing.JFrame {
-    Paciente paci = new Paciente();
-    static Paciente backupPaciente = new Paciente();
+public class FrmAlterarDentista extends javax.swing.JFrame {
+    Dentista dent = new Dentista();
+    static Dentista backupDentista = new Dentista();
     /**
-     * Creates new form FrmDeletarPaciente
+     * Creates new form FrmDeletarDentista
      */
     MaskFormatter formatoCpf;
-    public FrmAlterarPaciente() {
+    public FrmAlterarDentista() {
         initComponents();
     }
 
@@ -34,12 +34,12 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao setar a maskara" + e);
         }
-        jtfAlterarPacienteCpf = new JFormattedTextField(formatoCpf);
+        jtfAlterarDentistaCpf = new JFormattedTextField(formatoCpf);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jlDeletarPaciente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jlDeletarPaciente.setText("INFORME O CPF DO PACIENTE QUE DESEJA ALTERAR:");
+        jlDeletarPaciente.setText("INFORME O CPF DO DENTISTA QUE DESEJA ALTERAR:");
 
         jbAlterarPaciente.setText("ALTERAR");
         jbAlterarPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -55,9 +55,9 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
             }
         });
 
-        jtfAlterarPacienteCpf.addActionListener(new java.awt.event.ActionListener() {
+        jtfAlterarDentistaCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfAlterarPacienteCpfActionPerformed(evt);
+                jtfAlterarDentistaCpfActionPerformed(evt);
             }
         });
 
@@ -77,7 +77,7 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
                 .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(jtfAlterarPacienteCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfAlterarDentistaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -86,7 +86,7 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jlDeletarPaciente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfAlterarPacienteCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfAlterarDentistaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbAlterarPaciente)
@@ -98,49 +98,52 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAlterarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarPacienteActionPerformed
-        backupPaciente = null;
+        backupDentista = null;
         this.dispose();
-        //consulta o arraylist pra verificar se o paciente existe e possui dados
-        paci = ControlePaciente.consultarLista(jtfAlterarPacienteCpf.getText());
-        if(paci != null){
+        //consulta o arraylist pra verificar se o dentente existe e possui dados
+        dent = ControleDentista.consultarLista(jtfAlterarDentistaCpf.getText());
+        if(dent != null){
             //realiza backup dos dados do cliente consultado anteriormente            
-            backupPaciente = paci;
-            FrmTelaCadastrarPaciente telaCadastraPaciente = new FrmTelaCadastrarPaciente();
+            backupDentista = dent;
+            FrmTelaCadastrarDentista telaCadastraDentista = new FrmTelaCadastrarDentista();
             this.setLocation(400, 200);
-            telaCadastraPaciente.jtfNome.setText(paci.getNome());
-            telaCadastraPaciente.jftCpf.setText(paci.getCpf());     
-            if(paci.getSexo().equals("Feminino")){
-                telaCadastraPaciente.jrFeminino.setSelected(true);
+            telaCadastraDentista.jtfNome.setText(dent.getNome());
+            telaCadastraDentista.jftCpf.setText(dent.getCpf());     
+            if(dent.getSexo().equals("Feminino")){
+                telaCadastraDentista.jrFeminino.setSelected(true);
             }
-            if(paci.getSexo().equals("Masculino")){
-                telaCadastraPaciente.jrMasculino.setSelected(true);
+            if(dent.getSexo().equals("Masculino")){
+                telaCadastraDentista.jrMasculino.setSelected(true);
             }        
-            telaCadastraPaciente.jftNascimento.setText(paci.getDataNascimento());
-            telaCadastraPaciente.jtfCidade.setText(paci.getCidade());
-            telaCadastraPaciente.jtfBairro.setText(paci.getBairro());
-            telaCadastraPaciente.jtfRua.setText(paci.getRua());
-            telaCadastraPaciente.jtfNumero.setText(paci.getNumero());                
-            telaCadastraPaciente.jcbUf.setSelectedItem(paci.getUf());        
-            telaCadastraPaciente.jftCep.setText(paci.getCep());
-            telaCadastraPaciente.jftTelefone.setText(paci.getTelefone());
-            telaCadastraPaciente.jftCelular.setText(paci.getCelular());
-            telaCadastraPaciente.jtfEmail.setText(paci.getEmail());
+            telaCadastraDentista.jftNascimento.setText(dent.getDataNascimento());
+            telaCadastraDentista.jtfCidade.setText(dent.getCidade());
+            telaCadastraDentista.jtfBairro.setText(dent.getBairro());
+            telaCadastraDentista.jtfRua.setText(dent.getRua());
+            telaCadastraDentista.jtfNumero.setText(dent.getNumero());                
+            telaCadastraDentista.jcbUf.setSelectedItem(dent.getUf());        
+            telaCadastraDentista.jftCep.setText(dent.getCep());
+            telaCadastraDentista.jftTelefone.setText(dent.getTelefone());
+            telaCadastraDentista.jftCelular.setText(dent.getCelular());
+            telaCadastraDentista.jtfEmail.setText(dent.getEmail());
 
-            telaCadastraPaciente.setVisible(true);
+            telaCadastraDentista.setVisible(true);
             //remove o botao limpar da tela preenchida
-            telaCadastraPaciente.remove(telaCadastraPaciente.jbLimpar);
+            telaCadastraDentista.remove(telaCadastraDentista.jbLimpar);
             //desabilita o botao cpf
-            telaCadastraPaciente.jftCpf.disable();
+            telaCadastraDentista.jftCpf.disable();
         }
     }//GEN-LAST:event_jbAlterarPacienteActionPerformed
 
-    private void jtfAlterarPacienteCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAlterarPacienteCpfActionPerformed
-//        cpf = jtfAlterarPacienteCpf.getText();                
-//        paci = ControlePaciente.consultarLista(cpf);       
-    }//GEN-LAST:event_jtfAlterarPacienteCpfActionPerformed
+    private void jtfAlterarDentistaCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAlterarDentistaCpfActionPerformed
+//        cpf = jtfAlterarDentistaCpf.getText();                
+//        dent = ControleDentista.consultarLista(cpf);       
+    }//GEN-LAST:event_jtfAlterarDentistaCpfActionPerformed
 
     private void jbCancelarExclusaoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoPacienteActionPerformed
         this.dispose();
+        FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+        this.setLocation(400, 200);
+        telaPrincipal.setVisible(true);
     }//GEN-LAST:event_jbCancelarExclusaoPacienteActionPerformed
 
     /**
@@ -160,20 +163,20 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmAlterarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmAlterarDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmAlterarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmAlterarDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmAlterarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmAlterarDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmAlterarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmAlterarDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmAlterarPaciente().setVisible(true);
+                new FrmAlterarDentista().setVisible(true);
             }
         });
     }
@@ -182,6 +185,6 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
     private javax.swing.JButton jbAlterarPaciente;
     private javax.swing.JButton jbCancelarExclusaoPaciente;
     private javax.swing.JLabel jlDeletarPaciente;
-    private javax.swing.JTextField jtfAlterarPacienteCpf;
+    private javax.swing.JTextField jtfAlterarDentistaCpf;
     // End of variables declaration//GEN-END:variables
 }

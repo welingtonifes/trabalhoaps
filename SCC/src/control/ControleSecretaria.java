@@ -36,4 +36,25 @@ public class ControleSecretaria {
             JOptionPane.showMessageDialog(null, "\nSecretaria(o) não encontrada na base de dados!");
         }
     }
+    //funçao para consultar pacientes na lista e retornar os dados do paciente
+    public static Secretaria consultarLista(String cpf) {
+        boolean teste = false;
+        Secretaria sec = new Secretaria(); 
+        for (int i = 0; i < listaSecretaria.size(); i++){                        
+           if(listaSecretaria.get(i).getCpf().equals(cpf)){
+               //grava os dados do paciente antes de remove-lo do arraylist
+               sec = listaSecretaria.get(i);
+               //remove o paciente achado no arrayList
+               listaSecretaria.remove(i);
+               teste = true;
+           }
+        }
+        if(teste == false){
+            sec = null;
+            JOptionPane.showMessageDialog(null, "\nSecretaria não encontrada na base de dados!");            
+        }
+        //retorna o paciente achado no arraylist e usa estes dados para preencher a 
+        //form cadastrarPaciente para alteração dos dados
+        return sec;
+    }
 }

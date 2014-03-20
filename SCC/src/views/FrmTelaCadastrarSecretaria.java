@@ -451,15 +451,15 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btGrupoSexo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbCancelar;
-    private javax.swing.JButton jbLimpar;
+    javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbSalvar;
     private javax.swing.JLabel jbTitulo;
-    private javax.swing.JComboBox jcbUf;
-    private javax.swing.JFormattedTextField jftCelular;
-    private javax.swing.JFormattedTextField jftCep;
-    private javax.swing.JFormattedTextField jftCpf;
-    private javax.swing.JFormattedTextField jftNascimento;
-    private javax.swing.JFormattedTextField jftTelefone;
+    javax.swing.JComboBox jcbUf;
+    javax.swing.JFormattedTextField jftCelular;
+    javax.swing.JFormattedTextField jftCep;
+    javax.swing.JFormattedTextField jftCpf;
+    javax.swing.JFormattedTextField jftNascimento;
+    javax.swing.JFormattedTextField jftTelefone;
     private javax.swing.JLabel jlBairro;
     private javax.swing.JLabel jlCEP;
     private javax.swing.JLabel jlCPF;
@@ -473,14 +473,14 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
     private javax.swing.JLabel jlRua;
     private javax.swing.JLabel jlSexo;
     private javax.swing.JLabel jlTelefone;
-    private javax.swing.JRadioButton jrFeminino;
-    private javax.swing.JRadioButton jrMasculino;
-    private javax.swing.JTextField jtfBairro;
-    private javax.swing.JTextField jtfCidade;
-    private javax.swing.JTextField jtfEmail;
-    private javax.swing.JTextField jtfNome;
-    private javax.swing.JTextField jtfNumero;
-    private javax.swing.JTextField jtfRua;
+    javax.swing.JRadioButton jrFeminino;
+    javax.swing.JRadioButton jrMasculino;
+    javax.swing.JTextField jtfBairro;
+    javax.swing.JTextField jtfCidade;
+    javax.swing.JTextField jtfEmail;
+    javax.swing.JTextField jtfNome;
+    javax.swing.JTextField jtfNumero;
+    javax.swing.JTextField jtfRua;
     // End of variables declaration//GEN-END:variables
     
     public boolean validaCampos() {  

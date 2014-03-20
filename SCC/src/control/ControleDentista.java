@@ -38,4 +38,25 @@ public class ControleDentista {
             JOptionPane.showMessageDialog(null, "\nDentista não encontrado na base de dados!");
         }
     }
+    //funçao para consultar pacientes na lista e retornar os dados do paciente
+    public static Dentista consultarLista(String cpf) {
+        boolean teste = false;
+        Dentista dent = new Dentista(); 
+        for (int i = 0; i < listaDentista.size(); i++){                        
+           if(listaDentista.get(i).getCpf().equals(cpf)){
+               //grava os dados do paciente antes de remove-lo do arraylist
+               dent = listaDentista.get(i);
+               //remove o paciente achado no arrayList
+               listaDentista.remove(i);
+               teste = true;
+           }
+        }
+        if(teste == false){
+            dent = null;
+            JOptionPane.showMessageDialog(null, "\nSecretaria não encontrada na base de dados!");            
+        }
+        //retorna o paciente achado no arraylist e usa estes dados para preencher a 
+        //form cadastrarPaciente para alteração dos dados
+        return dent;
+    }
 }
