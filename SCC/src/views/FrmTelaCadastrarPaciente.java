@@ -1,7 +1,6 @@
 package views;
 
 import control.ControlePaciente;
-import static control.ControlePaciente.inserir;
 import domain.Paciente;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;

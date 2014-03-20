@@ -36,6 +36,11 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Exclusão de Secretárias");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jlDeletar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jlDeletar.setText("INFORME O CPF DA SECRETARIA QUE DESEJA EXCLUIR:");
@@ -116,6 +121,12 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+        this.setLocation(400, 200);
+        telaPrincipal.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

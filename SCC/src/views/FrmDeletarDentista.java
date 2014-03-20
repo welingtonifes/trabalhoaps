@@ -36,6 +36,11 @@ public class FrmDeletarDentista extends javax.swing.JFrame {
         jtfExcluirDentistaCpf = new JFormattedTextField(formatoCpf);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jlDeletarDentista.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jlDeletarDentista.setText("INFORME O CPF DO DENTISTA QUE DESEJA EXCLUIR:");
@@ -116,6 +121,12 @@ public class FrmDeletarDentista extends javax.swing.JFrame {
     private void jbCancelarExclusaoDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoDentistaActionPerformed
         this.dispose();
     }//GEN-LAST:event_jbCancelarExclusaoDentistaActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+        this.setLocation(400, 200);
+        telaPrincipal.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
