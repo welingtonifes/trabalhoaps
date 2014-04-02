@@ -7,17 +7,19 @@ import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
-    /**
-     * Creates new form FrmTelaCadastrarDentista
-     */
+
     MaskFormatter formatoCpf;
     MaskFormatter formatoNascimento;
     MaskFormatter formatoCep;
     MaskFormatter formatoTelefone;
     MaskFormatter formatoCelular ;
-    
+        
+    Dentista backupDentista = new Dentista();
+    private ControleDentista controleDentista;
+        
     public FrmTelaCadastrarDentista() {
         initComponents();
+        controleDentista = new ControleDentista();
         
     }
     /**
@@ -89,8 +91,13 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
         jcbUf = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Clientes");
+        setTitle("Cadastro de Dentistas");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 255));
 
@@ -350,25 +357,20 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-        this.setLocation(400, 200);
-        telaPrincipal.setVisible(true);
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-
-        Dentista dentista = new Dentista();        
-       
-        //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)     
+        //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)  
+        Dentista dentista = new Dentista();
         if((validaCampos() == true)) {       
-            dentista.setCodigo();
+            //dentista.setCodigo();
             dentista.setNome(this.jtfNome.getText());
-            dentista.setCpf(this.jftCpf.getText());
+            dentista.setCpf(this.jftCpf.getText());                        
             if(jrFeminino.isSelected()){
-             dentista.setSexo("Feminino");
+                dentista.setSexo("Feminino");
             }
             if(jrMasculino.isSelected()){
-             dentista.setSexo("Maculino");
+                dentista.setSexo("Masculino");
             }
             dentista.setDataNascimento(this.jftNascimento.getText());
             dentista.setCidade(this.jtfCidade.getText());
@@ -389,16 +391,28 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
             else{
                 dentista.setCelular(this.jftCelular.getText());
             }
-            
+        
             dentista.setEmail(this.jtfEmail.getText());
+        
+            //verificar se cpf ja existe no banco
+            if(!controleDentista.verificarDentista(dentista)){
+                  if(controleDentista.cadastrarDentista(dentista)){
+                  JOptionPane.showMessageDialog(this, "Dentista cadastrado com sucesso!");
+                  limparCampos();
+                  this.dispose();
+                  }
+                  else{
+                      JOptionPane.showMessageDialog(this, "Não foi possóvel salvar no banco de dados!");
+                      this.dispose();
+                  }  
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Cpf já cadastrado no banco de dados! Informe outro.");
+                jftCpf.setText("");
+                jftCpf.requestFocus();                                
+            }
+            //chama funcao pra inserir dados no banco
 
-            //insere na lista os dados do Dentista cadastrado
-            ControleDentista.inserir(dentista);
-                
-            this.dispose();
-            FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-            this.setLocation(400, 200);
-            telaPrincipal.setVisible(true);
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
@@ -413,6 +427,12 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
     private void jftCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftCpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jftCpfActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+        this.setLocationRelativeTo(null);
+        telaPrincipal.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -454,15 +474,15 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btGrupoSexo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbCancelar;
-    javax.swing.JButton jbLimpar;
+    private javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbSalvar;
     private javax.swing.JLabel jbTitulo;
-    javax.swing.JComboBox jcbUf;
-    javax.swing.JFormattedTextField jftCelular;
-    javax.swing.JFormattedTextField jftCep;
-    javax.swing.JFormattedTextField jftCpf;
-    javax.swing.JFormattedTextField jftNascimento;
-    javax.swing.JFormattedTextField jftTelefone;
+    private javax.swing.JComboBox jcbUf;
+    private javax.swing.JFormattedTextField jftCelular;
+    private javax.swing.JFormattedTextField jftCep;
+    private javax.swing.JFormattedTextField jftCpf;
+    private javax.swing.JFormattedTextField jftNascimento;
+    private javax.swing.JFormattedTextField jftTelefone;
     private javax.swing.JLabel jlBairro;
     private javax.swing.JLabel jlCEP;
     private javax.swing.JLabel jlCPF;
@@ -476,14 +496,14 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
     private javax.swing.JLabel jlRua;
     private javax.swing.JLabel jlSexo;
     private javax.swing.JLabel jlTelefone;
-    javax.swing.JRadioButton jrFeminino;
-    javax.swing.JRadioButton jrMasculino;
-    javax.swing.JTextField jtfBairro;
-    javax.swing.JTextField jtfCidade;
-    javax.swing.JTextField jtfEmail;
-    javax.swing.JTextField jtfNome;
-    javax.swing.JTextField jtfNumero;
-    javax.swing.JTextField jtfRua;
+    private javax.swing.JRadioButton jrFeminino;
+    private javax.swing.JRadioButton jrMasculino;
+    private javax.swing.JTextField jtfBairro;
+    private javax.swing.JTextField jtfCidade;
+    private javax.swing.JTextField jtfEmail;
+    private javax.swing.JTextField jtfNome;
+    private javax.swing.JTextField jtfNumero;
+    private javax.swing.JTextField jtfRua;
     // End of variables declaration//GEN-END:variables
     
     public boolean validaCampos() {  
@@ -573,7 +593,6 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
 //            jtfEmail.requestFocus();
 //            return false;
 //        }         
-        JOptionPane.showMessageDialog(null, "\nDentista cadastrado com sucesso!");
         return true;        
     }
  public void limparCampos() {        

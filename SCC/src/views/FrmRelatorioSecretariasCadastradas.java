@@ -1,33 +1,39 @@
 package views;
 
 import control.ControleSecretaria;
+import domain.Secretaria;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import views.FrmTelaPrincipal;
 
-public class FrmRelatorioSecretariasCadastrados extends javax.swing.JFrame {
+public class FrmRelatorioSecretariasCadastradas extends javax.swing.JFrame {
     
-    public FrmRelatorioSecretariasCadastrados() {
+    private ControleSecretaria controleSecretaria;
+    
+    public FrmRelatorioSecretariasCadastradas() {
         initComponents(); 
-        this.setLocation(300, 200);
+        controleSecretaria = new ControleSecretaria();
+        this.setLocationRelativeTo(null);
         //estabelece o modelo especificado em propriedades do Jtable criado
         DefaultTableModel tabelaSecretarias = (DefaultTableModel) jtRelatorioSecretarias.getModel();
+        ArrayList<Secretaria> listaSecretaria = new ArrayList<>();
+        listaSecretaria = controleSecretaria.exibirSecretaria();
         
         //percorre pelo arraylist e envia os dados de cada secretaria para uma linha da tabela
-        for (int i = 0; i < ControleSecretaria.listaSecretaria.size(); i++){
-                    tabelaSecretarias.addRow(new Object[] {ControleSecretaria.listaSecretaria.get(i).getCodigo(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getNome(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getCpf(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getSexo(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getDataNascimento(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getCidade(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getBairro(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getRua(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getNumero(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getUf(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getCep(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getTelefone(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getCelular(),
-                                                         ControleSecretaria.listaSecretaria.get(i).getEmail()
+        for (int i = 0; i < listaSecretaria.size(); i++){
+                    tabelaSecretarias.addRow(new Object[] {listaSecretaria.get(i).getcodSecretaria(),
+                                                         listaSecretaria.get(i).getNome(),
+                                                         listaSecretaria.get(i).getCpf(),
+                                                         listaSecretaria.get(i).getDataNascimento(),
+                                                         listaSecretaria.get(i).getSexo(),
+                                                         listaSecretaria.get(i).getUf(),
+                                                         listaSecretaria.get(i).getCidade(),
+                                                         listaSecretaria.get(i).getBairro(),
+                                                         listaSecretaria.get(i).getRua(),
+                                                         listaSecretaria.get(i).getNumero(),
+                                                         listaSecretaria.get(i).getCep(),
+                                                         listaSecretaria.get(i).getTelefone(),
+                                                         listaSecretaria.get(i).getCelular(),
+                                                         listaSecretaria.get(i).getEmail()
                                                          });
         }
     }
@@ -45,8 +51,9 @@ public class FrmRelatorioSecretariasCadastrados extends javax.swing.JFrame {
         jtRelatorioSecretarias = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("RELATÓRIO DE PACIENTES CADASTRADOS");
+        setTitle("RELATÓRIO DE SECRETÁRIAS CADASTRADAS");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -59,7 +66,7 @@ public class FrmRelatorioSecretariasCadastrados extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cód.", "Nome", "CPF", "Sexo", "Nascimento", "Cidade", "Bairro", "Rua", "Nº", "UF", "CEP", "Telefone", "Celular", "Email"
+                "Cód.", "Nome", "CPF", "Data Nascimento", "Sexo", "UF", "Cidade", "Bairro", "Rua", "Nº", "CEP", "Telefone", "Celular", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -94,20 +101,21 @@ public class FrmRelatorioSecretariasCadastrados extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-        this.setLocation(400, 200);
+        this.setLocationRelativeTo(null);
         telaPrincipal.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
@@ -132,13 +140,13 @@ public class FrmRelatorioSecretariasCadastrados extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioSecretariasCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioSecretariasCadastradas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioSecretariasCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioSecretariasCadastradas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioSecretariasCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioSecretariasCadastradas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioSecretariasCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioSecretariasCadastradas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -149,7 +157,7 @@ public class FrmRelatorioSecretariasCadastrados extends javax.swing.JFrame {
 
             @Override
             public void run() {
-                new FrmRelatorioSecretariasCadastrados().setVisible(true);                
+                new FrmRelatorioSecretariasCadastradas().setVisible(true);                
             }
         });
 

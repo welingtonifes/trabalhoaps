@@ -1,23 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package views;
 
 import control.ControleServico;
+import domain.Servico;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
-/**
- *
- * @author Administrador
- */
 public class FrmDeletarServico extends javax.swing.JFrame {
-
-    /**
-     * Creates new form FrmDeletarServico
-     */
     public FrmDeletarServico() {
         initComponents();
+ //       controleServico = new ControleServico();        
     }
 
     /**
@@ -34,7 +27,7 @@ public class FrmDeletarServico extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jtfExcluir = new javax.swing.JTextField();
         jbExcluir = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbCancelarDeletarServico = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,10 +63,10 @@ public class FrmDeletarServico extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbCancelarDeletarServico.setText("Cancelar");
+        jbCancelarDeletarServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbCancelarDeletarServicoActionPerformed(evt);
             }
         });
 
@@ -90,7 +83,7 @@ public class FrmDeletarServico extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(jbCancelarDeletarServico))
                     .addComponent(jtfExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
@@ -105,7 +98,7 @@ public class FrmDeletarServico extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbExcluir)
-                    .addComponent(jButton2))
+                    .addComponent(jbCancelarDeletarServico))
                 .addGap(0, 28, Short.MAX_VALUE))
         );
 
@@ -114,21 +107,37 @@ public class FrmDeletarServico extends javax.swing.JFrame {
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         // TODO add your handling code here:
-        if(!(this.jtfExcluir.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){    
-            JOptionPane.showMessageDialog(this, "Informe um serviço válido!");
-            jtfExcluir.setText("");
-            jtfExcluir.requestFocus();
+/*        
+        Servico servico = new Servico();
+        if(!(this.jtfExcluirServicoCpf.getText().matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
+            JOptionPane.showMessageDialog(this, "Informe um cpf válido!");
+            jtfExcluirServicoCpf.setText("");
+            jtfExcluirServicoCpf.requestFocus();
         }
-        else{                   
-            ControleServico.remover(this.jtfExcluir.getText());
+        else{
+            servico.setCpf(this.jtfExcluirServicoCpf.getText());
+            if(controleServico.verificarServico(servico)){
+                if(controleServico.deletarServico(servico)){
+                    JOptionPane.showMessageDialog(null, "Deletado com sucesso.");
+                }
+            }    
+            else{
+                    JOptionPane.showMessageDialog(null, "Erro ao deletar.");
+            }
+            
             this.dispose();
-        }
+            FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+            this.setLocationRelativeTo(null);
+            telaPrincipal.setVisible(true);           
+        } */ 
     }//GEN-LAST:event_jbExcluirActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    private void jbCancelarDeletarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarDeletarServicoActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+        this.setLocationRelativeTo(null);
+        telaPrincipal.setVisible(true);
+    }//GEN-LAST:event_jbCancelarDeletarServicoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,10 +174,10 @@ public class FrmDeletarServico extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbCancelarDeletarServico;
     private javax.swing.JButton jbExcluir;
     private javax.swing.JTextField jtfExcluir;
     // End of variables declaration//GEN-END:variables

@@ -1,19 +1,18 @@
 package views;
 
 import control.ControleDentista;
-import control.ControlePaciente;
+import domain.Dentista;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 public class FrmDeletarDentista extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmDeletarPaciente
-     */
     MaskFormatter formatoCpf;
+    private ControleDentista controleDentista;    
     public FrmDeletarDentista() {
         initComponents();
+        controleDentista = new ControleDentista();        
     }
 
     /**
@@ -26,8 +25,8 @@ public class FrmDeletarDentista extends javax.swing.JFrame {
     private void initComponents() {
 
         jlDeletarDentista = new javax.swing.JLabel();
-        jbExcluirDentista = new javax.swing.JButton();
-        jbCancelarExclusaoDentista = new javax.swing.JButton();
+        jbExcluir = new javax.swing.JButton();
+        jbCancelarExclusao = new javax.swing.JButton();
         try{
             formatoCpf = new MaskFormatter("###.###.###-##");
         }catch(Exception e){
@@ -36,26 +35,21 @@ public class FrmDeletarDentista extends javax.swing.JFrame {
         jtfExcluirDentistaCpf = new JFormattedTextField(formatoCpf);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         jlDeletarDentista.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jlDeletarDentista.setText("INFORME O CPF DO DENTISTA QUE DESEJA EXCLUIR:");
 
-        jbExcluirDentista.setText("EXCLUIR");
-        jbExcluirDentista.addActionListener(new java.awt.event.ActionListener() {
+        jbExcluir.setText("EXCLUIR");
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbExcluirDentistaActionPerformed(evt);
+                jbExcluirActionPerformed(evt);
             }
         });
 
-        jbCancelarExclusaoDentista.setText("CANCELAR");
-        jbCancelarExclusaoDentista.addActionListener(new java.awt.event.ActionListener() {
+        jbCancelarExclusao.setText("CANCELAR");
+        jbCancelarExclusao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCancelarExclusaoDentistaActionPerformed(evt);
+                jbCancelarExclusaoActionPerformed(evt);
             }
         });
 
@@ -71,9 +65,9 @@ public class FrmDeletarDentista extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jbExcluirDentista)
+                .addComponent(jbExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbCancelarExclusaoDentista)
+                .addComponent(jbCancelarExclusao)
                 .addGap(46, 46, 46))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -93,40 +87,50 @@ public class FrmDeletarDentista extends javax.swing.JFrame {
                 .addComponent(jtfExcluirDentistaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbExcluirDentista)
-                    .addComponent(jbCancelarExclusaoDentista))
+                    .addComponent(jbExcluir)
+                    .addComponent(jbCancelarExclusao))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbExcluirDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirDentistaActionPerformed
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         // TODO add your handling code here:
+        Dentista dentista = new Dentista();
         if(!(this.jtfExcluirDentistaCpf.getText().matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
             JOptionPane.showMessageDialog(this, "Informe um cpf válido!");
             jtfExcluirDentistaCpf.setText("");
             jtfExcluirDentistaCpf.requestFocus();
         }
-        else{                   
-            ControleDentista.remover(this.jtfExcluirDentistaCpf.getText());
+        else{
+            dentista.setCpf(this.jtfExcluirDentistaCpf.getText());
+            if(controleDentista.verificarDentista(dentista)){
+                if(controleDentista.deletarDentista(dentista)){
+                    JOptionPane.showMessageDialog(null, "Deletado com sucesso.");
+                }
+            }    
+            else{
+                    JOptionPane.showMessageDialog(null, "Erro ao deletar.");
+            }
+            
             this.dispose();
-        }
-    }//GEN-LAST:event_jbExcluirDentistaActionPerformed
+            FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+            this.setLocationRelativeTo(null);
+            telaPrincipal.setVisible(true);           
+        }    
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jtfExcluirDentistaCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfExcluirDentistaCpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfExcluirDentistaCpfActionPerformed
 
-    private void jbCancelarExclusaoDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoDentistaActionPerformed
+    private void jbCancelarExclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jbCancelarExclusaoDentistaActionPerformed
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-        this.setLocation(400, 200);
+        this.setLocationRelativeTo(null);
         telaPrincipal.setVisible(true);
-    }//GEN-LAST:event_formWindowClosed
+    }//GEN-LAST:event_jbCancelarExclusaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,27 +149,27 @@ public class FrmDeletarDentista extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmDeletarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDeletarDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmDeletarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDeletarDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmDeletarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDeletarDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmDeletarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDeletarDentista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmDeletarPaciente().setVisible(true);
+                new FrmDeletarDentista().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jbCancelarExclusaoDentista;
-    private javax.swing.JButton jbExcluirDentista;
+    private javax.swing.JButton jbCancelarExclusao;
+    private javax.swing.JButton jbExcluir;
     private javax.swing.JLabel jlDeletarDentista;
     private javax.swing.JTextField jtfExcluirDentistaCpf;
     // End of variables declaration//GEN-END:variables

@@ -4,7 +4,7 @@ import java.util.Random;
 
 
 public class Dentista {
-    private int codigo;
+    private int codDentista;
     private String nome;  
     private String cpf;
     private String sexo;
@@ -22,14 +22,12 @@ public class Dentista {
     /**
      * @return the codigo
      */
-    public int getCodigo() {
-        return codigo;
+    public int getCodDentista() {
+        return codDentista;
     }
 
-    public void setCodigo() {
-        //gera codigo aleatorio para cada Dentista inserido
-        Random gerador = new Random();        
-        this.codigo = gerador.nextInt(90000);
+    public void setCodDentista(int cod_dentista) {
+        this.codDentista = cod_dentista;
     }
 
     /**

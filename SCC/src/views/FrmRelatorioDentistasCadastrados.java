@@ -1,38 +1,39 @@
 package views;
 
 import control.ControleDentista;
+import domain.Dentista;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import views.FrmTelaPrincipal;
 
 public class FrmRelatorioDentistasCadastrados extends javax.swing.JFrame {
-    /**
-     * Creates new form FrmRelatorioPacientesCadastrados
-     */
+    
+    private ControleDentista controleDentista;
     
     public FrmRelatorioDentistasCadastrados() {
         initComponents(); 
-        this.setLocation(300, 200);
-  //      setDefaultCloseOperation(FrmRelatorioPacientesCadastrados.DISPOSE_ON_CLOSE);
- //       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        controleDentista = new ControleDentista();
+        this.setLocationRelativeTo(null);
         //estabelece o modelo especificado em propriedades do Jtable criado
-        DefaultTableModel tabelaPacientes = (DefaultTableModel) jtRelatorioDentistas.getModel();
+        DefaultTableModel tabelaDentistas = (DefaultTableModel) jtRelatorioDentistas.getModel();
+        ArrayList<Dentista> listaDentista = new ArrayList<>();
+        listaDentista = controleDentista.exibirDentista();
         
-        //percorre pelo arraylist e envia os dados de cada paciente para uma linha da tabela
-        for (int i = 0; i < ControleDentista.listaDentista.size(); i++){
-                    tabelaPacientes.addRow(new Object[] {ControleDentista.listaDentista.get(i).getCodigo(),
-                                                         ControleDentista.listaDentista.get(i).getNome(),
-                                                         ControleDentista.listaDentista.get(i).getCpf(),
-                                                         ControleDentista.listaDentista.get(i).getSexo(),
-                                                         ControleDentista.listaDentista.get(i).getDataNascimento(),
-                                                         ControleDentista.listaDentista.get(i).getCidade(),
-                                                         ControleDentista.listaDentista.get(i).getBairro(),
-                                                         ControleDentista.listaDentista.get(i).getRua(),
-                                                         ControleDentista.listaDentista.get(i).getNumero(),
-                                                         ControleDentista.listaDentista.get(i).getUf(),
-                                                         ControleDentista.listaDentista.get(i).getCep(),
-                                                         ControleDentista.listaDentista.get(i).getTelefone(),
-                                                         ControleDentista.listaDentista.get(i).getCelular(),
-                                                         ControleDentista.listaDentista.get(i).getEmail()
+        //percorre pelo arraylist e envia os dados de cada dentista para uma linha da tabela
+        for (int i = 0; i < listaDentista.size(); i++){
+                    tabelaDentistas.addRow(new Object[] {listaDentista.get(i).getCodDentista(),
+                                                         listaDentista.get(i).getNome(),
+                                                         listaDentista.get(i).getCpf(),
+                                                         listaDentista.get(i).getDataNascimento(),
+                                                         listaDentista.get(i).getSexo(),
+                                                         listaDentista.get(i).getUf(),
+                                                         listaDentista.get(i).getCidade(),
+                                                         listaDentista.get(i).getBairro(),
+                                                         listaDentista.get(i).getRua(),
+                                                         listaDentista.get(i).getNumero(),
+                                                         listaDentista.get(i).getCep(),
+                                                         listaDentista.get(i).getTelefone(),
+                                                         listaDentista.get(i).getCelular(),
+                                                         listaDentista.get(i).getEmail()
                                                          });
         }
     }
@@ -50,8 +51,9 @@ public class FrmRelatorioDentistasCadastrados extends javax.swing.JFrame {
         jtRelatorioDentistas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("RELATÓRIO DE PACIENTES CADASTRADOS");
+        setTitle("RELATÓRIO DE DENTISTAS CADASTRADOS");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -64,7 +66,7 @@ public class FrmRelatorioDentistasCadastrados extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cód.", "Nome", "CPF", "Sexo", "Nascimento", "Cidade", "Bairro", "Rua", "Nº", "UF", "CEP", "Telefone", "Celular", "Email"
+                "Cód.", "Nome", "CPF", "Data Nascimento", "Sexo", "UF", "Cidade", "Bairro", "Rua", "Nº", "CEP", "Telefone", "Celular", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -99,20 +101,21 @@ public class FrmRelatorioDentistasCadastrados extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-        this.setLocation(400, 200);
+        this.setLocationRelativeTo(null);
         telaPrincipal.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
@@ -137,13 +140,13 @@ public class FrmRelatorioDentistasCadastrados extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioPacientesCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioDentistasCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioPacientesCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioDentistasCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioPacientesCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioDentistasCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRelatorioPacientesCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmRelatorioDentistasCadastrados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -154,7 +157,7 @@ public class FrmRelatorioDentistasCadastrados extends javax.swing.JFrame {
 
             @Override
             public void run() {
-                new FrmRelatorioPacientesCadastrados().setVisible(true);                
+                new FrmRelatorioDentistasCadastrados().setVisible(true);                
             }
         });
 

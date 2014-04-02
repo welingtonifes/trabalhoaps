@@ -4,7 +4,7 @@ import java.util.Random;
 
 
 public class Paciente {
-    private int codigo;
+    private int codPaciente;
     private String nome;  
     private String cpf;
     private String sexo;
@@ -22,14 +22,12 @@ public class Paciente {
     /**
      * @return the codigo
      */
-    public int getCodigo() {
-        return codigo;
+    public int getcodPaciente() {
+        return codPaciente;
     }
 
-    public void setCodigo() {
-        //gera codigo aleatorio para cada paciente inserido
-        Random gerador = new Random();        
-        this.codigo = gerador.nextInt(90000);
+    public void setcodPaciente(int cod_paciente) {
+        this.codPaciente = cod_paciente;
     }
 
     /**

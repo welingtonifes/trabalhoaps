@@ -1,62 +1,144 @@
 package control;
 
+import crud.DentistaCrud;
+import database.Database;
 import domain.Dentista;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-
 public class ControleDentista {
-    Dentista dent = new Dentista(); 
-    //ArrayList de Dentista
-    public static ArrayList<Dentista> listaDentista = new ArrayList<>();	
-    /**
-     * Operação para inserir novo Dentista.
-     * @param dent
-     */
-    //funçao para inserir Dentistas na lista
-    public static void inserir(Dentista dent) {
-              listaDentista.add(dent);             
-//            JOptionPane.showMessageDialog(null, "\nPaciente inserido removido com sucesso!");
+   private Connection conn;
+   private Database db;
+
+     public boolean verificarDentista(Dentista dentista) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            PreparedStatement stmt;
+            stmt = this.conn.prepareStatement(
+                    "SELECT cpf "
+                    + "FROM dentista "
+                    + "WHERE cpf=? "
+                    + "  LIMIT 1;");
+
+            
+            stmt.setString(1, dentista.getCpf());
+            
+            ResultSet resultado = stmt.executeQuery();
+
+            if (resultado.next()) {
+                db.desconectar(this.conn);
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return false;
+        }
     }
-    //funçao para remover Dentistas na lista
-    public static void remover(String cpf) {
-  //      String aux = ((JOptionPane.showInputDialog("Informe o cpf do Paciente que deseja excluir")));
-        boolean teste = false;//usado para informar se cliente não existe no ArrayList       
-        if(!(cpf.matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
-            JOptionPane.showMessageDialog(null, "Informe um cpf válido!");
-        }    
-        
-        for (int i = 0; i < listaDentista.size(); i++){                        
-           if(listaDentista.get(i).getCpf().equals(cpf)){
-               listaDentista.remove(i);
-               JOptionPane.showMessageDialog(null, "\nDentista removido com sucesso!");
-               teste = true;
-               break;//usado para sair do for assim que achar o cliente pesquisado
-           }
-        }
-        if(teste == false){
-            JOptionPane.showMessageDialog(null, "\nDentista não encontrado na base de dados!");
+
+    public boolean cadastrarDentista(Dentista dentista) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            DentistaCrud dentistacrud = new DentistaCrud();
+            
+            dentistacrud.inserir(this.conn, dentista);
+         
+            this.db.desconectar(this.conn);
+            return true;
+        }catch (Exception ex) {
+            return false;
         }
     }
-    //funçao para consultar pacientes na lista e retornar os dados do paciente
-    public static Dentista consultarLista(String cpf) {
-        boolean teste = false;
-        Dentista dent = new Dentista(); 
-        for (int i = 0; i < listaDentista.size(); i++){                        
-           if(listaDentista.get(i).getCpf().equals(cpf)){
-               //grava os dados do paciente antes de remove-lo do arraylist
-               dent = listaDentista.get(i);
-               //remove o paciente achado no arrayList
-               listaDentista.remove(i);
-               teste = true;
-           }
+    public boolean deletarDentista(Dentista dentista) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            DentistaCrud dentistacrud = new DentistaCrud();
+            
+            dentistacrud.deletar(this.conn, dentista);
+            
+            this.db.desconectar(this.conn);
+            return true;
+        }catch (Exception ex) {
+            return false;
         }
-        if(teste == false){
-            dent = null;
-            JOptionPane.showMessageDialog(null, "\nSecretaria não encontrada na base de dados!");            
+    }
+    
+    public ArrayList<Dentista> exibirDentista() {
+        ArrayList<Dentista> listaDentista = new ArrayList<>();
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            DentistaCrud dentistacrud = new DentistaCrud();
+            
+            listaDentista = dentistacrud.listar(conn);
+            
+            this.db.desconectar(this.conn);
+            return listaDentista;
+        }catch (Exception ex) {
+            return null;
         }
-        //retorna o paciente achado no arraylist e usa estes dados para preencher a 
-        //form cadastrarPaciente para alteração dos dados
-        return dent;
+    }
+    
+    public Dentista verificarCpfDentista(String cpf) {
+        Dentista paci = new Dentista();
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            PreparedStatement stmt;
+            stmt = this.conn.prepareStatement(                    
+                    "SELECT * FROM dentista "
+                        + "WHERE cpf=? "
+                        + "  LIMIT 1;");
+            stmt.setString(1, cpf);                         
+            ResultSet resultado = stmt.executeQuery();      
+
+            if (resultado.next()) {
+                paci.setNome(resultado.getString("nome"));
+                paci.setCpf(resultado.getString("cpf"));
+                paci.setDataNascimento(resultado.getString("datanascimento"));
+                paci.setSexo(resultado.getString("sexo"));
+                paci.setUf(resultado.getString("uf"));
+                paci.setCidade(resultado.getString("cidade"));
+                paci.setBairro(resultado.getString("bairro"));
+                paci.setCep(resultado.getString("cep"));
+                paci.setRua(resultado.getString("rua"));
+                paci.setNumero(resultado.getString("numero"));
+                paci.setTelefone(resultado.getString("telefone"));
+                paci.setCelular(resultado.getString("celular"));
+                paci.setEmail(resultado.getString("email"));                             
+                db.desconectar(this.conn);                            
+                return paci;
+            } else {
+                return null;
+            }
+
+        } catch (SQLException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return null;
+        }
+    }
+    
+    public boolean atualizarDentista(Dentista dentista) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            DentistaCrud dentistacrud = new DentistaCrud();
+            
+            dentistacrud.atualizar(this.conn, dentista);
+         
+            this.db.desconectar(this.conn);
+            return true;
+        }catch (Exception ex) {
+            return false;
+        }
     }
 }

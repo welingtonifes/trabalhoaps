@@ -1,18 +1,18 @@
 package views;
 
 import control.ControlePaciente;
+import domain.Paciente;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 public class FrmDeletarPaciente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmDeletarPaciente
-     */
     MaskFormatter formatoCpf;
+    private ControlePaciente controlePaciente;
     public FrmDeletarPaciente() {
         initComponents();
+        controlePaciente = new ControlePaciente();
     }
 
     /**
@@ -25,8 +25,8 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
     private void initComponents() {
 
         jlDeletarPaciente = new javax.swing.JLabel();
-        jbExcluirPaciente = new javax.swing.JButton();
-        jbCancelarExclusaoPaciente = new javax.swing.JButton();
+        jbExcluir = new javax.swing.JButton();
+        jbCancelarExclusao = new javax.swing.JButton();
         try{
             formatoCpf = new MaskFormatter("###.###.###-##");
         }catch(Exception e){
@@ -35,26 +35,21 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
         jtfExcluirPacienteCpf = new JFormattedTextField(formatoCpf);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         jlDeletarPaciente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jlDeletarPaciente.setText("INFORME O CPF DO PACIENTE QUE DESEJA EXCLUIR:");
 
-        jbExcluirPaciente.setText("EXCLUIR");
-        jbExcluirPaciente.addActionListener(new java.awt.event.ActionListener() {
+        jbExcluir.setText("EXCLUIR");
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbExcluirPacienteActionPerformed(evt);
+                jbExcluirActionPerformed(evt);
             }
         });
 
-        jbCancelarExclusaoPaciente.setText("CANCELAR");
-        jbCancelarExclusaoPaciente.addActionListener(new java.awt.event.ActionListener() {
+        jbCancelarExclusao.setText("CANCELAR");
+        jbCancelarExclusao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCancelarExclusaoPacienteActionPerformed(evt);
+                jbCancelarExclusaoActionPerformed(evt);
             }
         });
 
@@ -74,9 +69,9 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jbExcluirPaciente)
+                .addComponent(jbExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbCancelarExclusaoPaciente)
+                .addComponent(jbCancelarExclusao)
                 .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
@@ -92,40 +87,50 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
                 .addComponent(jtfExcluirPacienteCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbExcluirPaciente)
-                    .addComponent(jbCancelarExclusaoPaciente))
+                    .addComponent(jbExcluir)
+                    .addComponent(jbCancelarExclusao))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbExcluirPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirPacienteActionPerformed
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         // TODO add your handling code here:
+        Paciente paciente = new Paciente();
         if(!(this.jtfExcluirPacienteCpf.getText().matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
             JOptionPane.showMessageDialog(this, "Informe um cpf válido!");
             jtfExcluirPacienteCpf.setText("");
             jtfExcluirPacienteCpf.requestFocus();
         }
-        else{                   
-            ControlePaciente.remover(this.jtfExcluirPacienteCpf.getText());
+        else{
+            paciente.setCpf(this.jtfExcluirPacienteCpf.getText());
+            if(controlePaciente.verificarPaciente(paciente)){
+                if(controlePaciente.deletarPaciente(paciente)){
+                    JOptionPane.showMessageDialog(null, "Deletado com sucesso.");
+                }
+            }    
+            else{
+                    JOptionPane.showMessageDialog(null, "Erro ao deletar.");
+            }
+            
             this.dispose();
-        }
-    }//GEN-LAST:event_jbExcluirPacienteActionPerformed
+            FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+            this.setLocationRelativeTo(null);
+            telaPrincipal.setVisible(true);           
+        }        
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jtfExcluirPacienteCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfExcluirPacienteCpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfExcluirPacienteCpfActionPerformed
 
-    private void jbCancelarExclusaoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoPacienteActionPerformed
+    private void jbCancelarExclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jbCancelarExclusaoPacienteActionPerformed
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-        this.setLocation(400, 200);
-        telaPrincipal.setVisible(true);
-    }//GEN-LAST:event_formWindowClosed
+        this.setLocationRelativeTo(null);
+        telaPrincipal.setVisible(true);        
+    }//GEN-LAST:event_jbCancelarExclusaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,8 +168,8 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jbCancelarExclusaoPaciente;
-    private javax.swing.JButton jbExcluirPaciente;
+    private javax.swing.JButton jbCancelarExclusao;
+    private javax.swing.JButton jbExcluir;
     private javax.swing.JLabel jlDeletarPaciente;
     private javax.swing.JTextField jtfExcluirPacienteCpf;
     // End of variables declaration//GEN-END:variables

@@ -1,33 +1,39 @@
 package views;
 
 import control.ControlePaciente;
+import domain.Paciente;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import views.FrmTelaPrincipal;
 
 public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
     
+    private ControlePaciente controlePaciente;
+    
     public FrmRelatorioPacientesCadastrados() {
         initComponents(); 
-        this.setLocation(300, 200);
+        controlePaciente = new ControlePaciente();
+        this.setLocationRelativeTo(null);
         //estabelece o modelo especificado em propriedades do Jtable criado
         DefaultTableModel tabelaPacientes = (DefaultTableModel) jtRelatorioPacientes.getModel();
+        ArrayList<Paciente> listaPaciente = new ArrayList<>();
+        listaPaciente = controlePaciente.exibirPaciente();
         
         //percorre pelo arraylist e envia os dados de cada paciente para uma linha da tabela
-        for (int i = 0; i < ControlePaciente.listaPaciente.size(); i++){
-                    tabelaPacientes.addRow(new Object[] {ControlePaciente.listaPaciente.get(i).getCodigo(),
-                                                         ControlePaciente.listaPaciente.get(i).getNome(),
-                                                         ControlePaciente.listaPaciente.get(i).getCpf(),
-                                                         ControlePaciente.listaPaciente.get(i).getSexo(),
-                                                         ControlePaciente.listaPaciente.get(i).getDataNascimento(),
-                                                         ControlePaciente.listaPaciente.get(i).getCidade(),
-                                                         ControlePaciente.listaPaciente.get(i).getBairro(),
-                                                         ControlePaciente.listaPaciente.get(i).getRua(),
-                                                         ControlePaciente.listaPaciente.get(i).getNumero(),
-                                                         ControlePaciente.listaPaciente.get(i).getUf(),
-                                                         ControlePaciente.listaPaciente.get(i).getCep(),
-                                                         ControlePaciente.listaPaciente.get(i).getTelefone(),
-                                                         ControlePaciente.listaPaciente.get(i).getCelular(),
-                                                         ControlePaciente.listaPaciente.get(i).getEmail()
+        for (int i = 0; i < listaPaciente.size(); i++){
+                    tabelaPacientes.addRow(new Object[] {listaPaciente.get(i).getcodPaciente(),
+                                                         listaPaciente.get(i).getNome(),
+                                                         listaPaciente.get(i).getCpf(),
+                                                         listaPaciente.get(i).getDataNascimento(),
+                                                         listaPaciente.get(i).getSexo(),
+                                                         listaPaciente.get(i).getUf(),
+                                                         listaPaciente.get(i).getCidade(),
+                                                         listaPaciente.get(i).getBairro(),
+                                                         listaPaciente.get(i).getRua(),
+                                                         listaPaciente.get(i).getNumero(),
+                                                         listaPaciente.get(i).getCep(),
+                                                         listaPaciente.get(i).getTelefone(),
+                                                         listaPaciente.get(i).getCelular(),
+                                                         listaPaciente.get(i).getEmail()
                                                          });
         }
     }
@@ -47,6 +53,7 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("RELATÓRIO DE PACIENTES CADASTRADOS");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -59,7 +66,7 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cód.", "Nome", "CPF", "Sexo", "Nascimento", "Cidade", "Bairro", "Rua", "Nº", "UF", "CEP", "Telefone", "Celular", "Email"
+                "Cód.", "Nome", "CPF", "Data Nascimento", "Sexo", "UF", "Cidade", "Bairro", "Rua", "Nº", "CEP", "Telefone", "Celular", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -94,20 +101,21 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // TODO add your handling code here:
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-        this.setLocation(400, 200);
+        this.setLocationRelativeTo(null);
         telaPrincipal.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 

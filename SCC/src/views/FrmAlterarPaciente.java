@@ -7,14 +7,19 @@ import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 public class FrmAlterarPaciente extends javax.swing.JFrame {
-    Paciente paci = new Paciente();
-    static Paciente backupPaciente = new Paciente();
-    /**
-     * Creates new form FrmDeletarPaciente
-     */
+    
+//    private FrmTelaCadastrarPaciente telaCadastraPaciente; 
+    private Paciente paci;
+    private ControlePaciente controlePaciente;
     MaskFormatter formatoCpf;
     public FrmAlterarPaciente() {
         initComponents();
+        controlePaciente = new ControlePaciente();
+        this.setLocationRelativeTo(null);
+        paci = new Paciente();
+          
+//        FrmTelaCadastrarPaciente telaCadastraPaciente = new FrmTelaCadastrarPaciente();
+//        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -98,49 +103,53 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAlterarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarPacienteActionPerformed
-        backupPaciente = null;
-        this.dispose();
-        //consulta o arraylist pra verificar se o paciente existe e possui dados
-        paci = ControlePaciente.consultarLista(jtfAlterarPacienteCpf.getText());
-        if(paci != null){
-            //realiza backup dos dados do cliente consultado anteriormente            
-            backupPaciente = paci;
-            FrmTelaCadastrarPaciente telaCadastraPaciente = new FrmTelaCadastrarPaciente();
-            this.setLocation(400, 200);
-            telaCadastraPaciente.jtfNome.setText(paci.getNome());
-            telaCadastraPaciente.jftCpf.setText(paci.getCpf());     
+        //consulta o bd  pra verificar se o paciente existe e possui dados via cpf
+        try{
+            paci = controlePaciente.verificarCpfPaciente(jtfAlterarPacienteCpf.getText());
+
+            FrmTelaAlterarPaciente telaAlteraPaciente = new FrmTelaAlterarPaciente();
+            this.setLocationRelativeTo(null);
+            telaAlteraPaciente.jtfNome.setText(paci.getNome());
+            telaAlteraPaciente.jftCpf.setText(paci.getCpf());     
             if(paci.getSexo().equals("Feminino")){
-                telaCadastraPaciente.jrFeminino.setSelected(true);
+                telaAlteraPaciente.jrFeminino.setSelected(true);
             }
             if(paci.getSexo().equals("Masculino")){
-                telaCadastraPaciente.jrMasculino.setSelected(true);
+                telaAlteraPaciente.jrMasculino.setSelected(true);
             }        
-            telaCadastraPaciente.jftNascimento.setText(paci.getDataNascimento());
-            telaCadastraPaciente.jtfCidade.setText(paci.getCidade());
-            telaCadastraPaciente.jtfBairro.setText(paci.getBairro());
-            telaCadastraPaciente.jtfRua.setText(paci.getRua());
-            telaCadastraPaciente.jtfNumero.setText(paci.getNumero());                
-            telaCadastraPaciente.jcbUf.setSelectedItem(paci.getUf());        
-            telaCadastraPaciente.jftCep.setText(paci.getCep());
-            telaCadastraPaciente.jftTelefone.setText(paci.getTelefone());
-            telaCadastraPaciente.jftCelular.setText(paci.getCelular());
-            telaCadastraPaciente.jtfEmail.setText(paci.getEmail());
+            telaAlteraPaciente.jftNascimento.setText(paci.getDataNascimento());
+            telaAlteraPaciente.jtfCidade.setText(paci.getCidade());
+            telaAlteraPaciente.jtfBairro.setText(paci.getBairro());
+            telaAlteraPaciente.jtfRua.setText(paci.getRua());
+            telaAlteraPaciente.jtfNumero.setText(paci.getNumero());                
+            telaAlteraPaciente.jcbUf.setSelectedItem(paci.getUf());        
+            telaAlteraPaciente.jftCep.setText(paci.getCep());
+            telaAlteraPaciente.jftTelefone.setText(paci.getTelefone());
+            telaAlteraPaciente.jftCelular.setText(paci.getCelular());
+            telaAlteraPaciente.jtfEmail.setText(paci.getEmail());
 
-            telaCadastraPaciente.setVisible(true);
+            telaAlteraPaciente.setVisible(true);
             //remove o botao limpar da tela preenchida
-            telaCadastraPaciente.remove(telaCadastraPaciente.jbLimpar);
+            //telaCadastraPaciente.remove(telaCadastraPaciente.jbLimpar);
             //desabilita o botao cpf
-            telaCadastraPaciente.jftCpf.disable();
+            telaAlteraPaciente.jftCpf.disable();
+            this.dispose();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Cpf não registrado no banco de dados!\n Por favor, informe outro.");  
+            jtfAlterarPacienteCpf.setText("");
+            jtfAlterarPacienteCpf.setRequestFocusEnabled(true);
         }
     }//GEN-LAST:event_jbAlterarPacienteActionPerformed
 
     private void jtfAlterarPacienteCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAlterarPacienteCpfActionPerformed
-//        cpf = jtfAlterarPacienteCpf.getText();                
-//        paci = ControlePaciente.consultarLista(cpf);       
+       
     }//GEN-LAST:event_jtfAlterarPacienteCpfActionPerformed
 
     private void jbCancelarExclusaoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoPacienteActionPerformed
         this.dispose();
+        FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+        this.setLocationRelativeTo(null);
+        telaPrincipal.setVisible(true);        
     }//GEN-LAST:event_jbCancelarExclusaoPacienteActionPerformed
 
     /**
@@ -182,6 +191,6 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
     private javax.swing.JButton jbAlterarPaciente;
     private javax.swing.JButton jbCancelarExclusaoPaciente;
     private javax.swing.JLabel jlDeletarPaciente;
-    private javax.swing.JTextField jtfAlterarPacienteCpf;
+    public javax.swing.JTextField jtfAlterarPacienteCpf;
     // End of variables declaration//GEN-END:variables
 }

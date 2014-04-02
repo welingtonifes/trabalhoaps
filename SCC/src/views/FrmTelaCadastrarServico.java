@@ -1,24 +1,22 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package views;
 
 import control.ControleServico;
 import domain.Servico;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
-/**
- *
- * @author Gomes
- */
 public class FrmTelaCadastrarServico extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmTelaCadastrarServico
-     */
+//    Servico servico = new Servico();
+//    Servico backupServico = new Servico();
+    Servico backupServico = new Servico();
+    private ControleServico controleServico;
+    
     public FrmTelaCadastrarServico() {
         initComponents();
+        controleServico = new ControleServico();
     }
 
     /**
@@ -45,6 +43,11 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
         jbCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 255));
         jPanel1.setForeground(new java.awt.Color(0, 51, 255));
@@ -177,46 +180,50 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-        this.setLocation(400, 200);
-        telaPrincipal.setVisible(true);
+        this.dispose(); 
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        // TODO add your handling code here:
-        Servico servico = new Servico();        
-       
-        //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)     
+        //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)  
+        Servico servico = new Servico();
         if((validaCampos() == true)) {       
-            servico.setCodigo();
-            servico.setTipoServico(this.jtfTipoServico.getText());
-            String aux =(this.jtfValor.getText());
-            servico.setValor(Double.parseDouble(aux));
-            
-            if(jrbNao.isSelected()){
-                servico.setAceitaPlanoSaude("Nao");
-            }
-            if(jrbSim.isSelected()){
-                servico.setAceitaPlanoSaude("Sim");
-            }
-           
+            //servico.setCodigo();
+//            servico.setNome(this.jtfNome.getText());
+//            servico.setCpf(this.jftCpf.getText());                        
+
         
-            //insere na lista os dados do servico cadastrado
-            ControleServico.inserir(servico);
-                
-            this.dispose();
-            FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-            this.setLocation(400, 200);
-            telaPrincipal.setVisible(true);
-        }
+            //verificar se cpf ja existe no banco
+            if(!controleServico.verificarServico(servico)){
+                  if(controleServico.cadastrarServico(servico)){
+                  JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                  limparCampos();
+                  this.dispose();
+                  }
+                  else{
+                      JOptionPane.showMessageDialog(this, "Não foi posivel savar no banco de dados!");
+                      this.dispose();
+                  }  
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "cpf já cadastrado no banco de dados! Informe outro.");
+//                jftCpf.setText("");
+//                jftCpf.requestFocus();                                
+            }
+            //chama funcao pra inserir dados no banco
+
+        } 
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
         // TODO add your handling code here:
         limparCampos();
     }//GEN-LAST:event_jbLimparActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+            FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+            this.setLocationRelativeTo(null);
+            telaPrincipal.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -264,20 +271,19 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbCancelar;
-    private javax.swing.JButton jbLimpar;
+    public javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbSalvar;
     private javax.swing.JLabel jlAceitaPlanoSaude;
     private javax.swing.JLabel jlTipoSercivo;
     private javax.swing.JLabel jlValor;
-    private javax.swing.JRadioButton jrbNao;
-    private javax.swing.JRadioButton jrbSim;
-    private javax.swing.JTextField jtfTipoServico;
-    private javax.swing.JTextField jtfValor;
+    public javax.swing.JRadioButton jrbNao;
+    public javax.swing.JRadioButton jrbSim;
+    public javax.swing.JTextField jtfTipoServico;
+    public javax.swing.JTextField jtfValor;
     // End of variables declaration//GEN-END:variables
     
     public boolean validaCampos() {  
         if(!(jtfTipoServico.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){
-//        if(jtfTipoServico.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Informe um servico válido!");
             jtfTipoServico.setText("");
             jtfTipoServico.requestFocus();
@@ -308,4 +314,6 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
         
         jtfTipoServico.requestFocus();
     }
+
+    
 }

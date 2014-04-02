@@ -11,7 +11,7 @@ import java.util.Random;
  * @author Gomes
  */
 public class Servico {
-    private int codigo;
+    private int codServico;
     private String tipoServico;  
     private double valor;
     private String aceitaPlanoSaude;
@@ -24,14 +24,12 @@ public class Servico {
         this.aceitaPlanoSaude = aceitaPlanoSaude;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public int getCodServico() {
+        return codServico;
     }
 
-     public void setCodigo() {
-        //gera codigo aleatorio para cada serviço inserido
-        Random gerador = new Random();        
-        this.codigo = gerador.nextInt(90000);
+     public void setCodServico(int cod_servico) {
+        this.codServico = cod_servico;
     }
 
     public double getValor() {

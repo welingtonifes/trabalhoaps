@@ -7,14 +7,15 @@ import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 public class FrmAlterarSecretaria extends javax.swing.JFrame {
-    Secretaria sec = new Secretaria();
-    static Secretaria backupSecretaria = new Secretaria();
-    /**
-     * Creates new form FrmDeletarSecretaria
-     */
+    private Secretaria secretaria;
+    private ControleSecretaria controleSecretaria;
+
     MaskFormatter formatoCpf;
     public FrmAlterarSecretaria() {
         initComponents();
+        controleSecretaria = new ControleSecretaria();
+        this.setLocationRelativeTo(null);
+        secretaria = new Secretaria();
     }
 
     /**
@@ -26,9 +27,9 @@ public class FrmAlterarSecretaria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlDeletarPaciente = new javax.swing.JLabel();
-        jbAlterarPaciente = new javax.swing.JButton();
-        jbCancelarExclusaoPaciente = new javax.swing.JButton();
+        jlDeletarSecretaria = new javax.swing.JLabel();
+        jbAlterar = new javax.swing.JButton();
+        jbCancelarExclusao = new javax.swing.JButton();
         try{
             formatoCpf = new MaskFormatter("###.###.###-##");
         }catch(Exception e){
@@ -38,20 +39,20 @@ public class FrmAlterarSecretaria extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jlDeletarPaciente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jlDeletarPaciente.setText("INFORME O CPF DA SECRETARIA QUE DESEJA ALTERAR:");
+        jlDeletarSecretaria.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jlDeletarSecretaria.setText("INFORME O CPF DA SECRETARIA QUE DESEJA ALTERAR:");
 
-        jbAlterarPaciente.setText("ALTERAR");
-        jbAlterarPaciente.addActionListener(new java.awt.event.ActionListener() {
+        jbAlterar.setText("ALTERAR");
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAlterarPacienteActionPerformed(evt);
+                jbAlterarActionPerformed(evt);
             }
         });
 
-        jbCancelarExclusaoPaciente.setText("CANCELAR");
-        jbCancelarExclusaoPaciente.addActionListener(new java.awt.event.ActionListener() {
+        jbCancelarExclusao.setText("CANCELAR");
+        jbCancelarExclusao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCancelarExclusaoPacienteActionPerformed(evt);
+                jbCancelarExclusaoActionPerformed(evt);
             }
         });
 
@@ -67,13 +68,13 @@ public class FrmAlterarSecretaria extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlDeletarPaciente)
+                .addComponent(jlDeletarSecretaria)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jbAlterarPaciente)
+                .addComponent(jbAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbCancelarExclusaoPaciente)
+                .addComponent(jbCancelarExclusao)
                 .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
@@ -84,71 +85,69 @@ public class FrmAlterarSecretaria extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jlDeletarPaciente)
+                .addComponent(jlDeletarSecretaria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfAlterarSecretariaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbAlterarPaciente)
-                    .addComponent(jbCancelarExclusaoPaciente))
+                    .addComponent(jbAlterar)
+                    .addComponent(jbCancelarExclusao))
                 .addContainerGap())
         );
 
-        pack();
+        setSize(new java.awt.Dimension(330, 125));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbAlterarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarPacienteActionPerformed
-        backupSecretaria = null;
-        this.dispose();
-        //consulta o arraylist pra verificar se o secente existe e possui dados
-        sec = ControleSecretaria.consultarLista(jtfAlterarSecretariaCpf.getText());
-        if(sec != null){
-            //realiza backup dos dados do cliente consultado anteriormente            
-            backupSecretaria = sec;
-            FrmTelaCadastrarSecretaria telaCadastraSecretaria = new FrmTelaCadastrarSecretaria();
-            this.setLocation(400, 200);
-            telaCadastraSecretaria.jtfNome.setText(sec.getNome());
-            telaCadastraSecretaria.jftCpf.setText(sec.getCpf());     
-            if(sec.getSexo().equals("Feminino")){
-                telaCadastraSecretaria.jrFeminino.setSelected(true);
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+        //consulta o bd  pra verificar se o secretariaente existe e possui dados via cpf
+        try{
+            secretaria = controleSecretaria.verificarCpfSecretaria(jtfAlterarSecretariaCpf.getText());
+
+            FrmTelaAlterarSecretaria telaAlteraSecretaria = new FrmTelaAlterarSecretaria();
+            this.setLocationRelativeTo(null);
+            telaAlteraSecretaria.jtfNome.setText(secretaria.getNome());
+            telaAlteraSecretaria.jftCpf.setText(secretaria.getCpf());     
+            if(secretaria.getSexo().equals("Feminino")){
+                telaAlteraSecretaria.jrFeminino.setSelected(true);
             }
-            if(sec.getSexo().equals("Masculino")){
-                telaCadastraSecretaria.jrMasculino.setSelected(true);
+            if(secretaria.getSexo().equals("Masculino")){
+                telaAlteraSecretaria.jrMasculino.setSelected(true);
             }        
+            telaAlteraSecretaria.jftNascimento.setText(secretaria.getDataNascimento());
+            telaAlteraSecretaria.jtfCidade.setText(secretaria.getCidade());
+            telaAlteraSecretaria.jtfBairro.setText(secretaria.getBairro());
+            telaAlteraSecretaria.jtfRua.setText(secretaria.getRua());
+            telaAlteraSecretaria.jtfNumero.setText(secretaria.getNumero());                
+            telaAlteraSecretaria.jcbUf.setSelectedItem(secretaria.getUf());        
+            telaAlteraSecretaria.jftCep.setText(secretaria.getCep());
+            telaAlteraSecretaria.jftTelefone.setText(secretaria.getTelefone());
+            telaAlteraSecretaria.jftCelular.setText(secretaria.getCelular());
+            telaAlteraSecretaria.jtfEmail.setText(secretaria.getEmail());
 
-            telaCadastraSecretaria.jftNascimento.setText(sec.getDataNascimento());
-            telaCadastraSecretaria.jtfCidade.setText(sec.getCidade());
-            telaCadastraSecretaria.jtfBairro.setText(sec.getBairro());
-            telaCadastraSecretaria.jtfRua.setText(sec.getRua());
-            telaCadastraSecretaria.jtfNumero.setText(sec.getNumero());                
-            telaCadastraSecretaria.jcbUf.setSelectedItem(sec.getUf());        
-            telaCadastraSecretaria.jftCep.setText(sec.getCep());
-
-            telaCadastraSecretaria.jftTelefone.setText(sec.getTelefone());
-
-            telaCadastraSecretaria.jftCelular.setText(sec.getCelular());
-
-            telaCadastraSecretaria.jtfEmail.setText(sec.getEmail());
-
-            telaCadastraSecretaria.setVisible(true);
+            telaAlteraSecretaria.setVisible(true);
             //remove o botao limpar da tela preenchida
-            telaCadastraSecretaria.remove(telaCadastraSecretaria.jbLimpar);
+            //telaCadastraSecretaria.remove(telaCadastraSecretaria.jbLimpar);
             //desabilita o botao cpf
-            telaCadastraSecretaria.jftCpf.disable();
+            telaAlteraSecretaria.jftCpf.disable();
+            this.dispose();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Cpf não registrado no banco de dados!\n Por favor, informe outro.");  
+            jtfAlterarSecretariaCpf.setText("");
+            jtfAlterarSecretariaCpf.setRequestFocusEnabled(true);
         }
-    }//GEN-LAST:event_jbAlterarPacienteActionPerformed
+    }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jtfAlterarSecretariaCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAlterarSecretariaCpfActionPerformed
-//        cpf = jtfAlterarSecretariaCpf.getText();                
-//        sec = ControleSecretaria.consultarLista(cpf);       
+      
     }//GEN-LAST:event_jtfAlterarSecretariaCpfActionPerformed
 
-    private void jbCancelarExclusaoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoPacienteActionPerformed
+    private void jbCancelarExclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoActionPerformed
         this.dispose();
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-        this.setLocation(400, 200);
+        this.setLocationRelativeTo(null);
         telaPrincipal.setVisible(true);
-    }//GEN-LAST:event_jbCancelarExclusaoPacienteActionPerformed
+    }//GEN-LAST:event_jbCancelarExclusaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,9 +185,9 @@ public class FrmAlterarSecretaria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jbAlterarPaciente;
-    private javax.swing.JButton jbCancelarExclusaoPaciente;
-    private javax.swing.JLabel jlDeletarPaciente;
+    private javax.swing.JButton jbAlterar;
+    private javax.swing.JButton jbCancelarExclusao;
+    private javax.swing.JLabel jlDeletarSecretaria;
     private javax.swing.JTextField jtfAlterarSecretariaCpf;
     // End of variables declaration//GEN-END:variables
 }

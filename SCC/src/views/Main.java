@@ -8,8 +8,8 @@ package views;
 
 
 public class Main {
-    public static void main(String args[]){
-        FrmTelaLogin telaLogin = new FrmTelaLogin();
+    public static void main(String args[]){        
+        FrmTelaLogin telaLogin = new FrmTelaLogin();        
         telaLogin.setVisible(true);
     }
 }

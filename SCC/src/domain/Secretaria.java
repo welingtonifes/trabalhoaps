@@ -1,10 +1,7 @@
 package domain;
 
-import java.util.Random;
-
-
 public class Secretaria {
-    private int codigo;
+    private int codSecretaria;
     private String nome;  
     private String cpf;
     private String sexo;
@@ -22,14 +19,12 @@ public class Secretaria {
     /**
      * @return the codigo
      */
-    public int getCodigo() {
-        return codigo;
+    public int getcodSecretaria() {
+        return codSecretaria;
     }
 
-    public void setCodigo() {
-        //gera codigo aleatorio para cada secretaria inserida
-        Random gerador = new Random();        
-        this.codigo = gerador.nextInt(90000);
+    public void setcodSecretaria(int cod_secretaria) {
+        this.codSecretaria = cod_secretaria;
     }
 
     /**

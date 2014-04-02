@@ -1,18 +1,18 @@
 package views;
 
 import control.ControleSecretaria;
+import domain.Secretaria;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 public class FrmDeletarSecretaria extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmDeletarSecretaria
-     */
     MaskFormatter formatoCpf;
+    private ControleSecretaria controleSecretaria;    
     public FrmDeletarSecretaria() {
         initComponents();
+        controleSecretaria = new ControleSecretaria();        
     }
 
     /**
@@ -32,15 +32,10 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro ao setar a maskara" + e);
         }
-        jtfExcluir = new JFormattedTextField(formatoCpf);
+        jtfExcluirSecretariaCpf = new JFormattedTextField(formatoCpf);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Exclusão de Secretárias");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         jlDeletar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jlDeletar.setText("INFORME O CPF DA SECRETARIA QUE DESEJA EXCLUIR:");
@@ -59,9 +54,9 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
             }
         });
 
-        jtfExcluir.addActionListener(new java.awt.event.ActionListener() {
+        jtfExcluirSecretariaCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfExcluirActionPerformed(evt);
+                jtfExcluirSecretariaCpfActionPerformed(evt);
             }
         });
 
@@ -81,7 +76,7 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
                 .addGap(46, 46, 46))
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addComponent(jtfExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfExcluirSecretariaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,7 +85,7 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jlDeletar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfExcluirSecretariaCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbExcluir)
@@ -103,30 +98,40 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         // TODO add your handling code here:
-        if(!(this.jtfExcluir.getText().matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
+        Secretaria secretaria = new Secretaria();
+        if(!(this.jtfExcluirSecretariaCpf.getText().matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
             JOptionPane.showMessageDialog(this, "Informe um cpf válido!");
-            jtfExcluir.setText("");
-            jtfExcluir.requestFocus();
+            jtfExcluirSecretariaCpf.setText("");
+            jtfExcluirSecretariaCpf.requestFocus();
         }
-        else{                   
-            ControleSecretaria.remover(this.jtfExcluir.getText());
+        else{
+            secretaria.setCpf(this.jtfExcluirSecretariaCpf.getText());
+            if(controleSecretaria.verificarSecretaria(secretaria)){
+                if(controleSecretaria.deletarSecretaria(secretaria)){
+                    JOptionPane.showMessageDialog(null, "Deletado com sucesso.");
+                }
+            }    
+            else{
+                    JOptionPane.showMessageDialog(null, "Erro ao deletar.");
+            }
+            
             this.dispose();
-        }
+            FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+            this.setLocationRelativeTo(null);
+            telaPrincipal.setVisible(true);           
+        }   
     }//GEN-LAST:event_jbExcluirActionPerformed
 
-    private void jtfExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfExcluirActionPerformed
+    private void jtfExcluirSecretariaCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfExcluirSecretariaCpfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtfExcluirActionPerformed
+    }//GEN-LAST:event_jtfExcluirSecretariaCpfActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jbCancelarActionPerformed
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-        this.setLocation(400, 200);
-        telaPrincipal.setVisible(true);
-    }//GEN-LAST:event_formWindowClosed
+        this.setLocationRelativeTo(null);
+        telaPrincipal.setVisible(true);        
+    }//GEN-LAST:event_jbCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,6 +172,6 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbExcluir;
     private javax.swing.JLabel jlDeletar;
-    private javax.swing.JTextField jtfExcluir;
+    private javax.swing.JTextField jtfExcluirSecretariaCpf;
     // End of variables declaration//GEN-END:variables
 }

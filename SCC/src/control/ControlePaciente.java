@@ -1,62 +1,144 @@
 package control;
 
+import crud.PacienteCrud;
+import database.Database;
 import domain.Paciente;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ControlePaciente {
-    Paciente paci = new Paciente(); 
-    //ArrayList de pacientes
-    public static ArrayList<Paciente> listaPaciente = new ArrayList<>();	
-    /**
-     * Operação para inserir novo paciente.
-     * @param paci
-     */
-    //funçao para inserir pacientes na lista
-    public static void inserir(Paciente paci) {
-              listaPaciente.add(paci);             
-//            JOptionPane.showMessageDialog(null, "\nPaciente inserido removido com sucesso!");
-    }
-    //funçao para remover pacientes na lista
-    public static void remover(String cpf) {
+   private Connection conn;
+   private Database db;
 
-  //      String aux = ((JOptionPane.showInputDialog("Informe o cpf do Paciente que deseja excluir")));
-        boolean teste = false;//usado para informar se cliente não existe no ArrayList       
-        if(!(cpf.matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
-            JOptionPane.showMessageDialog(null, "Informe um cpf válido!");
-        }    
-        
-        for (int i = 0; i < listaPaciente.size(); i++){                        
-           if(listaPaciente.get(i).getCpf().equals(cpf)){
-               listaPaciente.remove(i);
-               JOptionPane.showMessageDialog(null, "\nPaciente removido com sucesso!");
-               teste = true;
-               break;//usado para sair do for assim que achar o cliente pesquisado
-           }
+     public boolean verificarPaciente(Paciente paciente) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            PreparedStatement stmt;
+            stmt = this.conn.prepareStatement(
+                    "SELECT cpf "
+                    + "FROM paciente "
+                    + "WHERE cpf=? "
+                    + "  LIMIT 1;");
+
+            
+            stmt.setString(1, paciente.getCpf());
+            
+            ResultSet resultado = stmt.executeQuery();
+
+            if (resultado.next()) {
+                db.desconectar(this.conn);
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return false;
         }
-        if(teste == false){
-            JOptionPane.showMessageDialog(null, "\nPaciente não encontrado na base de dados!");
+    }
+
+    public boolean cadastrarPaciente(Paciente paciente) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            PacienteCrud pacientecrud = new PacienteCrud();
+            
+            pacientecrud.inserir(this.conn, paciente);
+         
+            this.db.desconectar(this.conn);
+            return true;
+        }catch (Exception ex) {
+            return false;
         }
-    } 
-    //funçao para consultar pacientes na lista e retornar os dados do paciente
-    public static Paciente consultarLista(String cpf) {
-        boolean teste = false;
-        Paciente paci = new Paciente(); 
-        for (int i = 0; i < listaPaciente.size(); i++){                        
-           if(listaPaciente.get(i).getCpf().equals(cpf)){
-               //grava os dados do paciente antes de remove-lo do arraylist
-               paci = listaPaciente.get(i);
-               //remove o paciente achado no arrayList
-               listaPaciente.remove(i);
-               teste = true;
-           }
+    }
+    public boolean deletarPaciente(Paciente paciente) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            PacienteCrud pacientecrud = new PacienteCrud();
+            
+            pacientecrud.deletar(this.conn, paciente);
+            
+            this.db.desconectar(this.conn);
+            return true;
+        }catch (Exception ex) {
+            return false;
         }
-        if(teste == false){
-            paci = null;
-            JOptionPane.showMessageDialog(null, "\nPaciente não encontrado na base de dados!");            
+    }
+    
+    public ArrayList<Paciente> exibirPaciente() {
+        ArrayList<Paciente> listaPaciente = new ArrayList<>();
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            PacienteCrud pacientecrud = new PacienteCrud();
+            
+            listaPaciente = pacientecrud.listar(conn);
+            
+            this.db.desconectar(this.conn);
+            return listaPaciente;
+        }catch (Exception ex) {
+            return null;
         }
-        //retorna o paciente achado no arraylist e usa estes dados para preencher a 
-        //form cadastrarPaciente para alteração dos dados
-        return paci;
-    } 
+    }
+    
+    public Paciente verificarCpfPaciente(String cpf) {
+        Paciente paci = new Paciente();
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            PreparedStatement stmt;
+            stmt = this.conn.prepareStatement(                    
+                    "SELECT * FROM paciente "
+                        + "WHERE cpf=? "
+                        + "  LIMIT 1;");
+            stmt.setString(1, cpf);                         
+            ResultSet resultado = stmt.executeQuery();      
+
+            if (resultado.next()) {
+                paci.setNome(resultado.getString("nome"));
+                paci.setCpf(resultado.getString("cpf"));
+                paci.setDataNascimento(resultado.getString("datanascimento"));
+                paci.setSexo(resultado.getString("sexo"));
+                paci.setUf(resultado.getString("uf"));
+                paci.setCidade(resultado.getString("cidade"));
+                paci.setBairro(resultado.getString("bairro"));
+                paci.setCep(resultado.getString("cep"));
+                paci.setRua(resultado.getString("rua"));
+                paci.setNumero(resultado.getString("numero"));
+                paci.setTelefone(resultado.getString("telefone"));
+                paci.setCelular(resultado.getString("celular"));
+                paci.setEmail(resultado.getString("email"));                             
+                db.desconectar(this.conn);                            
+                return paci;
+            } else {
+                return null;
+            }
+
+        } catch (SQLException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return null;
+        }
+    }
+    
+    public boolean atualizarPaciente(Paciente paciente) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            PacienteCrud pacientecrud = new PacienteCrud();
+            
+            pacientecrud.atualizar(this.conn, paciente);
+         
+            this.db.desconectar(this.conn);
+            return true;
+        }catch (Exception ex) {
+            return false;
+        }
+    }
 }

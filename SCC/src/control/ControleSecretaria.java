@@ -1,60 +1,144 @@
 package control;
 
+import crud.SecretariaCrud;
+import database.Database;
 import domain.Secretaria;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ControleSecretaria {
-    Secretaria sec = new Secretaria(); 
-    //ArrayList de secretarias
-    public static ArrayList<Secretaria> listaSecretaria = new ArrayList<>();	
-    /**
-     * Operação para inserir nova secretaria.
-     * @param sec
-     */
-    //funçao para inserir secretarias na lista
-    public static void inserir(Secretaria sec) {
-              listaSecretaria.add(sec);             
-//            JOptionPane.showMessageDialog(null, "\nSecretaria inserido removido com sucesso!");
+   private Connection conn;
+   private Database db;
+
+     public boolean verificarSecretaria(Secretaria secretaria) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            PreparedStatement stmt;
+            stmt = this.conn.prepareStatement(
+                    "SELECT cpf "
+                    + "FROM secretaria "
+                    + "WHERE cpf=? "
+                    + "  LIMIT 1;");
+
+            
+            stmt.setString(1, secretaria.getCpf());
+            
+            ResultSet resultado = stmt.executeQuery();
+
+            if (resultado.next()) {
+                db.desconectar(this.conn);
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return false;
+        }
     }
-    //funçao para remover secretarias na lista
-    public static void remover(String cpf) {
-        boolean teste = false;
-        if(!(cpf.matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
-            JOptionPane.showMessageDialog(null, "Informe um cpf válido!");
-        }    
-        
-        for (int i = 0; i < listaSecretaria.size(); i++){                        
-           if(listaSecretaria.get(i).getCpf().equals(cpf)){
-               listaSecretaria.remove(i);
-               JOptionPane.showMessageDialog(null, "\nSecretaria(o) removida com sucesso!");
-               teste = true;
-               break;
-           }
-        }
-        if(teste == false){
-            JOptionPane.showMessageDialog(null, "\nSecretaria(o) não encontrada na base de dados!");
+
+    public boolean cadastrarSecretaria(Secretaria secretaria) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            SecretariaCrud secretariacrud = new SecretariaCrud();
+            
+            secretariacrud.inserir(this.conn, secretaria);
+         
+            this.db.desconectar(this.conn);
+            return true;
+        }catch (Exception ex) {
+            return false;
         }
     }
-    //funçao para consultar pacientes na lista e retornar os dados do paciente
-    public static Secretaria consultarLista(String cpf) {
-        boolean teste = false;
-        Secretaria sec = new Secretaria(); 
-        for (int i = 0; i < listaSecretaria.size(); i++){                        
-           if(listaSecretaria.get(i).getCpf().equals(cpf)){
-               //grava os dados do paciente antes de remove-lo do arraylist
-               sec = listaSecretaria.get(i);
-               //remove o paciente achado no arrayList
-               listaSecretaria.remove(i);
-               teste = true;
-           }
+    public boolean deletarSecretaria(Secretaria secretaria) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            SecretariaCrud secretariacrud = new SecretariaCrud();
+            
+            secretariacrud.deletar(this.conn, secretaria);
+            
+            this.db.desconectar(this.conn);
+            return true;
+        }catch (Exception ex) {
+            return false;
         }
-        if(teste == false){
-            sec = null;
-            JOptionPane.showMessageDialog(null, "\nSecretaria não encontrada na base de dados!");            
+    }
+    
+    public ArrayList<Secretaria> exibirSecretaria() {
+        ArrayList<Secretaria> listaSecretaria = new ArrayList<>();
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            SecretariaCrud secretariacrud = new SecretariaCrud();
+            
+            listaSecretaria = secretariacrud.listar(conn);
+            
+            this.db.desconectar(this.conn);
+            return listaSecretaria;
+        }catch (Exception ex) {
+            return null;
         }
-        //retorna o paciente achado no arraylist e usa estes dados para preencher a 
-        //form cadastrarPaciente para alteração dos dados
-        return sec;
+    }
+    
+    public Secretaria verificarCpfSecretaria(String cpf) {
+        Secretaria secretaria = new Secretaria();
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            PreparedStatement stmt;
+            stmt = this.conn.prepareStatement(                    
+                    "SELECT * FROM secretaria "
+                        + "WHERE cpf=? "
+                        + "  LIMIT 1;");
+            stmt.setString(1, cpf);                         
+            ResultSet resultado = stmt.executeQuery();      
+
+            if (resultado.next()) {
+                secretaria.setNome(resultado.getString("nome"));
+                secretaria.setCpf(resultado.getString("cpf"));
+                secretaria.setDataNascimento(resultado.getString("datanascimento"));
+                secretaria.setSexo(resultado.getString("sexo"));
+                secretaria.setUf(resultado.getString("uf"));
+                secretaria.setCidade(resultado.getString("cidade"));
+                secretaria.setBairro(resultado.getString("bairro"));
+                secretaria.setCep(resultado.getString("cep"));
+                secretaria.setRua(resultado.getString("rua"));
+                secretaria.setNumero(resultado.getString("numero"));
+                secretaria.setTelefone(resultado.getString("telefone"));
+                secretaria.setCelular(resultado.getString("celular"));
+                secretaria.setEmail(resultado.getString("email"));                             
+                db.desconectar(this.conn);                            
+                return secretaria;
+            } else {
+                return null;
+            }
+
+        } catch (SQLException | NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            return null;
+        }
+    }
+    
+    public boolean atualizarSecretaria(Secretaria secretaria) {
+        try {
+            this.db = new Database();
+            this.conn = this.db.conectar();
+            SecretariaCrud secretariacrud = new SecretariaCrud();
+            
+            secretariacrud.atualizar(this.conn, secretaria);
+         
+            this.db.desconectar(this.conn);
+            return true;
+        }catch (Exception ex) {
+            return false;
+        }
     }
 }

@@ -1,39 +1,33 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package views;
 
 import control.ControleServico;
+import domain.Servico;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import views.FrmTelaPrincipal;
 
-/**
- *
- * @author Administrador
- */
 public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
-
-    /**
-     * Creates new form FrmRelatorioServicosCadastrados
-     */
+    private ControleServico controleServico;
+    
     public FrmRelatorioServicosCadastrados() {
-        initComponents();
-        
-        this.setLocation(300, 200);
+        initComponents(); 
+        controleServico = new ControleServico();
+        this.setLocationRelativeTo(null);
         //estabelece o modelo especificado em propriedades do Jtable criado
-        DefaultTableModel tabelaSecretarias = (DefaultTableModel) jtRelatorioServico.getModel();
+        DefaultTableModel tabelaServicos = (DefaultTableModel) jtRelatorioServicos.getModel();
+        ArrayList<Servico> listaServico = new ArrayList<>();
+        listaServico = controleServico.exibirServico();
         
-        //percorre pelo arraylist e envia os dados de cada secretaria para uma linha da tabela
-        for (int i = 0; i < ControleServico.listaServico.size(); i++){
-                    tabelaSecretarias.addRow(new Object[] {ControleServico.listaServico.get(i).getCodigo(),
-                                                         ControleServico.listaServico.get(i).getTipoServico(),
-                                                         ControleServico.listaServico.get(i).getValor(),
-                                                         ControleServico.listaServico.get(i).getAceitaPlanoSaude(),
+        //percorre pelo arraylist e envia os dados de cada servico para uma linha da tabela
+        for (int i = 0; i < listaServico.size(); i++){
+                    tabelaServicos.addRow(new Object[] {listaServico.get(i).getCodServico(),
+                                                         listaServico.get(i).getTipoServico(),
+                                                         listaServico.get(i).getValor(),
+                                                         listaServico.get(i).getAceitaPlanoSaude()
                                                          });
         }
-    
-    }
+    }      
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,12 +40,16 @@ public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jbVoltar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtRelatorioServico = new javax.swing.JTable();
+        jtRelatorioServicos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 255));
 
@@ -73,16 +71,7 @@ public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jbVoltar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jbVoltar.setForeground(new java.awt.Color(51, 102, 255));
-        jbVoltar.setText("Voltar");
-        jbVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbVoltarActionPerformed(evt);
-            }
-        });
-
-        jtRelatorioServico.setModel(new javax.swing.table.DefaultTableModel(
+        jtRelatorioServicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -90,7 +79,7 @@ public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
                 "Codigo", "Tipo Serviço", "Valor", "Plano de Saude"
             }
         ));
-        jScrollPane1.setViewportView(jtRelatorioServico);
+        jScrollPane1.setViewportView(jtRelatorioServicos);
 
         jScrollPane2.setViewportView(jScrollPane1);
 
@@ -100,10 +89,6 @@ public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(171, 171, 171)
-                .addComponent(jbVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,21 +96,17 @@ public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jbVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVoltarActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-        this.setLocation(400, 200);
+        this.setLocationRelativeTo(null);
         telaPrincipal.setVisible(true);
-    }//GEN-LAST:event_jbVoltarActionPerformed
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -166,7 +147,6 @@ public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton jbVoltar;
-    private javax.swing.JTable jtRelatorioServico;
+    private javax.swing.JTable jtRelatorioServicos;
     // End of variables declaration//GEN-END:variables
 }
