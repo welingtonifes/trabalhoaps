@@ -57,12 +57,6 @@ public class FrmAlterarSecretaria extends javax.swing.JFrame {
             }
         });
 
-        jtfAlterarSecretariaCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfAlterarSecretariaCpfActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,10 +95,11 @@ public class FrmAlterarSecretaria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
-        //consulta o bd  pra verificar se o secretariaente existe e possui dados via cpf
         try{
+            //consulta o bd  pra verificar se o secretariaente existe e possui dados via cpf        
             secretaria = controleSecretaria.verificarCpfSecretaria(jtfAlterarSecretariaCpf.getText());
 
+            //chama tela de alteração preenchendo os dados pegos no banco de dados com a verificacao acima
             FrmTelaAlterarSecretaria telaAlteraSecretaria = new FrmTelaAlterarSecretaria();
             this.setLocationRelativeTo(null);
             telaAlteraSecretaria.jtfNome.setText(secretaria.getNome());
@@ -138,10 +133,6 @@ public class FrmAlterarSecretaria extends javax.swing.JFrame {
             jtfAlterarSecretariaCpf.setRequestFocusEnabled(true);
         }
     }//GEN-LAST:event_jbAlterarActionPerformed
-
-    private void jtfAlterarSecretariaCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAlterarSecretariaCpfActionPerformed
-      
-    }//GEN-LAST:event_jtfAlterarSecretariaCpfActionPerformed
 
     private void jbCancelarExclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoActionPerformed
         this.dispose();

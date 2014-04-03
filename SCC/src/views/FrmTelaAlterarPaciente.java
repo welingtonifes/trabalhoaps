@@ -318,7 +318,6 @@ public class FrmTelaAlterarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-       
         Paciente paciente = new Paciente();
         //verifica se os dados estão todos prenchidos corretamente antes de enviar para a base de dados  
         if((validaCampos() == true)) {

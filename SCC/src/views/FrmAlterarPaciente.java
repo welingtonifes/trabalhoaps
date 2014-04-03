@@ -7,8 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 public class FrmAlterarPaciente extends javax.swing.JFrame {
-    
-//    private FrmTelaCadastrarPaciente telaCadastraPaciente; 
     private Paciente paci;
     private ControlePaciente controlePaciente;
     MaskFormatter formatoCpf;
@@ -16,10 +14,7 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
         initComponents();
         controlePaciente = new ControlePaciente();
         this.setLocationRelativeTo(null);
-        paci = new Paciente();
-          
-//        FrmTelaCadastrarPaciente telaCadastraPaciente = new FrmTelaCadastrarPaciente();
-//        this.setLocationRelativeTo(null);
+        paci = new Paciente();          
     }
 
     /**
@@ -61,12 +56,6 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
             }
         });
 
-        jtfAlterarPacienteCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfAlterarPacienteCpfActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,10 +93,11 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAlterarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarPacienteActionPerformed
-        //consulta o bd  pra verificar se o paciente existe e possui dados via cpf
         try{
+            //consulta o bd  pra verificar se o paciente existe e possui dados via cpf        
             paci = controlePaciente.verificarCpfPaciente(jtfAlterarPacienteCpf.getText());
 
+            //chama tela de alteração preenchendo os dados pegos no banco de dados com a verificacao acima
             FrmTelaAlterarPaciente telaAlteraPaciente = new FrmTelaAlterarPaciente();
             this.setLocationRelativeTo(null);
             telaAlteraPaciente.jtfNome.setText(paci.getNome());
@@ -141,10 +131,6 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
             jtfAlterarPacienteCpf.setRequestFocusEnabled(true);
         }
     }//GEN-LAST:event_jbAlterarPacienteActionPerformed
-
-    private void jtfAlterarPacienteCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAlterarPacienteCpfActionPerformed
-       
-    }//GEN-LAST:event_jtfAlterarPacienteCpfActionPerformed
 
     private void jbCancelarExclusaoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoPacienteActionPerformed
         this.dispose();

@@ -7,8 +7,6 @@ import javax.swing.JOptionPane;
 
 public class FrmTelaCadastrarServico extends javax.swing.JFrame {
 
-//    Servico servico = new Servico();
-//    Servico backupServico = new Servico();
     Servico backupServico = new Servico();
     private ControleServico controleServico;
     
@@ -38,7 +36,7 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
         jbSalvar = new javax.swing.JButton();
         jbLimpar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
-        jtfValor = new javax.swing.JFormattedTextField();
+        jtfValor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastrar Serviço");
@@ -112,8 +110,6 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
             }
         });
 
-        jtfValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,7 +119,7 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlTipoSercivo)
@@ -134,7 +130,10 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(17, 17, 17)
                                         .addComponent(jbCancelar))))
-                            .addComponent(jtfTipoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jtfTipoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfValor)))
                         .addContainerGap(23, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,10 +144,8 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jbSalvar)
                                 .addGap(27, 27, 27)
-                                .addComponent(jbLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(jbLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 132, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,7 +185,6 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
         //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)  
         Servico servico = new Servico();
         if((validaCampos() == true)) {       
-            //servico.setCodigo();
             servico.setTipoServico(this.jtfTipoServico.getText());
             String valor = (this.jtfValor.getText());                        
             servico.setValor(Double.parseDouble(valor));
@@ -202,6 +198,7 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
         
             //verificar se o servico ja existe no banco
             if(!controleServico.verificarServico(servico)){
+                  //cadastra o serviço no banco
                   if(controleServico.cadastrarServico(servico)){
                   JOptionPane.showMessageDialog(this, "Servico cadastrado com sucesso!");
                   limparCampos();
@@ -214,23 +211,20 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
             }
             else{
                 JOptionPane.showMessageDialog(this, "Servico já cadastrado no banco de dados! Informe outro.");
-               jtfTipoServico.setText("");
+                jtfTipoServico.setText("");
                 jtfTipoServico.requestFocus();                                
             }
-            //chama funcao pra inserir dados no banco
-
         } 
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
-        // TODO add your handling code here:
-        limparCampos();
+         limparCampos();
     }//GEN-LAST:event_jbLimparActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-            FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
-            this.setLocationRelativeTo(null);
-            telaPrincipal.setVisible(true);
+        FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
+        this.setLocationRelativeTo(null);
+        telaPrincipal.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
     /**
@@ -287,25 +281,26 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
     public javax.swing.JRadioButton jrbNao;
     public javax.swing.JRadioButton jrbSim;
     public javax.swing.JTextField jtfTipoServico;
-    private javax.swing.JFormattedTextField jtfValor;
+    public javax.swing.JTextField jtfValor;
     // End of variables declaration//GEN-END:variables
-    
+   
+    //funcao para validar campos usando expressoes regulares
     public boolean validaCampos() {  
         if(!(jtfTipoServico.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){
-            JOptionPane.showMessageDialog(this, "Informe um servico válido!");
+            JOptionPane.showMessageDialog(this, "Informe um serviço válido!");
             jtfTipoServico.setText("");
             jtfTipoServico.requestFocus();
             return false;
         }
         if(!(jtfValor.getText().matches("^[0-9]+"))){    
-            JOptionPane.showMessageDialog(this, "Informe um valor válido!");
+            JOptionPane.showMessageDialog(this, "Informe um valor válido! \n Somente Números.");
             jtfValor.setText("");
             jtfValor.requestFocus();
             return false;
         }       
        
         if(!(jrbSim.isSelected()) && !(jrbNao.isSelected())){
-            JOptionPane.showMessageDialog(this, "Informe uma opção valida!");
+            JOptionPane.showMessageDialog(this, "Informe uma opção válida!");
             jrbSim.requestFocus();
             return false;
         }  
@@ -313,12 +308,12 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
         
         return true;
     }
+    
+    //funcao limpa campos
     public void limparCampos() {        
         jtfTipoServico.setText("");
         jtfValor.setText("");
         btGrupoPlanoSaude.clearSelection();    
-        
-        
         
         jtfTipoServico.requestFocus();
     }

@@ -29,7 +29,7 @@ public class FrmTelaAlterarServico extends javax.swing.JFrame {
         jrbNao = new javax.swing.JRadioButton();
         jbSalvar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
-        jtfValor = new javax.swing.JFormattedTextField();
+        jtfValor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Alterar Dados do Serviço");
@@ -94,8 +94,6 @@ public class FrmTelaAlterarServico extends javax.swing.JFrame {
             }
         });
 
-        jtfValor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,11 +102,6 @@ public class FrmTelaAlterarServico extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jrbSim)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jrbNao)
-                        .addGap(207, 207, 207))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -119,15 +112,18 @@ public class FrmTelaAlterarServico extends javax.swing.JFrame {
                                     .addComponent(jtfTipoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(9, 9, 9)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlAceitaPlanoSaude)
-                                    .addComponent(jbSalvar))
+                                .addComponent(jbSalvar)
                                 .addGap(52, 52, 52)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlValor)
-                            .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbCancelar))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                            .addComponent(jbCancelar)
+                            .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jrbSim)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrbNao))
+                    .addComponent(jlAceitaPlanoSaude))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +178,7 @@ public class FrmTelaAlterarServico extends javax.swing.JFrame {
                   this.dispose();
             }
             else{
-                  JOptionPane.showMessageDialog(this, "Não foi posivel salvar no banco de dados!");
+                  JOptionPane.showMessageDialog(this, "Não foi possível salvar no banco de dados!");
                   this.dispose();
            }  
         } 
@@ -247,18 +243,18 @@ public class FrmTelaAlterarServico extends javax.swing.JFrame {
     public javax.swing.JRadioButton jrbNao;
     public javax.swing.JRadioButton jrbSim;
     public javax.swing.JTextField jtfTipoServico;
-    public javax.swing.JFormattedTextField jtfValor;
+    public javax.swing.JTextField jtfValor;
     // End of variables declaration//GEN-END:variables
     
     public boolean validaCampos() {  
         if(!(jtfTipoServico.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){
-            JOptionPane.showMessageDialog(this, "Informe um servico válido!");
+            JOptionPane.showMessageDialog(this, "Informe um serviço válido!");
             jtfTipoServico.setText("");
             jtfTipoServico.requestFocus();
             return false;
         }
         if(!(jtfValor.getText().matches("^[0-9]+"))){    
-            JOptionPane.showMessageDialog(this, "Informe um valor válido!");
+            JOptionPane.showMessageDialog(this, "Informe um valor válido! \nSomente Números.");
             jtfValor.setText("");
             jtfValor.requestFocus();
             return false;
@@ -269,14 +265,14 @@ public class FrmTelaAlterarServico extends javax.swing.JFrame {
             jrbSim.requestFocus();
             return false;
         }  
-    
-       
+        
         return true;
     }
     //funcao limpar campos
     public void limparCampos() {        
         jtfTipoServico.setText("");
         jtfValor.setText("");
+        //limpa as escolhas dos botoes feminino e masculino
         btGrupoPlanoSaude.clearSelection();    
         //retorna foco para tipo de servico(primeiro item do cadastro)
         jtfTipoServico.requestFocus();

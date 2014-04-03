@@ -14,7 +14,6 @@ public class FrmTelaAlterarDentista extends javax.swing.JFrame {
     MaskFormatter formatoTelefone;
     MaskFormatter formatoCelular ;
     
-    
     Dentista backupDentista = new Dentista();
     private ControleDentista controleDentista;
     
@@ -148,12 +147,6 @@ public class FrmTelaAlterarDentista extends javax.swing.JFrame {
 
         jlEmail.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jlEmail.setText("E-mail:");
-
-        jtfNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNomeActionPerformed(evt);
-            }
-        });
 
         jbSalvar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jbSalvar.setForeground(new java.awt.Color(0, 51, 255));
@@ -320,10 +313,6 @@ public class FrmTelaAlterarDentista extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(607, 500));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNomeActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         this.dispose();

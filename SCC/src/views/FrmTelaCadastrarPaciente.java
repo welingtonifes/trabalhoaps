@@ -20,7 +20,6 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     public FrmTelaCadastrarPaciente() {
         initComponents();
         controlePaciente = new ControlePaciente();
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -335,9 +334,8 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         Paciente paciente = new Paciente();
-        //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)  
-        if((validaCampos() == true)) {       
-            //paciente.setCodigo();
+        //verifica se os dados estão todos prenchidos antes de enviar para a base de dados  
+        if((validaCampos() == true)) { 
             paciente.setNome(this.jtfNome.getText());
             paciente.setCpf(this.jftCpf.getText());                        
             if(jrFeminino.isSelected()){
@@ -368,15 +366,16 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         
             paciente.setEmail(this.jtfEmail.getText());
         
-            //verificar se cpf ja existe no banco
+            //verificar se cpf ja existe no banco antes de cadastrar
             if(!controlePaciente.verificarPaciente(paciente)){
+                  //cadastra o paciente no banco
                   if(controlePaciente.cadastrarPaciente(paciente)){
                     JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
                     limparCampos();
                     this.dispose();
                   }
                   else{
-                      JOptionPane.showMessageDialog(this, "Não foi posivel savar no banco de dados!");
+                      JOptionPane.showMessageDialog(this, "Não foi possível salvar no banco de dados!");
                       this.dispose();
                   }  
             }
@@ -470,6 +469,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     public javax.swing.JTextField jtfRua;
     // End of variables declaration//GEN-END:variables
     
+    //funcao para validar campos usando expressoes regulares
     public boolean validaCampos() {  
         if(!(jtfNome.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){
             JOptionPane.showMessageDialog(this, "Informe um nome válido!");
@@ -525,7 +525,6 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
 //            jcbUf.requestFocus();
 //            return false;
 //        }
-//        if(jtfCEP.getText().equals("")){
         if(!(jftCep.getText().matches("\\d\\d\\d\\d\\d.\\d\\d\\d"))){
             JOptionPane.showMessageDialog(this, "Informe um cep válido!");
             jftCep.setText("");
@@ -554,23 +553,24 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         
         return true;        
     }
- public void limparCampos() {        
-        jtfNome.setText("");
-        jftCpf.setText("");
-        btGrupoSexo.clearSelection();    
-        jftNascimento.setText("");
-        jtfCidade.setText(""); 
-        jtfBairro.setText("");
-        jtfRua.setText("");
-        jtfNumero.setText("");  
-        jcbUf.setSelectedItem(""); 
-        jftCep.setText("");
-        jftTelefone.setText("");             
-        jftCelular.setText("");       
-        jtfEmail.setText("");        
-        
-        jtfNome.requestFocus();
-    }
+    //funcao limpa campos
+     public void limparCampos() {        
+            jtfNome.setText("");
+            jftCpf.setText("");
+            btGrupoSexo.clearSelection();    
+            jftNascimento.setText("");
+            jtfCidade.setText(""); 
+            jtfBairro.setText("");
+            jtfRua.setText("");
+            jtfNumero.setText("");  
+            jcbUf.setSelectedItem(""); 
+            jftCep.setText("");
+            jftTelefone.setText("");             
+            jftCelular.setText("");       
+            jtfEmail.setText("");        
+
+            jtfNome.requestFocus();
+        }
  public boolean verificaCampos() {  
         return !jtfNome.getText().equals("");
     }

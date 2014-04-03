@@ -14,15 +14,12 @@ public class FrmTelaAlterarSecretaria extends javax.swing.JFrame {
     MaskFormatter formatoTelefone;
     MaskFormatter formatoCelular ;
     
-    
     Secretaria backupSecretaria = new Secretaria();
     private ControleSecretaria controleSecretaria;
     
-    
     public FrmTelaAlterarSecretaria() {
         initComponents();
-        controleSecretaria = new ControleSecretaria();
-        
+        controleSecretaria = new ControleSecretaria();        
     }
 
     @SuppressWarnings("unchecked")

@@ -20,7 +20,6 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
     public FrmTelaCadastrarSecretaria() {
         initComponents();
         controleSecretaria = new ControleSecretaria();
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -148,12 +147,6 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
         jlEmail.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jlEmail.setText("E-mail:");
 
-        jtfNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNomeActionPerformed(evt);
-            }
-        });
-
         jbSalvar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jbSalvar.setForeground(new java.awt.Color(0, 51, 255));
         jbSalvar.setText("Salvar");
@@ -194,19 +187,8 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
         btGrupoSexo.add(jrFeminino);
         jrFeminino.setText("Feminino");
 
-        jftCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jftCpfActionPerformed(evt);
-            }
-        });
-
         jcbUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ES", "AL", "DF", "MG", "RJ", "SP" }));
         jcbUf.setToolTipText("");
-        jcbUf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbUfActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -346,10 +328,6 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNomeActionPerformed
-
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
@@ -357,8 +335,7 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)  
         Secretaria secretaria = new Secretaria();
-        if((validaCampos() == true)) {       
-            //secretaria.setCodigo();
+        if((validaCampos() == true)) {
             secretaria.setNome(this.jtfNome.getText());
             secretaria.setCpf(this.jftCpf.getText());                        
             if(jrFeminino.isSelected()){
@@ -391,6 +368,7 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
         
             //verificar se cpf ja existe no banco
             if(!controleSecretaria.verificarSecretaria(secretaria)){
+                  //cadastra a secretária no banco
                   if(controleSecretaria.cadastrarSecretaria(secretaria)){
                     JOptionPane.showMessageDialog(this, "Secretária(o) cadastrada(o) com sucesso!");
                     limparCampos();
@@ -406,22 +384,12 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
                 jftCpf.setText("");
                 jftCpf.requestFocus();                                
             }
-            //chama funcao pra inserir dados no banco
-
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
         limparCampos();
     }//GEN-LAST:event_jbLimparActionPerformed
-
-    private void jcbUfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbUfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbUfActionPerformed
-
-    private void jftCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jftCpfActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
@@ -501,6 +469,7 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
     private javax.swing.JTextField jtfRua;
     // End of variables declaration//GEN-END:variables
     
+    //funcao para validar campos usando expressoes regulares
     public boolean validaCampos() {  
         if(!(jtfNome.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){
             JOptionPane.showMessageDialog(this, "Informe um nome válido!");
@@ -556,7 +525,6 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
 //            jcbUf.requestFocus();
 //            return false;
 //        }
-//        if(jtfCEP.getText().equals("")){
         if(!(jftCep.getText().matches("\\d\\d\\d\\d\\d.\\d\\d\\d"))){
             JOptionPane.showMessageDialog(this, "Informe um cep válido!");
             jftCep.setText("");
@@ -585,21 +553,22 @@ public class FrmTelaCadastrarSecretaria extends javax.swing.JFrame {
 
         return true;        
     }
- public void limparCampos() {        
-        jtfNome.setText("");
-        jftCpf.setText("");
-        btGrupoSexo.clearSelection();    
-        jftNascimento.setText("");
-        jtfCidade.setText(""); 
-        jtfBairro.setText("");
-        jtfRua.setText("");
-        jtfNumero.setText("");  
-        jcbUf.setSelectedItem(""); 
-        jftCep.setText("");
-        jftTelefone.setText("");             
-        jftCelular.setText("");       
-        jtfEmail.setText("");        
-        
-        jtfNome.requestFocus();
-    }
+    //funcao limpa campos   
+     public void limparCampos() {        
+            jtfNome.setText("");
+            jftCpf.setText("");
+            btGrupoSexo.clearSelection();    
+            jftNascimento.setText("");
+            jtfCidade.setText(""); 
+            jtfBairro.setText("");
+            jtfRua.setText("");
+            jtfNumero.setText("");  
+            jcbUf.setSelectedItem(""); 
+            jftCep.setText("");
+            jftTelefone.setText("");             
+            jftCelular.setText("");       
+            jtfEmail.setText("");        
+
+            jtfNome.requestFocus();
+        }
 }

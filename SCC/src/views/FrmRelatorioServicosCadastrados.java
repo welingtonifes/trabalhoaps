@@ -5,7 +5,6 @@ import control.ControleServico;
 import domain.Servico;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import views.FrmTelaPrincipal;
 
 public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
     private ControleServico controleServico;

@@ -152,12 +152,6 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
         jlEmail.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jlEmail.setText("E-mail:");
 
-        jtfNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNomeActionPerformed(evt);
-            }
-        });
-
         jbSalvar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jbSalvar.setForeground(new java.awt.Color(0, 51, 255));
         jbSalvar.setText("Salvar");
@@ -198,19 +192,8 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
         btGrupoSexo.add(jrFeminino);
         jrFeminino.setText("Feminino");
 
-        jftCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jftCpfActionPerformed(evt);
-            }
-        });
-
         jcbUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ES", "AL", "DF", "MG", "RJ", "SP" }));
         jcbUf.setToolTipText("");
-        jcbUf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbUfActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -350,12 +333,7 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfNomeActionPerformed
-
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
@@ -363,7 +341,6 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
         //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)  
         Dentista dentista = new Dentista();
         if((validaCampos() == true)) {       
-            //dentista.setCodigo();
             dentista.setNome(this.jtfNome.getText());
             dentista.setCpf(this.jftCpf.getText());                        
             if(jrFeminino.isSelected()){
@@ -396,6 +373,7 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
         
             //verificar se cpf ja existe no banco
             if(!controleDentista.verificarDentista(dentista)){
+                  //cadastra o dentista no banco
                   if(controleDentista.cadastrarDentista(dentista)){
                   JOptionPane.showMessageDialog(this, "Dentista cadastrado com sucesso!");
                   limparCampos();
@@ -411,22 +389,12 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
                 jftCpf.setText("");
                 jftCpf.requestFocus();                                
             }
-            //chama funcao pra inserir dados no banco
-
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
         limparCampos();
     }//GEN-LAST:event_jbLimparActionPerformed
-
-    private void jcbUfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbUfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbUfActionPerformed
-
-    private void jftCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jftCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jftCpfActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         FrmTelaPrincipal telaPrincipal = new FrmTelaPrincipal();
@@ -506,22 +474,20 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
     private javax.swing.JTextField jtfRua;
     // End of variables declaration//GEN-END:variables
     
+    //funcao para validar campos usando expressoes regulares
     public boolean validaCampos() {  
         if(!(jtfNome.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){
-//        if(jtfNome.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Informe um nome válido!");
             jtfNome.setText("");
             jtfNome.requestFocus();
             return false;
         }
-//        if(jftCpf.getText().equals("")){
         if(!(jftCpf.getText().matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
             JOptionPane.showMessageDialog(this, "Informe um cpf válido!");
             jftCpf.setText("");
             jftCpf.requestFocus();
             return false;
         }       
-//        if(jtfDataNascimento.getText().equals("")){
         if(!(jftNascimento.getText().matches("\\d{2}/\\d{2}/\\d{4}"))){    
             JOptionPane.showMessageDialog(this, "Informe uma data válida!");
             jftNascimento.setText("");
@@ -534,21 +500,18 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
             return false;
         }  
         if(!(jtfCidade.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){
-//        if(jtfCidade.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Informe uma cidade válida!");
             jtfCidade.setText("");
             jtfCidade.requestFocus();
             return false;
         }
         if(!(jtfBairro.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){        
-//        if(jtfBairro.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Informe um bairro válido!");
             jtfBairro.setText("");
             jtfBairro.requestFocus();
             return false;
         }
         if(!(jtfRua.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){        
-//        if(jtfRua.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Informe uma rua válida!");
             jtfRua.setText("");
             jtfRua.requestFocus();
@@ -567,7 +530,6 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
 //            jcbUf.requestFocus();
 //            return false;
 //        }
-//        if(jtfCEP.getText().equals("")){
         if(!(jftCep.getText().matches("\\d\\d\\d\\d\\d.\\d\\d\\d"))){
             JOptionPane.showMessageDialog(this, "Informe um cep válido!");
             jftCep.setText("");
@@ -595,6 +557,7 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
 //        }         
         return true;        
     }
+     //funcao limpa campos
  public void limparCampos() {        
         jtfNome.setText("");
         jftCpf.setText("");
@@ -611,5 +574,5 @@ public class FrmTelaCadastrarDentista extends javax.swing.JFrame {
         jtfEmail.setText("");        
         
         jtfNome.requestFocus();
-    }
+  }
 }

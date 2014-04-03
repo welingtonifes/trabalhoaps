@@ -1,9 +1,7 @@
 package views;
 
 public class FrmTelaPrincipal extends javax.swing.JFrame {
-    //variavael para remover cliente do arraylist pelo metodo remover
- //   String cpf;
-
+    
     public FrmTelaPrincipal() {
         initComponents();
     }
@@ -303,7 +301,6 @@ public class FrmTelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiDeletarSecretariaActionPerformed
 
     private void jmiCadastaraServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadastaraServicoActionPerformed
-        // TODO add your handling code here:
         FrmTelaCadastrarServico telaCadastrarServico = new FrmTelaCadastrarServico();
         telaCadastrarServico.setLocationRelativeTo(null);
         telaCadastrarServico.setVisible(true);

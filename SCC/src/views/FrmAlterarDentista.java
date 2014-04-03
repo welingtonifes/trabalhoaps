@@ -8,7 +8,6 @@ import javax.swing.text.MaskFormatter;
 
 public class FrmAlterarDentista extends javax.swing.JFrame {
     Dentista dentista = new Dentista();
-//    static Dentista backupDentista = new Dentista();
     private ControleDentista controleDentista;
     MaskFormatter formatoCpf;
     public FrmAlterarDentista() {
@@ -57,12 +56,6 @@ public class FrmAlterarDentista extends javax.swing.JFrame {
             }
         });
 
-        jtfAlterarDentistaCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfAlterarDentistaCpfActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,10 +94,11 @@ public class FrmAlterarDentista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
-//consulta o bd  pra verificar se o dentista existe e possui dados via cpf
         try{
+            //consulta o bd  pra verificar se o dentista existe e possui dados via cpf
             dentista = controleDentista.verificarCpfDentista(jtfAlterarDentistaCpf.getText());
 
+            //chama tela de alteração preenchendo os dados pegos no banco de dados com a verificacao acima
             FrmTelaAlterarDentista telaAlteraDentista = new FrmTelaAlterarDentista();
             this.setLocationRelativeTo(null);
             telaAlteraDentista.jtfNome.setText(dentista.getNome());
@@ -138,10 +132,6 @@ public class FrmAlterarDentista extends javax.swing.JFrame {
             jtfAlterarDentistaCpf.setRequestFocusEnabled(true);
         }
     }//GEN-LAST:event_jbAlterarActionPerformed
-
-    private void jtfAlterarDentistaCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAlterarDentistaCpfActionPerformed
-     
-    }//GEN-LAST:event_jtfAlterarDentistaCpfActionPerformed
 
     private void jbCancelarExclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoActionPerformed
         this.dispose();

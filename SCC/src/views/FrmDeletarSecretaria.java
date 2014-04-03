@@ -52,12 +52,6 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
             }
         });
 
-        jtfExcluirSecretariaCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfExcluirSecretariaCpfActionPerformed(evt);
-            }
-        });
-
         jPanel2.setBackground(new java.awt.Color(51, 102, 255));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -121,7 +115,6 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        // TODO add your handling code here:
         Secretaria secretaria = new Secretaria();
         if(!(this.jtfExcluirSecretariaCpf.getText().matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
             JOptionPane.showMessageDialog(this, "Informe um cpf válido!");
@@ -130,13 +123,15 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
         }
         else{
             secretaria.setCpf(this.jtfExcluirSecretariaCpf.getText());
+            //verificar se cpf existe no banco antes de deletar
             if(controleSecretaria.verificarSecretaria(secretaria)){
+                //deleta a secretaria no banco
                 if(controleSecretaria.deletarSecretaria(secretaria)){
                     JOptionPane.showMessageDialog(null, "Deletado com sucesso.");
                 }
             }    
             else{
-                    JOptionPane.showMessageDialog(null, "Erro ao deletar.");
+                    JOptionPane.showMessageDialog(null, "Erro ao deletar. \ncpf não encontrado no banco!");
             }
             
             this.dispose();
@@ -152,10 +147,6 @@ public class FrmDeletarSecretaria extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         telaPrincipal.setVisible(true);        
     }//GEN-LAST:event_jbCancelarActionPerformed
-
-    private void jtfExcluirSecretariaCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfExcluirSecretariaCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfExcluirSecretariaCpfActionPerformed
 
     /**
      * @param args the command line arguments

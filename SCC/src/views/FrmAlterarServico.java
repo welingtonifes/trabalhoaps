@@ -83,10 +83,11 @@ public class FrmAlterarServico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
-        //consulta o bd  pra verificar se o servico existe e possui dados via tipo servico
         try{
+            //consulta o bd  pra verificar se o servico existe e possui dados via tipo servico
             serv = controleServico.verificarServicoTipoServico(jtfAlterarServicoTipoServico.getText());
 
+            //chama tela de alteração preenchendo os dados pegos no banco de dados com a verificacao acima
             FrmTelaAlterarServico telaAlteraServico = new FrmTelaAlterarServico();
             this.setLocationRelativeTo(null);
             telaAlteraServico.jtfTipoServico.setText(serv.getTipoServico()); 

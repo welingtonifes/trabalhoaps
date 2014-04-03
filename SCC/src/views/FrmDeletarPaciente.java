@@ -52,12 +52,6 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
             }
         });
 
-        jtfExcluirPacienteCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfExcluirPacienteCpfActionPerformed(evt);
-            }
-        });
-
         jPanel2.setBackground(new java.awt.Color(51, 102, 255));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -120,7 +114,6 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        // TODO add your handling code here:
         Paciente paciente = new Paciente();
         if(!(this.jtfExcluirPacienteCpf.getText().matches("^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$"))){    
             JOptionPane.showMessageDialog(this, "Informe um cpf válido!");
@@ -129,7 +122,9 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
         }
         else{
             paciente.setCpf(this.jtfExcluirPacienteCpf.getText());
+            //verificar se cpf existe no banco antes de deletar
             if(controlePaciente.verificarPaciente(paciente)){
+                //deleta o paciente no banco
                 if(controlePaciente.deletarPaciente(paciente)){
                     JOptionPane.showMessageDialog(null, "Deletado com sucesso.");
                 }
@@ -144,10 +139,6 @@ public class FrmDeletarPaciente extends javax.swing.JFrame {
             telaPrincipal.setVisible(true);           
         }        
     }//GEN-LAST:event_jbExcluirActionPerformed
-
-    private void jtfExcluirPacienteCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfExcluirPacienteCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfExcluirPacienteCpfActionPerformed
 
     private void jbCancelarExclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarExclusaoActionPerformed
         this.dispose();

@@ -108,8 +108,6 @@ public class FrmDeletarServico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        // TODO add your handling code here:
-       
         Servico servico = new Servico();
         if(!(this.jtfExcluir.getText().matches("^[a-z\\u00C0-\\u00ff A-Z]+$"))){    
             JOptionPane.showMessageDialog(this, "Informe um servico válido!");
@@ -118,7 +116,9 @@ public class FrmDeletarServico extends javax.swing.JFrame {
         }
         else{
             servico.setTipoServico(this.jtfExcluir.getText());
+            //verificar se servico existe no banco antes de deletar
             if(controleServico.verificarServico(servico)){
+                //deleta o servico no banco
                 if(controleServico.deletarServico(servico)){
                     JOptionPane.showMessageDialog(null, "Deletado com sucesso.");
                 }
