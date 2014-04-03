@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package crud;
 
 import domain.Servico;
@@ -12,20 +9,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Gomes
- */
 public class ServicoCrud {
     public boolean inserir(Connection conexao, Servico servico) {
         try {
-            PreparedStatement stmt = conexao.prepareStatement(                   
-                    "INSERT INTO servico(nome,cpf,datanascimento,sexo,uf,cidade,bairro,cep,rua,numero,telefone,celular,email)"
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
- /*           stmt.setString(1, servico.getNome());
-            stmt.setString(2, servico.getCpf());
-            stmt.setString(3, servico.getDataNascimento());
-   */        
+            PreparedStatement stmt = conexao.prepareStatement(
+                   
+                    "INSERT INTO servico(tipo_servico,valor,aceita_plano)"
+                    + "VALUES (?,?,?);");
+            stmt.setString(1, servico.getTipoServico());
+            stmt.setDouble(2, servico.getValor());
+            stmt.setString(3, servico.getAceitaPlanoSaude());
+            
+           
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -37,9 +32,8 @@ public class ServicoCrud {
     public boolean deletar(Connection conexao, Servico servico) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(
-                    "DELETE FROM servico WHERE cpf=?;");
-  //          stmt.setString(1, servico.getCpf());
-            
+                    "DELETE FROM servico WHERE tipo_servico=?;");
+            stmt.setString(1, servico.getTipoServico());
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -47,47 +41,45 @@ public class ServicoCrud {
             return false;
         }
     }
-  
-        
+
+   
+
+   
     public ArrayList<Servico> listar(Connection conexao) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(
-                    "SELECT cod_servico, nome,cpf, datanascimento, sexo, uf, cidade, bairro, rua, numero, cep, telefone, celular, email FROM servico;");
+                    "SELECT cod_servico, tipo_servico,valor, aceita_plano FROM servico;");
 
             ResultSet resultado = stmt.executeQuery();
             ArrayList<Servico> listaServico = new ArrayList<>();
             while(resultado.next()){
-                    Servico aux = new Servico();
-/*
-                    aux.setcodServico(resultado.getInt("cod_servico"));
-                    aux.setNome(resultado.getString("nome"));
-                    aux.setCpf(resultado.getString("cpf"));
-                    aux.setDataNascimento(resultado.getString("datanascimento"));
-*/
-                    listaServico.add(aux);
-                }
-                return listaServico;
+                Servico aux = new Servico();
+
+                 aux.setCodServico(resultado.getInt("cod_servico"));
+                 aux.setTipoServico(resultado.getString("tipo_servico"));
+                 aux.setValor(resultado.getDouble("valor"));
+                 aux.setAceitaPlanoSaude(resultado.getString("aceita_plano"));
+
+                listaServico.add(aux);
+
+            }
+            return listaServico;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
             return null;
         }
-     }
-    
-    //funcao atualiza banco
-    public boolean atualizar(Connection conexao, Servico servico) {
+}
+     public boolean atualizar(Connection conexao,Servico servico) {
         try {
             PreparedStatement stmt = conexao.prepareStatement(
                     "UPDATE servico"
-                       +" SET nome=?,cpf=?,datanascimento=?,sexo=?,uf=?"
-                       + ",cidade=?,bairro=?,cep=?,rua=?,numero=?"
-                       + ",telefone=?,celular=?,email=?"                          
-                       + " WHERE cpf=?;");
-/*                    
-            stmt.setString(1, servico.getNome().toString());
-            stmt.setString(2, servico.getCpf().toString());
-            stmt.setString(3, servico.getDataNascimento().toString());
-*/
-
+                        + " SET tipo_servico=?,valor=?,aceita_plano=?"
+                        + " WHERE tipo_servico=?;");
+                    
+             stmt.setString(1, servico.getTipoServico().toString());
+             stmt.setDouble(2, servico.getValor());
+             stmt.setString(3, servico.getAceitaPlanoSaude().toString());
+             stmt.setString(4, servico.getTipoServico().toString());
             
             stmt.executeUpdate();
             return true;

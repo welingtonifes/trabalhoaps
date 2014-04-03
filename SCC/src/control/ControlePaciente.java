@@ -24,7 +24,6 @@ public class ControlePaciente {
                     + "FROM paciente "
                     + "WHERE cpf=? "
                     + "  LIMIT 1;");
-
             
             stmt.setString(1, paciente.getCpf());
             

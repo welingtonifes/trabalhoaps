@@ -87,7 +87,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
         jcbUf = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Clientes");
+        setTitle("Cadastrar Paciente");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -218,9 +218,8 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
                                     .addComponent(jftTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(158, 158, 158)
+                                    .addGap(168, 168, 168)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jlCelular)
                                         .addComponent(jftCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,10 +236,8 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                                     .addComponent(jtfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jlBairro)
                                     .addComponent(jlRua)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jtfRua, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(89, 89, 89)
+                                    .addComponent(jtfRua, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(99, 99, 99)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlCEP)
                                     .addComponent(jftCep, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,7 +250,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                                     .addComponent(jlCidade)
                                     .addComponent(jtfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jlNumero))))
-                        .addGap(0, 28, Short.MAX_VALUE)))
+                        .addGap(0, 20, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -325,7 +322,7 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(607, 500));
@@ -337,8 +334,8 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)  
         Paciente paciente = new Paciente();
+        //verifica se os dados estão todos prenchidos antes de enviar para a base de dados(arraylist)  
         if((validaCampos() == true)) {       
             //paciente.setCodigo();
             paciente.setNome(this.jtfNome.getText());
@@ -388,8 +385,6 @@ public class FrmTelaCadastrarPaciente extends javax.swing.JFrame {
                 jftCpf.setText("");
                 jftCpf.requestFocus();                                
             }
-            //chama funcao pra inserir dados no banco
-
         }        
     }//GEN-LAST:event_jbSalvarActionPerformed
     

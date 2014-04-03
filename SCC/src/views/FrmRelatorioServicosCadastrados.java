@@ -45,6 +45,8 @@ public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
         jtRelatorioServicos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("RELATÓRIO DE SERVIÇOS CADASTRADOS");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -55,7 +57,7 @@ public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Relatorio de Serviços");
+        jLabel1.setText("Relatório de Serviços Cadastrados");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -64,7 +66,7 @@ public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(211, 211, 211)
                 .addComponent(jLabel1)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,6 +82,10 @@ public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jtRelatorioServicos);
+        if (jtRelatorioServicos.getColumnModel().getColumnCount() > 0) {
+            jtRelatorioServicos.getColumnModel().getColumn(0).setMinWidth(50);
+            jtRelatorioServicos.getColumnModel().getColumn(1).setMinWidth(200);
+        }
 
         jScrollPane2.setViewportView(jScrollPane1);
 
@@ -95,8 +101,7 @@ public class FrmRelatorioServicosCadastrados extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();

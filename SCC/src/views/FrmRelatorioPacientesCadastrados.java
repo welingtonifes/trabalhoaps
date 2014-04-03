@@ -49,6 +49,8 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jtRelatorioPacientes = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("RELATÓRIO DE PACIENTES CADASTRADOS");
@@ -82,14 +84,14 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtRelatorioPacientes);
         if (jtRelatorioPacientes.getColumnModel().getColumnCount() > 0) {
             jtRelatorioPacientes.getColumnModel().getColumn(0).setMinWidth(80);
-            jtRelatorioPacientes.getColumnModel().getColumn(1).setMinWidth(350);
-            jtRelatorioPacientes.getColumnModel().getColumn(2).setMinWidth(150);
-            jtRelatorioPacientes.getColumnModel().getColumn(3).setMinWidth(60);
-            jtRelatorioPacientes.getColumnModel().getColumn(4).setMinWidth(100);
-            jtRelatorioPacientes.getColumnModel().getColumn(5).setMinWidth(100);
-            jtRelatorioPacientes.getColumnModel().getColumn(6).setMinWidth(150);
-            jtRelatorioPacientes.getColumnModel().getColumn(7).setMinWidth(250);
-            jtRelatorioPacientes.getColumnModel().getColumn(8).setMinWidth(30);
+            jtRelatorioPacientes.getColumnModel().getColumn(1).setMinWidth(250);
+            jtRelatorioPacientes.getColumnModel().getColumn(2).setMinWidth(125);
+            jtRelatorioPacientes.getColumnModel().getColumn(3).setMinWidth(110);
+            jtRelatorioPacientes.getColumnModel().getColumn(4).setMinWidth(75);
+            jtRelatorioPacientes.getColumnModel().getColumn(5).setMinWidth(30);
+            jtRelatorioPacientes.getColumnModel().getColumn(6).setMinWidth(200);
+            jtRelatorioPacientes.getColumnModel().getColumn(7).setMinWidth(200);
+            jtRelatorioPacientes.getColumnModel().getColumn(8).setMinWidth(200);
             jtRelatorioPacientes.getColumnModel().getColumn(9).setMinWidth(5);
             jtRelatorioPacientes.getColumnModel().getColumn(10).setMinWidth(100);
             jtRelatorioPacientes.getColumnModel().getColumn(11).setMinWidth(130);
@@ -97,17 +99,39 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
             jtRelatorioPacientes.getColumnModel().getColumn(13).setMinWidth(300);
         }
 
+        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Relatório de Pacientes Cadastrados");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(293, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(257, 257, 257))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,6 +187,8 @@ public class FrmRelatorioPacientesCadastrados extends javax.swing.JFrame {
 
     }  
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtRelatorioPacientes;
     // End of variables declaration//GEN-END:variables

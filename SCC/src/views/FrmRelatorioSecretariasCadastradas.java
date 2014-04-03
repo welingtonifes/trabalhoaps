@@ -49,6 +49,8 @@ public class FrmRelatorioSecretariasCadastradas extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jtRelatorioSecretarias = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("RELATÓRIO DE SECRETÁRIAS CADASTRADAS");
@@ -82,14 +84,14 @@ public class FrmRelatorioSecretariasCadastradas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtRelatorioSecretarias);
         if (jtRelatorioSecretarias.getColumnModel().getColumnCount() > 0) {
             jtRelatorioSecretarias.getColumnModel().getColumn(0).setMinWidth(80);
-            jtRelatorioSecretarias.getColumnModel().getColumn(1).setMinWidth(350);
-            jtRelatorioSecretarias.getColumnModel().getColumn(2).setMinWidth(150);
-            jtRelatorioSecretarias.getColumnModel().getColumn(3).setMinWidth(60);
-            jtRelatorioSecretarias.getColumnModel().getColumn(4).setMinWidth(100);
-            jtRelatorioSecretarias.getColumnModel().getColumn(5).setMinWidth(100);
-            jtRelatorioSecretarias.getColumnModel().getColumn(6).setMinWidth(150);
-            jtRelatorioSecretarias.getColumnModel().getColumn(7).setMinWidth(250);
-            jtRelatorioSecretarias.getColumnModel().getColumn(8).setMinWidth(30);
+            jtRelatorioSecretarias.getColumnModel().getColumn(1).setMinWidth(250);
+            jtRelatorioSecretarias.getColumnModel().getColumn(2).setMinWidth(125);
+            jtRelatorioSecretarias.getColumnModel().getColumn(3).setMinWidth(110);
+            jtRelatorioSecretarias.getColumnModel().getColumn(4).setMinWidth(75);
+            jtRelatorioSecretarias.getColumnModel().getColumn(5).setMinWidth(30);
+            jtRelatorioSecretarias.getColumnModel().getColumn(6).setMinWidth(200);
+            jtRelatorioSecretarias.getColumnModel().getColumn(7).setMinWidth(200);
+            jtRelatorioSecretarias.getColumnModel().getColumn(8).setMinWidth(200);
             jtRelatorioSecretarias.getColumnModel().getColumn(9).setMinWidth(5);
             jtRelatorioSecretarias.getColumnModel().getColumn(10).setMinWidth(100);
             jtRelatorioSecretarias.getColumnModel().getColumn(11).setMinWidth(130);
@@ -97,17 +99,41 @@ public class FrmRelatorioSecretariasCadastradas extends javax.swing.JFrame {
             jtRelatorioSecretarias.getColumnModel().getColumn(13).setMinWidth(300);
         }
 
+        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Relatório de Secretárias Cadastradas");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(278, 278, 278)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -163,6 +189,8 @@ public class FrmRelatorioSecretariasCadastradas extends javax.swing.JFrame {
 
     }  
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtRelatorioSecretarias;
     // End of variables declaration//GEN-END:variables

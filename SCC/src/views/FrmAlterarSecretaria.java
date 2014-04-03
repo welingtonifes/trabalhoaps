@@ -38,6 +38,7 @@ public class FrmAlterarSecretaria extends javax.swing.JFrame {
         jtfAlterarSecretariaCpf = new JFormattedTextField(formatoCpf);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("ALTERAR DADOS - SECRETÁRIA");
 
         jlDeletarSecretaria.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jlDeletarSecretaria.setText("INFORME O CPF DA SECRETARIA QUE DESEJA ALTERAR:");
@@ -95,7 +96,7 @@ public class FrmAlterarSecretaria extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(330, 125));
+        setSize(new java.awt.Dimension(338, 125));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

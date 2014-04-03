@@ -20,9 +20,9 @@ public class ControleServico {
             this.conn = this.db.conectar();
             PreparedStatement stmt;
             stmt = this.conn.prepareStatement(
-                    "SELECT tipo "
+                    "SELECT tipo_servico "
                     + "FROM servico "
-                    + "WHERE tipo=? "
+                    + "WHERE tipo_servico=? "
                     + "  LIMIT 1;");
 
             
@@ -88,27 +88,28 @@ public class ControleServico {
         }
     }
     
-    public Servico verificarCpfServico(String tipo) {
-        Servico paci = new Servico();
+    public Servico verificarServicoTipoServico(String tipoServico) {
+        Servico serv = new Servico();
         try {
             this.db = new Database();
             this.conn = this.db.conectar();
             PreparedStatement stmt;
             stmt = this.conn.prepareStatement(                    
                     "SELECT * FROM servico "
-                        + "WHERE tipo=? "
+                        + "WHERE tipo_servico=? "
                         + "  LIMIT 1;");
-            stmt.setString(1, tipo);                         
+            stmt.setString(1, tipoServico);                         
             ResultSet resultado = stmt.executeQuery();      
 
             if (resultado.next()) {
-/*                
-                paci.setNome(resultado.getString("nome"));
-                paci.setCpf(resultado.getString("cpf"));
-                paci.setDataNascimento(resultado.getString("datanascimento"));
-*/                             
+               
+                serv.setTipoServico(resultado.getString("tipo_servico"));
+//                String valor = (resultado.getString("valor"));
+//                serv.setValor(Double.parseDouble(valor));
+                serv.setValor(resultado.getDouble("valor")); 
+                serv.setAceitaPlanoSaude(resultado.getString("aceita_plano"));    
                 db.desconectar(this.conn);                            
-                return paci;
+                return serv;
             } else {
                 return null;
             }

@@ -38,6 +38,7 @@ public class FrmAlterarDentista extends javax.swing.JFrame {
         jtfAlterarDentistaCpf = new JFormattedTextField(formatoCpf);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("ALTERAR DADOS - DENTISTA");
 
         jlDeletarPaciente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jlDeletarPaciente.setText("INFORME O CPF DO DENTISTA QUE DESEJA ALTERAR:");

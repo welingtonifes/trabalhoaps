@@ -42,6 +42,7 @@ public class FrmAlterarPaciente extends javax.swing.JFrame {
         jtfAlterarPacienteCpf = new JFormattedTextField(formatoCpf);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("ALTERAR DADOS - PACIENTE");
 
         jlDeletarPaciente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jlDeletarPaciente.setText("INFORME O CPF DO PACIENTE QUE DESEJA ALTERAR:");
