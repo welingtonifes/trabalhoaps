@@ -253,7 +253,7 @@ public class FrmTelaAlterarServico extends javax.swing.JFrame {
             jtfTipoServico.requestFocus();
             return false;
         }
-        if(!(jtfValor.getText().matches("^[0-9]+"))){    
+        if(!(jtfValor.getText().matches("^((\\+|-)?\\d(\\.\\d)?){1,9}$"))){    
             JOptionPane.showMessageDialog(this, "Informe um valor válido! \nSomente Números.");
             jtfValor.setText("");
             jtfValor.requestFocus();

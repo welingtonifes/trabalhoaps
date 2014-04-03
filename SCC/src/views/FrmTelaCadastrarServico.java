@@ -200,9 +200,9 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
             if(!controleServico.verificarServico(servico)){
                   //cadastra o serviço no banco
                   if(controleServico.cadastrarServico(servico)){
-                  JOptionPane.showMessageDialog(this, "Servico cadastrado com sucesso!");
-                  limparCampos();
-                  this.dispose();
+                    JOptionPane.showMessageDialog(this, "Servico cadastrado com sucesso!");
+                    limparCampos();
+                    this.dispose();
                   }
                   else{
                       JOptionPane.showMessageDialog(this, "Não foi posivel salvar no banco de dados!");
@@ -292,7 +292,7 @@ public class FrmTelaCadastrarServico extends javax.swing.JFrame {
             jtfTipoServico.requestFocus();
             return false;
         }
-        if(!(jtfValor.getText().matches("^[0-9]+"))){    
+        if(!(jtfValor.getText().matches("^((\\+|-)?\\d(\\.\\d)?){1,9}$"))){    
             JOptionPane.showMessageDialog(this, "Informe um valor válido! \n Somente Números.");
             jtfValor.setText("");
             jtfValor.requestFocus();
